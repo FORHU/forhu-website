@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowDown } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import Hexagon from "@/components/hexagon"
 import ForhuLogo from "@/components/forhu-logo"
 
@@ -83,18 +84,13 @@ export default function Home() {
           </p>
 
           <div
-            className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-slide-in-up"
-            style={{ animationDelay: "0.3s" }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <button className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-accent to-cyan-400 hover:from-accent/90 hover:to-cyan-400/80 text-primary font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl shadow-accent/40 hover:shadow-2xl hover:shadow-accent/60 overflow-hidden">
-              <span className="relative z-10 flex items-center justify-center gap-2">
+              <span className="relative z-10 flex items-center justify-center">
                 Witness the moment intelligence evolves
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
-            </button>
-            <button className="px-8 py-4 rounded-full border-2 border-accent/60 text-accent hover:border-accent hover:bg-accent/15 bg-transparent font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-accent/30">
-              Download Whitepaper
             </button>
           </div>
         </div>
@@ -346,6 +342,7 @@ export default function Home() {
                 color: "from-cyan-400",
                 delay: 0,
                 number: "01",
+                image: "/Ai is a Partner, Not a Tool.jpg"
               },
               {
                 title: "Honest Engineering: Science, Not Magic",
@@ -355,6 +352,7 @@ export default function Home() {
                 color: "from-purple-400",
                 delay: 0.2,
                 number: "02",
+                image: "/Honest Engineering_ Science, Not Magic.jpg",
               },
               {
                 title: "Hallucination Governance",
@@ -364,6 +362,7 @@ export default function Home() {
                 color: "from-cyan-300",
                 delay: 0.4,
                 number: "03",
+                image: "/Hallucination Governance.jpg",
               },
             ].map((philosophy, idx) => (
               <div
@@ -419,6 +418,20 @@ export default function Home() {
                     <p className="text-muted-foreground leading-relaxed group-hover:text-muted-foreground/95 transition-colors duration-300 mb-6">
                       {philosophy.description}
                     </p>
+
+                    {/* Philosophy Image */}
+                    {philosophy.image && (
+                      <div className="mt-6 mb-6">
+                        <Image
+                          src={philosophy.image}
+                          alt={philosophy.title}
+                          width={800}
+                          height={400}
+                          className="rounded-lg shadow-lg w-full h-auto"
+                          priority
+                        />
+                      </div>
+                    )}
 
                     {/* Interactive CTA with arrow */}
                     <div className="flex items-center gap-2 text-accent font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-2">
@@ -544,6 +557,7 @@ export default function Home() {
                   role: "The Compass",
                   copy: "Defines purpose & direction",
                   icon: "🧭",
+                  image: `/compasss.jpg`
                 },
                 {
                   step: 2,
@@ -551,6 +565,7 @@ export default function Home() {
                   role: "The Decision Maker",
                   copy: "Evaluates & chooses",
                   icon: "⚖️",
+                  image: "/decision maker.jpg",
                 },
                 {
                   step: 3,
@@ -558,6 +573,7 @@ export default function Home() {
                   role: "The Executor",
                   copy: "Executes the plan",
                   icon: "⚡",
+                  image: "/executor.jpg"
                 },
                 {
                   step: 4,
@@ -565,6 +581,7 @@ export default function Home() {
                   role: "Experience Vault",
                   copy: "Records & learns",
                   icon: "🧠",
+                  image: "/experience vault.jpg"
                 },
                 {
                   step: 5,
@@ -572,6 +589,7 @@ export default function Home() {
                   role: "Self-Checker",
                   copy: "Verifies & corrects",
                   icon: "✓",
+                  image: "/self checker.jpg"
                 },
               ].map((item, idx) => (
                 <div key={idx} className="relative group">
@@ -619,6 +637,18 @@ export default function Home() {
                       <p className="text-sm text-muted-foreground group-hover:text-muted-foreground/90 italic leading-relaxed">
                         {item.copy}
                       </p>
+
+                      {/* SCL Step Image */}
+                      <div className="mt-6 mb-6">
+                        <Image
+                          src={item.image}
+                          alt={`${item.role} visualization`}
+                          width={800}
+                          height={400}
+                          className="rounded-lg shadow-lg w-full h-auto"
+                          priority
+                        />
+                      </div>
 
                       {/* Animated bottom accent line */}
                       <div className="mt-6 h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-accent to-purple-400 transition-all duration-500" />
@@ -776,6 +806,7 @@ export default function Home() {
                 description: "The foundation of our technology and the philosophy behind SCL",
                 color: "from-accent",
                 delay: 0,
+                image: "/Whitepaper.jpg"
               },
               {
                 icon: "🧠",
@@ -783,6 +814,7 @@ export default function Home() {
                 description: "Deep dive into the essence of AI hallucinations and how SCL prevents them",
                 color: "from-purple-400",
                 delay: 0.15,
+                image: "/Hallucination Analysis.jpg"
               },
               {
                 icon: "🚀",
@@ -790,6 +822,7 @@ export default function Home() {
                 description: "Where the giants are heading and why structured cognition is the future",
                 color: "from-cyan-300",
                 delay: 0.3,
+                image: "/Big Tech Strategy.jpg"
               },
             ].map((research, idx) => (
               <Link
@@ -834,13 +867,27 @@ export default function Home() {
 
                       {/* Description with pulsing animation */}
                       <p
-                        className="text-muted-foreground leading-relaxed mb-8 group-hover:text-muted-foreground/95 transition-colors duration-300 animate-research-content-pulse"
+                        className="text-muted-foreground leading-relaxed mb-6 group-hover:text-muted-foreground/95 transition-colors duration-300 animate-research-content-pulse"
                         style={{
                           animationDelay: `${research.delay * 1000}ms`,
                         }}
                       >
                         {research.description}
                       </p>
+
+                      {/* Research Image */}
+                      {research.image && (
+                        <div className="mt-6 mb-8">
+                          <Image
+                            src={research.image}
+                            alt={research.title}
+                            width={800}
+                            height={400}
+                            className="rounded-lg shadow-lg w-full h-auto"
+                            priority
+                          />
+                        </div>
+                      )}
 
                       {/* Animated CTA line */}
                       <div className="flex items-center gap-2 text-accent font-semibold group-hover:gap-4 transition-all duration-300">
