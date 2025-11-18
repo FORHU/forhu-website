@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function CTASection() {
@@ -13,7 +12,9 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
               View Opportunities
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Button>
             <Button size="lg" variant="outline">
               Contact Us

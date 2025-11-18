@@ -1,24 +1,45 @@
-import { Brain, Zap, BookOpen, Microscope } from "lucide-react"
+import { Brain, Zap, BookOpen, Microscope } from 'lucide-react'
 
 export default function ResearchSection() {
+  const BrainIcon = () => (
+    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m0 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  )
+  const ZapIcon = () => (
+    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+  )
+  const BookIcon = () => (
+    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17.001m0 0a6.967 6.967 0 006 3.999m0 0c1.863 0 3.63-.811 4.8-2.141M12 6.253v13m0-13C17.5 6.253 22 10.998 22 17.001m0 0a6.966 6.966 0 01-6 3.999" />
+    </svg>
+  )
+  const MicroscopeIcon = () => (
+    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+    </svg>
+  )
+
   const researchAreas = [
     {
-      icon: Brain,
+      icon: BrainIcon,
       title: "Neural Architecture",
       description: "Pioneering work in advanced neural network design and optimization",
     },
     {
-      icon: Zap,
+      icon: ZapIcon,
       title: "Efficient Computing",
       description: "Developing scalable AI systems with minimal computational overhead",
     },
     {
-      icon: BookOpen,
+      icon: BookIcon,
       title: "Knowledge Systems",
       description: "Building interpretable AI that understands and reasons about information",
     },
     {
-      icon: Microscope,
+      icon: MicroscopeIcon,
       title: "Empirical Validation",
       description: "Rigorous testing and evaluation of novel AI methodologies",
     },
@@ -42,8 +63,8 @@ export default function ResearchSection() {
                 key={idx}
                 className="group p-6 rounded-lg border border-border bg-background hover:bg-card/50 transition-all duration-300 hover:border-accent/50"
               >
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20">
-                  <Icon className="h-6 w-6 text-accent" />
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 text-accent">
+                  <Icon />
                 </div>
                 <h3 className="mb-2 text-lg font-semibold text-foreground">{area.title}</h3>
                 <p className="text-sm text-muted-foreground">{area.description}</p>

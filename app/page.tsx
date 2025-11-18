@@ -3,9 +3,9 @@ import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import HeroHome from "@/components/hero-home"
 import PhilosophySection from "@/components/philosophy-section"
-import SCLLoopSection from "@/components/scl-loop-section"
+import SCLBrainVisualization from "@/components/scl-brain-visualization"
 import SCLComparisonSection from "@/components/scl-comparison-section"
-import ResearchSection from "@/components/research-section"
+import PublicationsSection from "@/components/publications-section"
 import AboutSection from "@/components/about-section"
 import CTAFinal from "@/components/cta-final"
 
@@ -16,9 +16,9 @@ export default function Home() {
       <main className="overflow-hidden">
         <HeroHome />
         <PhilosophySection />
-        <SCLLoopSection />
+        <SCLBrainVisualization />
         <SCLComparisonSection />
-        <ResearchSection />
+        <PublicationsSection />
         <AboutSection />
         <CTAFinal />
       </main>

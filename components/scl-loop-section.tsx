@@ -142,7 +142,7 @@ export default function SCLLoopSection() {
                       opacity={isActive ? 0.9 : 0.3}
                       className="transition-all duration-500 cursor-pointer"
                       onClick={() => setActiveStep(idx)}
-                      style={{ filter: isActive ? "drop-shadow(0 0 20px rgba(0,217,255,0.6))" : "none" }}
+                      style={{ filter: isActive ? "drop-shadow(0 0 20px rgba(200,90,58,0.6))" : "none" }}
                     />
 
                     {/* Step number */}
@@ -179,7 +179,7 @@ export default function SCLLoopSection() {
                 dominantBaseline="middle"
                 fontSize="14"
                 fontWeight="bold"
-                fill="rgb(0,217,255)"
+                fill="rgb(200,90,58)"
                 className="pointer-events-none"
               >
                 SCL
@@ -188,8 +188,8 @@ export default function SCLLoopSection() {
               {/* Gradients */}
               <defs>
                 <linearGradient id="gradientAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="rgb(0, 217, 255)" />
-                  <stop offset="100%" stopColor="rgb(100, 200, 255)" />
+                  <stop offset="0%" stopColor="#ff6a2d" />
+                  <stop offset="100%" stopColor="rgba(255, 106, 45, 0.6)" />
                 </linearGradient>
               </defs>
             </svg>
@@ -216,7 +216,7 @@ export default function SCLLoopSection() {
                   onClick={() => setActiveStep(idx)}
                   className={`w-full text-left p-4 rounded-lg border transition-all duration-300 transform hover:scale-105 ${
                     idx === activeStep
-                      ? "bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(0,217,255,0.3)]"
+                      ? "bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(200,90,58,0.3)]"
                       : "bg-foreground/5 border-foreground/10 text-foreground/60 hover:border-accent/50"
                   }`}
                 >
