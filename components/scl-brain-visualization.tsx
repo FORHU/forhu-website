@@ -224,7 +224,7 @@ export default function SCLBrainVisualization() {
                       cx={coords.x}
                       cy={coords.y}
                       r={coords.radius}
-                      className={`brain-region ${selectedRegion === region.id ? 'active' : ''}`}
+                      className="brain-region"
                       onClick={(e) => handleRegionClick(region.id, e)}
                     />
                   )
@@ -261,8 +261,8 @@ export default function SCLBrainVisualization() {
                       {selected.function}
                     </p>
                   </div>
-
-                  {/* Region selector buttons */}
+{/* 
+                  Region selector buttons
                   <div className="pt-6 border-t border-[#ff6a2d]/20">
                     <p className="text-[#ff6a2d] text-xs uppercase tracking-widest font-semibold mb-4">
                       Explore Other Regions
@@ -282,7 +282,7 @@ export default function SCLBrainVisualization() {
                         </button>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}
