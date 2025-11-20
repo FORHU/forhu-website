@@ -63,7 +63,7 @@ export default function PublicationsSection() {
   ]
 
   return (
-    <section id="publications" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+    <section id="research" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12">
           <h2 className="text-4xl font-bold text-foreground mb-4">Featured Research</h2>

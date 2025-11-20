@@ -58,7 +58,7 @@ export default function AboutSection() {
   }, [])
 
   return (
-    <section className="relative py-32 px-6 bg-gradient-to-b from-background to-background/50">
+    <section id="about" className="relative py-32 px-6 bg-gradient-to-b from-background to-background/50">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl"></div>
       </div>
@@ -86,7 +86,9 @@ export default function AboutSection() {
           {aboutItems.map((item, index) => (
             <div
               key={index}
-              ref={(el) => (itemRefs.current[index] = el)}
+              ref={(el) => {
+                if (el) itemRefs.current[index] = el
+              }}
               className={`group p-8 rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm transition-all duration-700 transform ${
                 visibleItems[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               } hover:border-accent/50 hover:bg-gradient-to-br hover:from-accent/10 hover:to-transparent hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]`}

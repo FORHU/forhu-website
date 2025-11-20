@@ -20,8 +20,8 @@ export default function Navigation() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2 hover:opacity-70 transition-opacity">
-            <Logo className="w-8 h-8 text-foreground" />
-            <span className="text-sm font-light text-foreground tracking-widest hidden sm:inline">FORHU</span>
+            <Logo className="w-24 h-24 text-foreground" />
+            {/* <span className="text-sm font-light text-foreground tracking-widest hidden sm:inline">FORHU</span> */}
           </Link>
 
           {/* Desktop Navigation */}

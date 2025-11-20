@@ -113,7 +113,7 @@ export default function SCLBrainVisualization() {
   }
 
   return (
-    <section className="relative py-24 px-6 bg-gradient-to-b from-[#0f0d0a] via-[#1a1612] to-[#0f0d0a] overflow-hidden">
+    <section id="scl" className="relative py-24 px-6 bg-gradient-to-b from-[#0f0d0a] via-[#1a1612] to-[#0f0d0a] overflow-hidden">
       {/* Background glow animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[#ff6a2d]/8 rounded-full blur-3xl animate-pulse"></div>
