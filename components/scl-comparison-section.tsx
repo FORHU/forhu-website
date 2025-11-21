@@ -32,14 +32,14 @@ const minskyLayers: MinskyLayer[] = [
   },
   {
     id: "control",
-    label: "Control Module",
+    label: "Control",
     definition: "Reflective Layer / B-Brain (Cognitive Regulator)",
     roleInCognition:
       "A supervisory layer composed of agents that monitor ongoing thought processes. This layer evaluates whether strategies are effective, detects errors, adjusts focus, and modulates cognitive flow—acting as the system's real-time regulator and critic.",
   },
   {
     id: "meta-control",
-    label: "Meta-Control Module",
+    label: "Meta-Control",
     definition: "Self-Reflective / Self-Conscious Layers",
     roleInCognition:
       "A higher tier of agents dedicated to modeling the system's own cognition. These layers track goals, assumptions, intentions, and reasoning paths. They support self-evaluation, explanation, and long-term coherence across tasks and contexts.",
@@ -118,6 +118,40 @@ export default function SCLComparisonSection() {
       x: centerX + outerRadius * Math.cos(minskyAngle),
       y: centerY + outerRadius * Math.sin(minskyAngle),
     }
+  }
+
+  // Custom label positioning for Minsky circles (brown)
+  const getMinskyLabelOffset = (index: number) => {
+    // index 0: Reasoning (top) - below
+    // index 1: Memory (right) - below
+    // index 2: Control (bottom-right) - above
+    // index 3: Meta-control (bottom-left) - below
+    // index 4: Runtime (left) - below
+    const offsets = [
+      { x: 0, y: 11 },   // 0: Reasoning - below
+      { x: 0, y: 10 },   // 1: Memory - below
+      { x: -3, y: -8 },  // 2: Control - above
+      { x: 5, y: -8 },   // 3: Meta-control - below
+      { x: 0, y: 10 },   // 4: Runtime - below
+    ]
+    return offsets[index] || { x: 0, y: 12 }
+  }
+
+  // Custom label positioning for SCL circles (orange)
+  const getSCLLabelOffset = (sclId: string) => {
+    // judgment-module: above
+    // memory-module: right side
+    // control-module: below-right
+    // metaprompt-regulatory-system: above-left
+    // runtime-module: left side
+    const offsets: Record<string, { x: number; y: number }> = {
+      "judgment-module": { x: 0, y: -8 },
+      "memory-module": { x: 0, y: -8 },
+      "control-module": { x: 6, y: 10 },
+      "metaprompt-regulatory-system": { x: -7, y: 9 },
+      "runtime-module": { x: 0, y: -8 },
+    }
+    return offsets[sclId] || { x: 0, y: 10 }
   }
 
   const getNodeFocusState = (nodeId: string) => {
@@ -368,21 +402,49 @@ export default function SCLComparisonSection() {
                       animation: isActive ? "node-pulse 2s ease-in-out infinite" : "none",
                     }}
                   />
-                  <text
-                    x={pos.x}
-                    y={pos.y - 10}
-                    textAnchor="middle"
-                    className="pointer-events-none select-none"
-                    style={{
-                      fontSize: isActive ? "2.8px" : "2.2px",
-                      fontWeight: isActive ? "700" : "600",
-                      fill: "var(--foreground)",
-                      opacity: isFaded ? 0.3 : 1,
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    {node.label}
-                  </text>
+                  {(() => {
+                    const offset = getMinskyLabelOffset(idx)
+                    const isMultiLine = node.label === "Meta-Control Module"
+
+                    if (isMultiLine) {
+                      return (
+                        <text
+                          x={pos.x + offset.x}
+                          y={pos.y + offset.y}
+                          textAnchor="middle"
+                          className="pointer-events-none select-none"
+                          style={{
+                            fontSize: isActive ? "2.8px" : "2.2px",
+                            fontWeight: isActive ? "700" : "600",
+                            fill: "var(--foreground)",
+                            opacity: isFaded ? 0.3 : 1,
+                            transition: "all 0.3s ease",
+                          }}
+                        >
+                          <tspan x={pos.x + offset.x} dy="0">Meta-Control</tspan>
+                          <tspan x={pos.x + offset.x} dy="3">Module</tspan>
+                        </text>
+                      )
+                    }
+
+                    return (
+                      <text
+                        x={pos.x + offset.x}
+                        y={pos.y + offset.y}
+                        textAnchor="middle"
+                        className="pointer-events-none select-none"
+                        style={{
+                          fontSize: isActive ? "2.8px" : "2.2px",
+                          fontWeight: isActive ? "700" : "600",
+                          fill: "var(--foreground)",
+                          opacity: isFaded ? 0.3 : 1,
+                          transition: "all 0.3s ease",
+                        }}
+                      >
+                        {node.label}
+                      </text>
+                    )
+                  })()}
                 </g>
               )
             })}
@@ -435,21 +497,49 @@ export default function SCLComparisonSection() {
                         animation: isActive ? "node-pulse 2s ease-in-out infinite" : "none",
                       }}
                     />
-                    <text
-                      x={pos.x}
-                      y={pos.y - 8}
-                      textAnchor="middle"
-                      className="pointer-events-none select-none"
-                      style={{
-                        fontSize: isActive ? "2.4px" : "2px",
-                        fontWeight: isActive ? "700" : "500",
-                        fill: "var(--primary)",
-                        opacity: isFaded ? 0.3 : 1,
-                        transition: "all 0.3s ease",
-                      }}
-                    >
-                      {sclNode.label}
-                    </text>
+                    {(() => {
+                      const offset = getSCLLabelOffset(sclNode.id)
+                      const isMultiLine = sclNode.label === "Metaprompt Regulatory System"
+
+                      if (isMultiLine) {
+                        return (
+                          <text
+                            x={pos.x + offset.x}
+                            y={pos.y + offset.y}
+                            textAnchor="middle"
+                            className="pointer-events-none select-none"
+                            style={{
+                              fontSize: isActive ? "2.4px" : "2px",
+                              fontWeight: isActive ? "700" : "500",
+                              fill: "var(--primary)",
+                              opacity: isFaded ? 0.3 : 1,
+                              transition: "all 0.3s ease",
+                            }}
+                          >
+                            <tspan x={pos.x + offset.x} dy="0">Metaprompt</tspan>
+                            <tspan x={pos.x + offset.x} dy="2.5">Regulatory System</tspan>
+                          </text>
+                        )
+                      }
+
+                      return (
+                        <text
+                          x={pos.x + offset.x}
+                          y={pos.y + offset.y}
+                          textAnchor="middle"
+                          className="pointer-events-none select-none"
+                          style={{
+                            fontSize: isActive ? "2.4px" : "2px",
+                            fontWeight: isActive ? "700" : "500",
+                            fill: "var(--primary)",
+                            opacity: isFaded ? 0.3 : 1,
+                            transition: "all 0.3s ease",
+                          }}
+                        >
+                          {sclNode.label}
+                        </text>
+                      )
+                    })()}
                   </g>
                 )
               })
