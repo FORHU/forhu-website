@@ -1,0 +1,29 @@
+[00:00:01.396] Server  LOG     
+[00:00:01.396] Server  LOG        We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+[00:00:01.397] Server  LOG        The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+[00:00:01.398] Server  LOG        	- include was updated to add '.next\dev/types/**/*.ts'
+[00:00:01.398] Server  LOG        	- include was updated to add '.next\dev/types/**/*.ts'
+[00:00:01.398] Server  LOG     
+[00:00:01.399] Server  LOG        The following mandatory changes were made to your tsconfig.json:
+
+[00:00:01.399] Server  LOG        	- jsx was set to react-jsx (next.js uses the React automatic runtime)
+[00:00:01.400] Server  LOG     
+[00:00:01.634] Server  LOG      ✓ Ready in 1032ms
+[00:04:19.128] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:19.133] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:24.704] Browser LOG     [v0] Label clicked: control
+[00:04:25.674] Browser LOG     [v0] Label clicked: memory
+[00:09:04.377] Browser LOG     [v0] Label clicked: control
+[00:09:05.339] Browser LOG     [v0] Label clicked: judgment
+[00:09:06.442] Browser LOG     [v0] Label clicked: runtime
+[00:09:07.244] Browser LOG     [v0] Label clicked: metaprompt
+[00:09:08.135] Browser LOG     [v0] Label clicked: judgment
+[00:09:09.070] Browser LOG     [v0] Label clicked: control
+[00:09:09.951] Browser LOG     [v0] Label clicked: memory
+[00:16:23.270] Browser LOG     [v0] Label clicked: control
+[00:16:24.946] Browser LOG     [v0] Label clicked: memory
+[00:16:27.503] Browser LOG     [v0] Label clicked: runtime
+[00:16:28.727] Browser LOG     [v0] Label clicked: metaprompt
+[00:32:07.400] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:34:42.958] Server  LOG      ✓ Compiled in 177ms
