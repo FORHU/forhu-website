@@ -113,30 +113,30 @@ export default function SCLBrainVisualization() {
   }
 
   return (
-    <section id="scl" className="relative py-24 px-6 bg-gradient-to-b from-[#0f0d0a] via-[#1a1612] to-[#0f0d0a] overflow-hidden">
+    <section id="scl" className="relative py-12 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-[#0f0d0a] via-[#1a1612] to-[#0f0d0a] overflow-hidden">
       {/* Background glow animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[#ff6a2d]/8 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-tl from-[#ff6a2d]/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] sm:w-[900px] sm:h-[900px] bg-[#ff6a2d]/8 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] sm:w-[700px] sm:h-[700px] bg-gradient-to-tl from-[#ff6a2d]/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-bold text-[#ff6a2d] mb-4 tracking-tight">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-[#ff6a2d] mb-4 tracking-tight">
             Structured Cognitive Loop
           </h2>
-          <p className="text-2xl text-[#f5ede6] font-medium">The Brain Behind SCL</p>
-          <p className="text-lg text-[#f5ede6]/70 mt-4">
+          <p className="text-xl sm:text-2xl text-[#f5ede6] font-medium">The Brain Behind SCL</p>
+          <p className="text-base sm:text-lg text-[#f5ede6]/70 mt-4 px-4">
             Click on each brain region to explore its role in intelligent reasoning
           </p>
         </div>
 
         {/* Main interactive section */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12 items-center">
           {/* Brain image with interactive overlay */}
-          <div className="lg:col-span-2 flex justify-center">
-            <div className="relative w-full max-w-sm">
+          <div className="lg:col-span-2 flex justify-center order-1">
+            <div className="relative w-full max-w-[300px] sm:max-w-sm">
               <img
                 src={brainImageUrl || "/placeholder.svg"}
                 alt="Interactive brain diagram"
@@ -148,9 +148,9 @@ export default function SCLBrainVisualization() {
                   <button
                     key={regionId}
                     onClick={() => handleLabelClick(regionId)}
-                    className={`absolute px-3 py-1 font-sans text-base md:text-lg font-bold transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 ${activeButton === regionId
-                        ? 'text-yellow-300'
-                        : 'text-orange-500 hover:text-yellow-200'
+                    className={`absolute px-2 py-0.5 sm:px-3 sm:py-1 font-sans text-sm sm:text-base md:text-lg font-bold transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 ${activeButton === regionId
+                      ? 'text-yellow-300'
+                      : 'text-orange-500 hover:text-yellow-200'
                       }`}
                     style={{
                       left: `${labelData.x}%`,
@@ -158,7 +158,6 @@ export default function SCLBrainVisualization() {
                       transform: 'translate(-50%, -50%)',
                       background: 'transparent',
                       border: 'none',
-                      padding: '0.5rem 0.75rem',
                       textShadow: activeButton === regionId
                         ? '0 0 8px rgba(255, 235, 59, 1), 0 0 16px rgba(255, 235, 59, 0.8), 0 0 24px rgba(255, 235, 59, 0.6)'
                         : 'none',
@@ -237,22 +236,22 @@ export default function SCLBrainVisualization() {
           </div>
 
           {/* Info panel */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 order-2">
             {selected && (
               <div className={`transition-all duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
                 <div className="space-y-6">
                   {/* Title and label */}
                   <div>
-                    <p className="text-[#ff6a2d] text-sm font-mono uppercase tracking-widest mb-2">
+                    <p className="text-[#ff6a2d] text-xs sm:text-sm font-mono uppercase tracking-widest mb-2">
                       SCL Component
                     </p>
-                    <h3 className="text-5xl font-bold text-[#f5ede6]">{selected.label}</h3>
+                    <h3 className="text-3xl sm:text-5xl font-bold text-[#f5ede6]">{selected.label}</h3>
                   </div>
 
                   {/* Role */}
                   <div className="space-y-2">
                     <p className="text-[#ff6a2d] text-xs uppercase tracking-widest font-semibold">Role</p>
-                    <p className="text-2xl font-semibold text-[#f5ede6]">{selected.role}</p>
+                    <p className="text-xl sm:text-2xl font-semibold text-[#f5ede6]">{selected.role}</p>
                   </div>
 
                   {/* Function */}
@@ -260,32 +259,10 @@ export default function SCLBrainVisualization() {
                     <p className="text-[#ff6a2d] text-xs uppercase tracking-widest font-semibold mb-3">
                       Function
                     </p>
-                    <p className="text-[#f5ede6]/90 text-base leading-relaxed">
+                    <p className="text-[#f5ede6]/90 text-sm sm:text-base leading-relaxed">
                       {selected.function}
                     </p>
                   </div>
-                  {/* 
-                  Region selector buttons
-                  <div className="pt-6 border-t border-[#ff6a2d]/20">
-                    <p className="text-[#ff6a2d] text-xs uppercase tracking-widest font-semibold mb-4">
-                      Explore Other Regions
-                    </p>
-                    <div className="grid grid-cols-2 gap-3">
-                      {brainRegions.map((region) => (
-                        <button
-                          key={region.id}
-                          onClick={() => setSelectedRegion(region.id)}
-                          className={`px-4 py-3 rounded-lg border font-medium transition-all duration-300 text-sm ${
-                            selectedRegion === region.id
-                              ? 'bg-[#ff6a2d]/25 border-[#ff6a2d]/70 text-[#ff6a2d] shadow-[0_0_16px_rgba(255,106,45,0.4)]'
-                              : 'bg-[#f5ede6]/5 border-[#f5ede6]/20 text-[#f5ede6]/70 hover:border-[#ff6a2d]/50 hover:bg-[#ff6a2d]/10 hover:text-[#ff6a2d]'
-                          }`}
-                        >
-                          {region.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div> */}
                 </div>
               </div>
             )}
@@ -293,8 +270,8 @@ export default function SCLBrainVisualization() {
         </div>
 
         {/* Footer caption */}
-        <div className="text-center mt-20 pt-12 border-t border-[#ff6a2d]/15">
-          <p className="text-[#f5ede6]/60 text-sm leading-relaxed">
+        <div className="text-center mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-[#ff6a2d]/15">
+          <p className="text-[#f5ede6]/60 text-xs sm:text-sm leading-relaxed px-4">
             Explore the Cognitive Roles of the Structured Cognitive Loop.
           </p>
         </div>

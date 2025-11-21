@@ -4,6 +4,7 @@ import Footer from "@/components/footer"
 import HeroHome from "@/components/hero-home"
 import PhilosophySection from "@/components/philosophy-section"
 import SCLBrainVisualization from "@/components/scl-brain-visualization"
+import SCLLoopSection from "@/components/scl-loop-section"
 import SCLComparisonSection from "@/components/scl-comparison-section"
 import ResearchSection from "@/components/research-section"
 import AboutSection from "@/components/about-section"
@@ -18,6 +19,7 @@ export default function Home() {
         <HeroHome />
         <PhilosophySection />
         <SCLBrainVisualization />
+        <SCLLoopSection />
         <SCLComparisonSection />
         <ResearchSection />
         <AboutSection />

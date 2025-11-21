@@ -141,25 +141,25 @@ export default function ResearchSection() {
   }
 
   return (
-    <section id="research" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
+    <section id="research" className="relative py-16 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
       <div className="mx-auto max-w-7xl relative z-10">
-        <div className="mb-24 text-left">
-          <div className="mb-6 inline-block">
-            <span className="text-sm font-bold uppercase tracking-widest text-accent">
+        <div className="mb-12 sm:mb-24 text-left">
+          <div className="mb-4 sm:mb-6 inline-block">
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-accent">
               Featured Research
             </span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-8 leading-tight max-w-5xl">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground mb-6 sm:mb-8 leading-tight max-w-5xl">
             Recent Publications in <br className="hidden md:block" />
             <span className="text-muted-foreground">Cognitive Architecture</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
             Peer-reviewed research and preprints exploring cognitive systems, artificial intelligence architecture, and
             the intersection of philosophy and computational theory.
           </p>
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-12">
           {publications.map((pub) => (
             <div
               key={pub.id}
@@ -168,13 +168,13 @@ export default function ResearchSection() {
                 setTimeout(() => setClickedId(null), 600)
               }}
               className={`group relative border rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer ${clickedId === pub.id
-                  ? "border-accent shadow-[0_0_40px_rgba(255,106,45,0.3)] scale-[1.02]"
-                  : "border-border/50 bg-card/30 hover:bg-card/50 hover:border-accent/30 hover:shadow-2xl hover:-translate-y-1"
+                ? "border-accent shadow-[0_0_40px_rgba(255,106,45,0.3)] scale-[1.02]"
+                : "border-border/50 bg-card/30 hover:bg-card/50 hover:border-accent/30 hover:shadow-2xl hover:-translate-y-1"
                 }`}
             >
-              <div className="flex flex-col lg:flex-row gap-8 p-8 md:p-10">
+              <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 p-6 sm:p-8 md:p-10">
                 {/* Diagram Section */}
-                <div className="flex-shrink-0 w-full lg:w-1/3 min-h-[240px] lg:h-auto bg-background/50 border border-border/50 rounded-xl p-6 flex items-center justify-center group-hover:border-accent/20 transition-colors duration-500">
+                <div className="flex-shrink-0 w-full lg:w-1/3 min-h-[200px] sm:min-h-[240px] lg:h-auto bg-background/50 border border-border/50 rounded-xl p-4 sm:p-6 flex items-center justify-center group-hover:border-accent/20 transition-colors duration-500">
                   <div className="w-full h-full text-muted-foreground/80 group-hover:text-accent/80 transition-colors duration-500">
                     {getDiagram(pub.diagram)}
                   </div>
@@ -183,25 +183,25 @@ export default function ResearchSection() {
                 {/* Content section */}
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
+                    <div className="mb-3 sm:mb-4 flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm">
                       <span className="font-bold text-accent">{pub.year}</span>
                       <span className="text-muted-foreground/40">•</span>
                       <span className="text-muted-foreground font-medium">{pub.authors}</span>
                     </div>
 
                     {/* Title and subtitle */}
-                    <div className="mb-6">
-                      <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight group-hover:text-accent transition-colors duration-300">
+                    <div className="mb-4 sm:mb-6">
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2 sm:mb-3 leading-tight group-hover:text-accent transition-colors duration-300">
                         {pub.title}
                       </h3>
-                      <p className="text-lg text-muted-foreground leading-relaxed">{pub.subtitle}</p>
+                      <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{pub.subtitle}</p>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2 mb-8">
+                    <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8">
                       {pub.domains.map((domain) => (
                         <span
                           key={domain}
-                          className="inline-block text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/10 text-muted-foreground group-hover:border-accent/20 group-hover:text-foreground transition-colors"
+                          className="inline-block text-[10px] sm:text-xs font-medium px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-border/50 bg-muted/10 text-muted-foreground group-hover:border-accent/20 group-hover:text-foreground transition-colors"
                         >
                           {domain}
                         </span>
@@ -209,12 +209,12 @@ export default function ResearchSection() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 mt-auto pt-6 border-t border-border/30">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-auto pt-6 border-t border-border/30">
                     <a
                       href={pub.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background font-semibold hover:bg-accent hover:text-white transition-all duration-300"
+                      className="inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background font-semibold hover:bg-accent hover:text-white transition-all duration-300 text-sm sm:text-base"
                       onClick={(e) => e.stopPropagation()}
                     >
                       View Publication
@@ -225,7 +225,7 @@ export default function ResearchSection() {
                         e.stopPropagation()
                         setExpandedPaper(expandedPaper === pub.id ? null : pub.id)
                       }}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border/50 text-foreground font-medium hover:bg-muted/20 transition-colors"
+                      className="inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-lg border border-border/50 text-foreground font-medium hover:bg-muted/20 transition-colors text-sm sm:text-base"
                     >
                       <span>{expandedPaper === pub.id ? "Hide Details" : "View Abstract"}</span>
                       <ChevronDown
@@ -238,19 +238,19 @@ export default function ResearchSection() {
               </div>
 
               {expandedPaper === pub.id && (
-                <div className="border-t border-border/50 bg-muted/5 px-8 md:px-10 py-8 animate-in slide-in-from-top-4 duration-300">
-                  <div className="grid md:grid-cols-2 gap-8">
+                <div className="border-t border-border/50 bg-muted/5 px-6 sm:px-8 md:px-10 py-6 sm:py-8 animate-in slide-in-from-top-4 duration-300">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                     <div>
-                      <p className="font-bold text-foreground mb-3 text-sm uppercase tracking-wider">Abstract</p>
-                      <p className="text-muted-foreground leading-relaxed">{pub.abstract}</p>
+                      <p className="font-bold text-foreground mb-3 text-xs sm:text-sm uppercase tracking-wider">Abstract</p>
+                      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{pub.abstract}</p>
                     </div>
                     <div>
-                      <p className="font-bold text-foreground mb-3 text-sm uppercase tracking-wider">
+                      <p className="font-bold text-foreground mb-3 text-xs sm:text-sm uppercase tracking-wider">
                         Key Contributions
                       </p>
                       <ul className="space-y-3">
                         {pub.keyContributions.map((contrib, idx) => (
-                          <li key={idx} className="text-muted-foreground leading-relaxed flex gap-3">
+                          <li key={idx} className="text-sm sm:text-base text-muted-foreground leading-relaxed flex gap-3">
                             <span className="text-accent flex-shrink-0 mt-1.5">•</span>
                             <span>{contrib}</span>
                           </li>

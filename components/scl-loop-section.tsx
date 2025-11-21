@@ -78,28 +78,28 @@ export default function SCLLoopSection() {
     <section
       id="scl-loop"
       ref={containerRef}
-      className="relative py-32 px-6 bg-gradient-to-b from-background/80 via-background to-background"
+      className="relative py-16 sm:py-32 px-4 sm:px-6 bg-gradient-to-b from-background/80 via-background to-background"
     >
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-accent/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-20">
-          <span className="text-accent text-sm font-mono uppercase tracking-widest">SCL</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 text-foreground mb-6">The Birth of Thinking AI</h2>
-          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
+        <div className="text-center mb-12 sm:mb-20">
+          <span className="text-accent text-xs sm:text-sm font-mono uppercase tracking-widest">SCL</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 text-foreground mb-4 sm:mb-6">The Birth of Thinking AI</h2>
+          <p className="text-lg sm:text-xl text-foreground/70 max-w-2xl mx-auto px-4">
             Through a 5-step cognitive loop, it reasons, verifies, remembers, and self-corrects.
           </p>
         </div>
 
         {/* Main visualization */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center mb-12 sm:mb-16">
           {/* Left: The Loop Visualization */}
-          <div className="relative h-96 flex items-center justify-center">
-            <svg className="w-full h-full max-w-sm" viewBox="0 0 400 400" style={{ overflow: "visible" }}>
+          <div className="relative h-64 sm:h-96 flex items-center justify-center order-1 lg:order-1">
+            <svg className="w-full h-full max-w-[300px] sm:max-w-sm" viewBox="0 0 400 400" style={{ overflow: "visible" }}>
               {/* Circle path */}
               <circle
                 cx="200"
@@ -196,29 +196,28 @@ export default function SCLLoopSection() {
           </div>
 
           {/* Right: Active Step Details */}
-          <div className="space-y-6">
-            <div className="mb-8">
+          <div className="space-y-6 order-2 lg:order-2">
+            <div className="mb-6 sm:mb-8">
               <div className="flex items-center gap-4 mb-4">
-                <div className="text-4xl font-bold text-accent">{String(activeStep + 1).padStart(2, "0")}</div>
+                <div className="text-3xl sm:text-4xl font-bold text-accent">{String(activeStep + 1).padStart(2, "0")}</div>
                 <div>
-                  <h3 className="text-3xl font-bold text-foreground">{sclSteps[activeStep].title}</h3>
-                  <p className="text-accent font-semibold text-sm">{sclSteps[activeStep].role}</p>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground">{sclSteps[activeStep].title}</h3>
+                  <p className="text-accent font-semibold text-xs sm:text-sm">{sclSteps[activeStep].role}</p>
                 </div>
               </div>
-              <p className="text-2xl text-foreground/80 font-semibold">"{sclSteps[activeStep].copy}"</p>
+              <p className="text-xl sm:text-2xl text-foreground/80 font-semibold">"{sclSteps[activeStep].copy}"</p>
             </div>
 
             {/* Step indicators */}
-            <div className="space-y-3">
+            <div className="space-y-3 hidden sm:block">
               {sclSteps.map((step, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveStep(idx)}
-                  className={`w-full text-left p-4 rounded-lg border transition-all duration-300 transform hover:scale-105 ${
-                    idx === activeStep
-                      ? "bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(200,90,58,0.3)]"
-                      : "bg-foreground/5 border-foreground/10 text-foreground/60 hover:border-accent/50"
-                  }`}
+                  className={`w-full text-left p-4 rounded-lg border transition-all duration-300 transform hover:scale-105 ${idx === activeStep
+                    ? "bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(200,90,58,0.3)]"
+                    : "bg-foreground/5 border-foreground/10 text-foreground/60 hover:border-accent/50"
+                    }`}
                 >
                   <div className="font-semibold">
                     Step {step.number}: {step.title}
@@ -227,13 +226,26 @@ export default function SCLLoopSection() {
                 </button>
               ))}
             </div>
+
+            {/* Mobile Step Indicator (Dots) */}
+            <div className="flex justify-center gap-2 sm:hidden">
+              {sclSteps.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveStep(idx)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === activeStep ? "bg-accent w-6" : "bg-accent/30"
+                    }`}
+                  aria-label={`Go to step ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Bottom message */}
-        <div className="text-center bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/30 rounded-xl p-8 backdrop-blur-sm">
-          <p className="text-xl text-foreground font-semibold mb-2">This cycle never stops.</p>
-          <p className="text-foreground/70">
+        <div className="text-center bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/30 rounded-xl p-6 sm:p-8 backdrop-blur-sm">
+          <p className="text-lg sm:text-xl text-foreground font-semibold mb-2">This cycle never stops.</p>
+          <p className="text-sm sm:text-base text-foreground/70">
             Not just giving answers, but through continuous reasoning, memory, and self-correction, it ensures accuracy,
             consistency, and trust.
           </p>
