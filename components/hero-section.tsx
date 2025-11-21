@@ -6,8 +6,10 @@ import { useEffect, useState } from "react"
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [showForhu, setShowForhu] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
     setIsLoaded(true)
     setTimeout(() => setShowForhu(true), 1500)
   }, [])

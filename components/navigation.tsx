@@ -1,9 +1,10 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import Link from "next/link"
 import { Logo } from "./logo"
-import { ThemeToggle } from "./theme-toggle"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,13 +16,21 @@ export default function Navigation() {
     { label: "About", href: "#about" },
   ]
 
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const contactSection = document.getElementById("contact")
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" })
+      setIsOpen(false)
+    }
+  }
+
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2 hover:opacity-70 transition-opacity">
             <Logo className="w-24 h-24 text-foreground" />
-            {/* <span className="text-sm font-light text-foreground tracking-widest hidden sm:inline">FORHU</span> */}
           </Link>
 
           {/* Desktop Navigation */}
@@ -38,18 +47,17 @@ export default function Navigation() {
           </div>
 
           <div className="hidden md:flex md:items-center md:space-x-4">
-            <ThemeToggle />
             <a
-              href="#"
+              href="#contact"
+              onClick={handleContactClick}
               className="px-4 py-2 text-sm font-light text-muted-foreground hover:text-foreground transition-colors"
             >
-              Sign in
+              Contact
             </a>
           </div>
 
           {/* Mobile menu button and theme toggle */}
           <div className="flex md:hidden items-center space-x-2">
-            <ThemeToggle />
             <button className="p-2 -mr-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isOpen ? (
@@ -76,6 +84,13 @@ export default function Navigation() {
                   {item.label}
                 </a>
               ))}
+              <a
+                href="#contact"
+                className="block px-3 py-2 text-sm font-light text-muted-foreground hover:text-foreground"
+                onClick={handleContactClick}
+              >
+                Contact
+              </a>
             </div>
           </div>
         )}

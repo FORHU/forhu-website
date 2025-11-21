@@ -1,10 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geist, Geist_Mono, Poppins } from "next/font/google"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+})
 
 export const metadata: Metadata = {
   title: "Forhu - AI Academic Excellence",
@@ -35,20 +40,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans antialiased bg-background text-foreground`}>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem('theme') || 'light';
-                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.documentElement.classList.add('dark');
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`font-sans antialiased bg-background text-foreground ${poppins.variable}`} suppressHydrationWarning>
         {children}
       </body>
     </html>

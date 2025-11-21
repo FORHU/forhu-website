@@ -42,8 +42,8 @@ export function ThemeToggle() {
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDark ? (
-        // Sun icon for light mode
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        // Sun icon for light mode (shown in dark mode)
+        <svg className="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="5" />
           <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -63,8 +63,8 @@ export function ThemeToggle() {
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
       ) : (
-        // Moon icon for dark mode
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        // Moon icon for dark mode (shown in light mode)
+        <svg className="w-5 h-5 text-foreground" fill="currentColor" viewBox="0 0 24 24">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
       )}

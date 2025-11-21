@@ -10,6 +10,7 @@ export default function HeroHome() {
         playsInline
         className="absolute inset-0 w-full h-full object-contain"
         crossOrigin="anonymous"
+        suppressHydrationWarning
       >
         <source
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/synapse-6GkWZHBLR3B9YFKFnxnpOfFv0E4Hbm.mp4"

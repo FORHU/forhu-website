@@ -123,9 +123,13 @@ export default function SCLBrainVisualization() {
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="text-[#ff6a2d] text-sm font-mono uppercase tracking-widest">Structured Cognitive Loop</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 text-[#f5ede6]">The Brain Behind SCL</h2>
-          <p className="text-lg text-[#f5ede6]/70 mt-4">Click on each brain region to explore its role in intelligent reasoning</p>
+          <h2 className="text-5xl md:text-7xl font-bold text-[#ff6a2d] mb-4 tracking-tight">
+            Structured Cognitive Loop
+          </h2>
+          <p className="text-2xl text-[#f5ede6] font-medium">The Brain Behind SCL</p>
+          <p className="text-lg text-[#f5ede6]/70 mt-4">
+            Click on each brain region to explore its role in intelligent reasoning
+          </p>
         </div>
 
         {/* Main interactive section */}
@@ -144,11 +148,10 @@ export default function SCLBrainVisualization() {
                   <button
                     key={regionId}
                     onClick={() => handleLabelClick(regionId)}
-                    className={`absolute px-3 py-1 font-sans text-base md:text-lg font-bold transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 ${
-                      activeButton === regionId 
-                        ? 'text-yellow-300' 
+                    className={`absolute px-3 py-1 font-sans text-base md:text-lg font-bold transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 ${activeButton === regionId
+                        ? 'text-yellow-300'
                         : 'text-orange-500 hover:text-yellow-200'
-                    }`}
+                      }`}
                     style={{
                       left: `${labelData.x}%`,
                       top: `${labelData.y}%`,
@@ -156,10 +159,10 @@ export default function SCLBrainVisualization() {
                       background: 'transparent',
                       border: 'none',
                       padding: '0.5rem 0.75rem',
-                      textShadow: activeButton === regionId 
+                      textShadow: activeButton === regionId
                         ? '0 0 8px rgba(255, 235, 59, 1), 0 0 16px rgba(255, 235, 59, 0.8), 0 0 24px rgba(255, 235, 59, 0.6)'
                         : 'none',
-                      filter: activeButton === regionId 
+                      filter: activeButton === regionId
                         ? 'drop-shadow(0 0 12px rgba(255, 235, 59, 0.9)) drop-shadow(0 0 20px rgba(255, 235, 59, 0.7))'
                         : 'none',
                       whiteSpace: 'nowrap',
@@ -261,7 +264,7 @@ export default function SCLBrainVisualization() {
                       {selected.function}
                     </p>
                   </div>
-{/* 
+                  {/* 
                   Region selector buttons
                   <div className="pt-6 border-t border-[#ff6a2d]/20">
                     <p className="text-[#ff6a2d] text-xs uppercase tracking-widest font-semibold mb-4">

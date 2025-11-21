@@ -6,7 +6,6 @@ interface MinskyLayer {
   label: string
   definition: string
   roleInCognition: string
-  examples: string[]
 }
 
 interface SCLComponent {
@@ -14,92 +13,86 @@ interface SCLComponent {
   label: string
   minkskyLayerId: string // Links to parent Minsky layer
   description: string
-  operationalization: string // How SCL implements this
 }
 
 const minskyLayers: MinskyLayer[] = [
   {
-    id: "problem-solver",
-    label: "Problem Solver",
-    definition: "The cognitive mechanism for evaluating situations, analyzing problems, and making decisions",
-    roleInCognition: "Evaluates context and determines appropriate responses through reasoning",
-    examples: ["Identifying conflicts", "Weighing alternatives", "Making judgments about priorities"],
+    id: "reasoning",
+    label: "Reasoning",
+    definition: "Deliberative Layer / Problem-Solving Agents",
+    roleInCognition:
+      "A set of higher-level reasoning agents responsible for planning, analyzing situations, and generating solutions. These agents combine knowledge, strategies, and heuristics to perform deliberate, structured, step-by-step thinking.",
   },
   {
-    id: "memory-systems",
-    label: "Memory Systems",
-    definition: "The architecture for storing, organizing, and retrieving experiential knowledge",
-    roleInCognition: "Maintains historical context and learned patterns that inform future decisions",
-    examples: ["Recall of past solutions", "Pattern recognition", "Knowledge consolidation"],
+    id: "memory",
+    label: "Memory",
+    definition: "K-Lines / Remembering Agents",
+    roleInCognition:
+      "A network of memory-activation agents that re-activate past successful mental states. When triggered, these structures light up previously used patterns, enabling the system to recall context, reuse effective strategies, and learn from experience.",
   },
   {
-    id: "executive-control",
-    label: "Executive Control",
-    definition: "The meta-level mechanism that orchestrates cognitive resources and manages focus",
-    roleInCognition: "Directs attention and coordinates lower-level cognitive processes",
-    examples: ["Allocating processing resources", "Managing task switching", "Setting priorities"],
+    id: "control",
+    label: "Control Module",
+    definition: "Reflective Layer / B-Brain (Cognitive Regulator)",
+    roleInCognition:
+      "A supervisory layer composed of agents that monitor ongoing thought processes. This layer evaluates whether strategies are effective, detects errors, adjusts focus, and modulates cognitive flow—acting as the system's real-time regulator and critic.",
   },
   {
-    id: "execution-layer",
-    label: "Execution Layer",
-    definition: "The output mechanism that translates cognitive decisions into observable behavior",
-    roleInCognition: "Produces actions and interactions that manifest internal reasoning",
-    examples: ["Generating responses", "Executing planned actions", "Producing outputs"],
+    id: "meta-control",
+    label: "Meta-Control Module",
+    definition: "Self-Reflective / Self-Conscious Layers",
+    roleInCognition:
+      "A higher tier of agents dedicated to modeling the system's own cognition. These layers track goals, assumptions, intentions, and reasoning paths. They support self-evaluation, explanation, and long-term coherence across tasks and contexts.",
   },
   {
-    id: "self-reflection",
-    label: "Self-Reflection",
-    definition: "The meta-cognitive layer that monitors, evaluates, and adjusts its own processes",
-    roleInCognition: "Governs higher-level goals, constraints, and strategic direction",
-    examples: ["Monitoring performance", "Adjusting strategies", "Learning from outcomes"],
+    id: "runtime",
+    label: "Runtime",
+    definition: "Instinctive / Action Execution Agents",
+    roleInCognition:
+      "A fast-acting layer of low-level agents responsible for automatic responses and built-in action routines. Operating beneath conscious thought, these agents handle sensorimotor execution and provide the real-time operational base for higher layers.",
   },
 ]
 
 const sclComponents: SCLComponent[] = [
   {
-    id: "judgment",
-    label: "Judgment",
-    minkskyLayerId: "problem-solver",
-    description: "Core reasoning and decision-making engine",
-    operationalization:
-      "Implements Problem Solver by encoding domain knowledge, reasoning patterns, and decision heuristics into a structured prompt-based system that evaluates context and generates justified decisions",
+    id: "judgment-module",
+    label: "Judgment Module (LLM)",
+    minkskyLayerId: "reasoning",
+    description:
+      "Acts as the primary reasoning engine that defines problems, runs internal simulations, evaluates possibilities, and generates structured solutions.",
   },
   {
-    id: "memory",
-    label: "Memory",
-    minkskyLayerId: "memory-systems",
-    description: "Maintains historical context and knowledge",
-    operationalization:
-      "Implements Memory Systems by recording interactions, outcomes, and learned patterns in queryable form, enabling retrieval of relevant context for informed decision-making",
+    id: "memory-module",
+    label: "Memory Module",
+    minkskyLayerId: "memory",
+    description:
+      "Retrieves past successful mental states (K-lines) and relevant knowledge. It reactivates patterns that help the system apply previous experience to current problems.",
   },
   {
-    id: "control",
-    label: "Control",
-    minkskyLayerId: "executive-control",
-    description: "Orchestrates processes and resource allocation",
-    operationalization:
-      "Implements Executive Control by managing the flow between components, determining which subsystem should be active, and allocating computational attention based on task requirements",
+    id: "control-module",
+    label: "Control Module",
+    minkskyLayerId: "control",
+    description:
+      "Monitors and regulates the thought processes of the Judgment Module. It detects errors, checks consistency, and redirects reasoning when necessary.",
   },
   {
-    id: "runtime",
-    label: "Runtime",
-    minkskyLayerId: "execution-layer",
-    description: "Produces observable behavior and interactions",
-    operationalization:
-      "Implements Execution Layer by translating internal reasoning into structured outputs, API calls, and user-facing responses that manifest the system's cognitive decisions",
+    id: "metaprompt-regulatory-system",
+    label: "Metaprompt Regulatory System",
+    minkskyLayerId: "meta-control",
+    description:
+      "Oversees high-level goals, constraints, and the overall direction of decision-making. It ensures that actions and outputs align with identity, context, and long-term intentions.",
   },
   {
-    id: "metaprompt",
-    label: "Metaprompt",
-    minkskyLayerId: "self-reflection",
-    description: "Provides direction, constraints, and strategies",
-    operationalization:
-      "Implements Self-Reflection by defining system goals, safety constraints, ethical guidelines, and strategic priorities that govern all lower-level cognitive processes",
+    id: "runtime-module",
+    label: "Runtime Module",
+    minkskyLayerId: "runtime",
+    description:
+      "Executes decisions, actions, or outputs in real time. It handles immediate responses to simple stimuli and manages low-level execution without requiring complex reasoning.",
   },
 ]
 
 export default function SCLComparisonSection() {
-  const [expandedLayer, setExpandedLayer] = useState<string | null>(null)
+  const [expandedLayer, setExpandedLayer] = useState<string | null>("judgment-module")
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -174,17 +167,10 @@ export default function SCLComparisonSection() {
                       <div className="flex items-start justify-between mb-4">
                         <div>
                           <p className="text-sm font-mono text-accent/60 uppercase tracking-wide mb-2">
-                            Minsky's Framework
+                            Marvin Minsky's Model
                           </p>
                           <h3 className="text-3xl font-bold text-accent">{minskyNode.label}</h3>
                         </div>
-                        <button
-                          onClick={() => setExpandedLayer(null)}
-                          className="text-foreground/40 hover:text-foreground transition-colors text-xl"
-                          aria-label="Close details"
-                        >
-                          ✕
-                        </button>
                       </div>
 
                       <div className="space-y-6">
@@ -199,28 +185,14 @@ export default function SCLComparisonSection() {
                           </p>
                           <p className="text-base text-foreground">{minskyNode.roleInCognition}</p>
                         </div>
-
-                        <div>
-                          <p className="text-sm font-mono text-accent/60 uppercase tracking-wide mb-3">
-                            Academic Examples
-                          </p>
-                          <ul className="space-y-2">
-                            {minskyNode.examples.map((example, idx) => (
-                              <li key={idx} className="flex items-start gap-3 text-foreground/70">
-                                <span className="text-accent mt-1">•</span>
-                                <span>{example}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
                       </div>
                     </div>
 
-                    {/* SCL operationalization section */}
+                    {/* Related SCL Components section */}
                     {relatedSCL.length > 0 && (
                       <div className="bg-primary/5 border border-primary/20 rounded-lg p-8">
                         <p className="text-sm font-mono text-primary/60 uppercase tracking-wider mb-6">
-                          How SCL Operationalizes This
+                          Related SCL Components
                         </p>
                         <div className="space-y-4">
                           {relatedSCL.map((scl, idx) => (
@@ -232,7 +204,6 @@ export default function SCLComparisonSection() {
                               <p className="text-sm font-semibold text-primary group-hover:text-accent transition-colors mb-2">
                                 {scl.label}
                               </p>
-                              <p className="text-xs text-foreground/60">{scl.operationalization}</p>
                               <p className="text-xs text-primary/60 mt-2 group-hover:text-primary transition-colors">
                                 Click to explore →
                               </p>
@@ -255,27 +226,13 @@ export default function SCLComparisonSection() {
                       <div className="flex items-start justify-between mb-4">
                         <div>
                           <p className="text-sm font-mono text-primary/60 uppercase tracking-wide mb-2">
-                            SCL Component (Applied Engineering)
+                            SCL Component
                           </p>
                           <h3 className="text-3xl font-bold text-primary">{sclNode.label}</h3>
                         </div>
-                        <button
-                          onClick={() => setExpandedLayer(null)}
-                          className="text-foreground/40 hover:text-foreground transition-colors text-xl"
-                          aria-label="Close details"
-                        >
-                          ✕
-                        </button>
                       </div>
 
-                      <p className="text-base text-foreground/70 mb-6">{sclNode.description}</p>
-
-                      <div>
-                        <p className="text-sm font-mono text-primary/60 uppercase tracking-wide mb-2">
-                          Implementation Details
-                        </p>
-                        <p className="text-base text-foreground">{sclNode.operationalization}</p>
-                      </div>
+                      <p className="text-base text-foreground/70">{sclNode.description}</p>
                     </div>
 
                     {/* Parent Minsky layer context */}
@@ -413,7 +370,7 @@ export default function SCLComparisonSection() {
                   />
                   <text
                     x={pos.x}
-                    y={pos.y + 12}
+                    y={pos.y - 10}
                     textAnchor="middle"
                     className="pointer-events-none select-none"
                     style={{
@@ -480,7 +437,7 @@ export default function SCLComparisonSection() {
                     />
                     <text
                       x={pos.x}
-                      y={pos.y + 10}
+                      y={pos.y - 8}
                       textAnchor="middle"
                       className="pointer-events-none select-none"
                       style={{

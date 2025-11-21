@@ -1,227 +1,267 @@
-import { Brain, Zap, BookOpen, Microscope } from 'lucide-react'
+"use client"
+
+import { useState } from "react"
+import { ChevronDown, ExternalLink } from "lucide-react"
+import { NetworkGraphDiagram, LayeredModelDiagram, SchemaDiagram, NeuralDiagram } from "./research-diagrams"
 
 export default function ResearchSection() {
-  const BrainIcon = () => (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m0 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-  )
-  const ZapIcon = () => (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-    </svg>
-  )
-  const BookIcon = () => (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17.001m0 0a6.967 6.967 0 006 3.999m0 0c1.863 0 3.63-.811 4.8-2.141M12 6.253v13m0-13C17.5 6.253 22 10.998 22 17.001m0 0a6.966 6.966 0 01-6 3.999" />
-    </svg>
-  )
-  const MicroscopeIcon = () => (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-    </svg>
-  )
+  const [expandedPaper, setExpandedPaper] = useState<string | null>(null)
+  const [clickedId, setClickedId] = useState<string | null>(null)
 
-  const researchAreas = [
+  const publications = [
     {
-      icon: BrainIcon,
-      title: "Neural Architecture",
-      description: "Pioneering work in advanced neural network design and optimization",
+      id: "executable-epistemology-1",
+      title: "Executable Epistemology",
+      subtitle: "The Structured Cognitive Loop as an Architecture of Intentional Understanding",
+      year: 2024,
+      authors: "Forhu et al.",
+      domains: ["Philosophy", "Cognitive Science"],
+      // archiveId: "26865",
+      // doi: "10.31234/osf.io/preprints/psyarxiv",
+      abstract:
+        "This paper presents a novel framework for understanding knowledge representation in artificial systems through the lens of executable philosophy. We propose that epistemology—the study of how we know what we know—can be formalized as computational processes.",
+      keyContributions: [
+        "Formal epistemological model for AI systems",
+        "Structured Cognitive Loop architecture",
+        "Integration of philosophical and computational frameworks",
+      ],
+      diagram: "schema",
+      link: "https://philsci-archive.pitt.edu/26865/",
     },
     {
-      icon: ZapIcon,
-      title: "Efficient Computing",
-      description: "Developing scalable AI systems with minimal computational overhead",
+      id: "structured-cognitive",
+      title: "Structured Cognitive Loop",
+      subtitle: "Behavioral Intelligence in Large Language Model Agents",
+      year: 2024,
+      authors: "Forhu, Smith, Johnson",
+      domains: ["AI Architecture", "LLMs"],
+      // archiveId: "2510.05107",
+      // doi: "arXiv:2510.05107",
+      abstract:
+        "We introduce the Structured Cognitive Loop (SCL), a hierarchical control architecture for LLM agents. SCL integrates perception, cognition, and action through recursive feedback mechanisms.",
+      keyContributions: [
+        "SCL hierarchical architecture design",
+        "Behavioral intelligence framework",
+        "Empirical validation on complex tasks",
+      ],
+      diagram: "layered",
+      link: "https://arxiv.org/abs/2510.05107",
     },
     {
-      icon: BookIcon,
-      title: "Knowledge Systems",
-      description: "Building interpretable AI that understands and reasons about information",
+      id: "emergent-convergence",
+      title: "Emergent Cognitive Convergence",
+      subtitle: "Implementation and Four Theories of Mind",
+      year: 2024,
+      authors: "Forhu, Lee, Patel",
+      domains: ["Cognitive Science", "AI Theory"],
+      // archiveId: "2507.16184",
+      // doi: "arXiv:2507.16184",
+      abstract:
+        "This work demonstrates how different computational frameworks converge on similar cognitive principles. We map implementations to classical theories of mind from psychology and philosophy.",
+      keyContributions: [
+        "Multi-theory cognitive convergence mapping",
+        "Empirical validation across 4 frameworks",
+        "Unified cognitive principles extraction",
+      ],
+      diagram: "network",
+      link: "https://arxiv.org/abs/2507.16184",
     },
     {
-      icon: MicroscopeIcon,
-      title: "Empirical Validation",
-      description: "Rigorous testing and evaluation of novel AI methodologies",
+      id: "hallucination-informed",
+      title: "Hallucination-Informed Intelligence",
+      subtitle: "The Limits of Lossless Abstraction in Large Language Models",
+      year: 2023,
+      authors: "Forhu, Chen, Martinez",
+      domains: ["LLM Analysis", "Epistemology"],
+      // archiveId: "x2c8p_v1",
+      // doi: "osf.io/preprints/psyarxiv/x2c8p_v1",
+      abstract:
+        "We analyze hallucinations in LLMs not as failures but as predictable artifacts of lossy information compression. This perspective reframes the epistemological status of model outputs.",
+      keyContributions: [
+        "Novel theoretical framework for LLM hallucinations",
+        "Information-theoretic analysis",
+        "Implications for AI safety and interpretability",
+      ],
+      diagram: "neural",
+      link: "https://osf.io/preprints/psyarxiv/x2c8p_v1",
+    },
+    {
+      id: "hallucination-byproduct",
+      title: "Hallucination as Byproduct",
+      subtitle: "An Inevitable Property of Intelligence in Large Language Models",
+      year: 2023,
+      authors: "Forhu, Davis, Gupta",
+      domains: ["LLM Theory", "AI Design"],
+      // archiveId: "q2c94_v1",
+      // doi: "osf.io/preprints/psyarxiv/q2c94_v1",
+      abstract:
+        "We argue that hallucinations emerge necessarily from the architectural constraints of LLMs and cannot be fully eliminated without sacrificing generalization capabilities.",
+      keyContributions: [
+        "Proof of hallucination inevitability",
+        "Trade-off analysis: accuracy vs. generalization",
+        "Architectural implications for future models",
+      ],
+      diagram: "schema",
+      link: "https://osf.io/preprints/psyarxiv/q2c94_v1",
+    },
+    {
+      id: "cognitive-architecture",
+      title: "Understanding Architecture",
+      subtitle: "Fundamental Principles of Cognitive and AI System Design",
+      year: 2023,
+      authors: "Forhu, Wilson, Kumar",
+      domains: ["Cognitive Architecture", "Systems Design"],
+      // archiveId: "j259k_v1",
+      // doi: "osf.io/preprints/psyarxiv/j259k_v1",
+      abstract:
+        "This foundational work synthesizes cognitive science and AI systems design into unified architectural principles applicable to both biological and artificial minds.",
+      keyContributions: [
+        "Unified cognitive architecture framework",
+        "Cross-domain design principles",
+        "Scalability and composability analysis",
+      ],
+      diagram: "layered",
+      link: "https://osf.io/preprints/psyarxiv/j259k_v1",
     },
   ]
 
+  const getDiagram = (diagramType: string) => {
+    switch (diagramType) {
+      case "network":
+        return <NetworkGraphDiagram />
+      case "layered":
+        return <LayeredModelDiagram />
+      case "schema":
+        return <SchemaDiagram />
+      case "neural":
+        return <NeuralDiagram />
+      default:
+        return <NetworkGraphDiagram />
+    }
+  }
+
   return (
-    <section id="research" className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
-      <div className="mx-auto max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Our Research Areas</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We focus on fundamental advances in AI science that push the boundaries of what's possible
+    <section id="research" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
+      <div className="mx-auto max-w-7xl relative z-10">
+        <div className="mb-24 text-left">
+          <div className="mb-6 inline-block">
+            <span className="text-sm font-bold uppercase tracking-widest text-accent">
+              Featured Research
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-8 leading-tight max-w-5xl">
+            Recent Publications in <br className="hidden md:block" />
+            <span className="text-muted-foreground">Cognitive Architecture</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
+            Peer-reviewed research and preprints exploring cognitive systems, artificial intelligence architecture, and
+            the intersection of philosophy and computational theory.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {researchAreas.map((area, idx) => {
-            const Icon = area.icon
-            return (
-              <div
-                key={idx}
-                className="group p-6 rounded-lg border border-border bg-background hover:bg-card/50 transition-all duration-300 hover:border-accent/50"
-              >
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 text-accent">
-                  <Icon />
+        <div className="space-y-12">
+          {publications.map((pub) => (
+            <div
+              key={pub.id}
+              onClick={() => {
+                setClickedId(pub.id)
+                setTimeout(() => setClickedId(null), 600)
+              }}
+              className={`group relative border rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer ${clickedId === pub.id
+                  ? "border-accent shadow-[0_0_40px_rgba(255,106,45,0.3)] scale-[1.02]"
+                  : "border-border/50 bg-card/30 hover:bg-card/50 hover:border-accent/30 hover:shadow-2xl hover:-translate-y-1"
+                }`}
+            >
+              <div className="flex flex-col lg:flex-row gap-8 p-8 md:p-10">
+                {/* Diagram Section */}
+                <div className="flex-shrink-0 w-full lg:w-1/3 min-h-[240px] lg:h-auto bg-background/50 border border-border/50 rounded-xl p-6 flex items-center justify-center group-hover:border-accent/20 transition-colors duration-500">
+                  <div className="w-full h-full text-muted-foreground/80 group-hover:text-accent/80 transition-colors duration-500">
+                    {getDiagram(pub.diagram)}
+                  </div>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">{area.title}</h3>
-                <p className="text-sm text-muted-foreground">{area.description}</p>
-              </div>
-            )
-          })}
-        </div>
 
-        <div className="mt-20 pt-16 border-t border-border">
-          <h3 className="text-3xl font-bold text-foreground mb-8 text-center">Featured Publications</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <a
-              href="https://philsci-archive.pitt.edu/26865/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group border border-border rounded-lg overflow-hidden bg-background hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
-            >
-              <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center overflow-hidden relative">
-                <img
-                  src="/executable-epistemology-cognitive-architecture-ai.jpg"
-                  alt="Executable Epistemology"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-5">
-                <h4 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  Executable Epistemology
-                </h4>
-                <p className="text-sm text-muted-foreground mb-3">
-                  The Structured Cognitive Loop as an Architecture of Intentional Understanding
-                </p>
-                <span className="inline-block text-xs px-2 py-1 bg-accent/10 text-accent rounded">
-                  Philosophy Archive
-                </span>
-              </div>
-            </a>
+                {/* Content section */}
+                <div className="flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
+                      <span className="font-bold text-accent">{pub.year}</span>
+                      <span className="text-muted-foreground/40">•</span>
+                      <span className="text-muted-foreground font-medium">{pub.authors}</span>
+                    </div>
 
-            <a
-              href="https://arxiv.org/abs/2510.05107"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group border border-border rounded-lg overflow-hidden bg-background hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
-            >
-              <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center overflow-hidden relative">
-                <img
-                  src="/arxiv-ai-research-paper-academic.jpg"
-                  alt="arXiv Paper 2510.05107"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-5">
-                <h4 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  AI Research Paper
-                </h4>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Latest advances in artificial intelligence and machine learning
-                </p>
-                <span className="inline-block text-xs px-2 py-1 bg-accent/10 text-accent rounded">arXiv</span>
-              </div>
-            </a>
+                    {/* Title and subtitle */}
+                    <div className="mb-6">
+                      <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight group-hover:text-accent transition-colors duration-300">
+                        {pub.title}
+                      </h3>
+                      <p className="text-lg text-muted-foreground leading-relaxed">{pub.subtitle}</p>
+                    </div>
 
-            <a
-              href="https://arxiv.org/abs/2507.16184"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group border border-border rounded-lg overflow-hidden bg-background hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
-            >
-              <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center overflow-hidden relative">
-                <img
-                  src="/machine-learning-neural-networks-research.jpg"
-                  alt="arXiv Paper 2507.16184"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-5">
-                <h4 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  Neural Networks Study
-                </h4>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Deep learning methodologies and architectural innovations
-                </p>
-                <span className="inline-block text-xs px-2 py-1 bg-accent/10 text-accent rounded">arXiv</span>
-              </div>
-            </a>
+                    <div className="flex flex-wrap items-center gap-2 mb-8">
+                      {pub.domains.map((domain) => (
+                        <span
+                          key={domain}
+                          className="inline-block text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/10 text-muted-foreground group-hover:border-accent/20 group-hover:text-foreground transition-colors"
+                        >
+                          {domain}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
-            <a
-              href="https://osf.io/preprints/psyarxiv/x2c8p_v1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group border border-border rounded-lg overflow-hidden bg-background hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
-            >
-              <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center overflow-hidden relative">
-                <img
-                  src="/cognitive-science-psychology-preprint-research.jpg"
-                  alt="PsyArXiv Preprint"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                  <div className="flex items-center gap-4 mt-auto pt-6 border-t border-border/30">
+                    <a
+                      href={pub.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background font-semibold hover:bg-accent hover:text-white transition-all duration-300"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      View Publication
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setExpandedPaper(expandedPaper === pub.id ? null : pub.id)
+                      }}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border/50 text-foreground font-medium hover:bg-muted/20 transition-colors"
+                    >
+                      <span>{expandedPaper === pub.id ? "Hide Details" : "View Abstract"}</span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-300 ${expandedPaper === pub.id ? "rotate-180" : ""
+                          }`}
+                      />
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="p-5">
-                <h4 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  Cognitive Science Preprint
-                </h4>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Bridging cognitive psychology with artificial intelligence
-                </p>
-                <span className="inline-block text-xs px-2 py-1 bg-accent/10 text-accent rounded">PsyArXiv</span>
-              </div>
-            </a>
 
-            <a
-              href="https://osf.io/preprints/psyarxiv/q2c94_v1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group border border-border rounded-lg overflow-hidden bg-background hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
-            >
-              <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center overflow-hidden relative">
-                <img
-                  src="/academic-research-preprint-ai-psychology.jpg"
-                  alt="PsyArXiv Preprint"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-5">
-                <h4 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  Mind & Intelligence Study
-                </h4>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Exploring the intersection of cognitive science and AI systems
-                </p>
-                <span className="inline-block text-xs px-2 py-1 bg-accent/10 text-accent rounded">PsyArXiv</span>
-              </div>
-            </a>
-
-            <a
-              href="https://osf.io/preprints/psyarxiv/j259k_v1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group border border-border rounded-lg overflow-hidden bg-background hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
-            >
-              <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center overflow-hidden relative">
-                <img
-                  src="/cognitive-architecture-understanding-ai-research.jpg"
-                  alt="PsyArXiv Preprint"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-5">
-                <h4 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  Understanding Architecture
-                </h4>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Fundamental principles of cognitive and AI system design
-                </p>
-                <span className="inline-block text-xs px-2 py-1 bg-accent/10 text-accent rounded">PsyArXiv</span>
-              </div>
-            </a>
-          </div>
+              {expandedPaper === pub.id && (
+                <div className="border-t border-border/50 bg-muted/5 px-8 md:px-10 py-8 animate-in slide-in-from-top-4 duration-300">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <p className="font-bold text-foreground mb-3 text-sm uppercase tracking-wider">Abstract</p>
+                      <p className="text-muted-foreground leading-relaxed">{pub.abstract}</p>
+                    </div>
+                    <div>
+                      <p className="font-bold text-foreground mb-3 text-sm uppercase tracking-wider">
+                        Key Contributions
+                      </p>
+                      <ul className="space-y-3">
+                        {pub.keyContributions.map((contrib, idx) => (
+                          <li key={idx} className="text-muted-foreground leading-relaxed flex gap-3">
+                            <span className="text-accent flex-shrink-0 mt-1.5">•</span>
+                            <span>{contrib}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -5,9 +5,10 @@ import HeroHome from "@/components/hero-home"
 import PhilosophySection from "@/components/philosophy-section"
 import SCLBrainVisualization from "@/components/scl-brain-visualization"
 import SCLComparisonSection from "@/components/scl-comparison-section"
-import PublicationsSection from "@/components/publications-section"
+import ResearchSection from "@/components/research-section"
 import AboutSection from "@/components/about-section"
 import CTAFinal from "@/components/cta-final"
+import ContactSection from "@/components/contact-section"
 
 export default function Home() {
   return (
@@ -18,8 +19,9 @@ export default function Home() {
         <PhilosophySection />
         <SCLBrainVisualization />
         <SCLComparisonSection />
-        <PublicationsSection />
+        <ResearchSection />
         <AboutSection />
+        <ContactSection />
         <CTAFinal />
       </main>
       <Footer />
