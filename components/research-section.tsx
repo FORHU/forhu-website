@@ -13,8 +13,8 @@ export default function ResearchSection() {
       id: "executable-epistemology-1",
       title: "Executable Epistemology",
       subtitle: "The Structured Cognitive Loop as an Architecture of Intentional Understanding",
-      year: 2024,
-      authors: "Forhu et al.",
+      year: 2025,
+      // authors: "Forhu et al.",
       domains: ["Philosophy", "Cognitive Science"],
       // archiveId: "26865",
       // doi: "10.31234/osf.io/preprints/psyarxiv",
@@ -32,8 +32,8 @@ export default function ResearchSection() {
       id: "structured-cognitive",
       title: "Structured Cognitive Loop",
       subtitle: "Behavioral Intelligence in Large Language Model Agents",
-      year: 2024,
-      authors: "Forhu, Smith, Johnson",
+      year: 2025,
+      // authors: "Forhu, Smith, Johnson",
       domains: ["AI Architecture", "LLMs"],
       // archiveId: "2510.05107",
       // doi: "arXiv:2510.05107",
@@ -51,8 +51,8 @@ export default function ResearchSection() {
       id: "emergent-convergence",
       title: "Emergent Cognitive Convergence",
       subtitle: "Implementation and Four Theories of Mind",
-      year: 2024,
-      authors: "Forhu, Lee, Patel",
+      year: 2025,
+      // authors: "Forhu, Lee, Patel",
       domains: ["Cognitive Science", "AI Theory"],
       // archiveId: "2507.16184",
       // doi: "arXiv:2507.16184",
@@ -70,8 +70,8 @@ export default function ResearchSection() {
       id: "hallucination-informed",
       title: "Hallucination-Informed Intelligence",
       subtitle: "The Limits of Lossless Abstraction in Large Language Models",
-      year: 2023,
-      authors: "Forhu, Chen, Martinez",
+      year: 2025,
+      // authors: "Forhu, Chen, Martinez",
       domains: ["LLM Analysis", "Epistemology"],
       // archiveId: "x2c8p_v1",
       // doi: "osf.io/preprints/psyarxiv/x2c8p_v1",
@@ -89,8 +89,8 @@ export default function ResearchSection() {
       id: "hallucination-byproduct",
       title: "Hallucination as Byproduct",
       subtitle: "An Inevitable Property of Intelligence in Large Language Models",
-      year: 2023,
-      authors: "Forhu, Davis, Gupta",
+      year: 2025,
+      // authors: "Forhu, Davis, Gupta",
       domains: ["LLM Theory", "AI Design"],
       // archiveId: "q2c94_v1",
       // doi: "osf.io/preprints/psyarxiv/q2c94_v1",
@@ -108,8 +108,8 @@ export default function ResearchSection() {
       id: "cognitive-architecture",
       title: "Understanding Architecture",
       subtitle: "Fundamental Principles of Cognitive and AI System Design",
-      year: 2023,
-      authors: "Forhu, Wilson, Kumar",
+      year: 2025,
+      // authors: "Forhu, Wilson, Kumar",
       domains: ["Cognitive Architecture", "Systems Design"],
       // archiveId: "j259k_v1",
       // doi: "osf.io/preprints/psyarxiv/j259k_v1",
@@ -186,7 +186,7 @@ export default function ResearchSection() {
                     <div className="mb-3 sm:mb-4 flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm">
                       <span className="font-bold text-accent">{pub.year}</span>
                       <span className="text-muted-foreground/40">•</span>
-                      <span className="text-muted-foreground font-medium">{pub.authors}</span>
+                      {/* <span className="text-muted-foreground font-medium">{pub.authors}</span> */}
                     </div>
 
                     {/* Title and subtitle */}

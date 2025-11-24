@@ -199,29 +199,37 @@ export default function SCLComparisonSection() {
             const minskyNode = minskyLayers.find((n) => n.id === selectedMinskyId)
             if (!minskyNode) return null
 
+            // Glow logic: Only glow if it's the primary selection (no SCL selected)
+            const isPrimarySelection = !selectedSclId
+            const containerClasses = isPrimarySelection
+              ? "bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(200,90,58,0.3)] transform scale-105"
+              : "bg-accent/5 border-accent/30 text-foreground/80"
+
             return (
               <div className="space-y-6 sm:space-y-8 animate-fade-in-up">
-                <div className="bg-accent/5 border border-accent/30 rounded-lg p-6 sm:p-8 hover:border-accent/50 transition-colors">
+                <div className={`border rounded-lg p-6 sm:p-8 transition-all duration-300 ${containerClasses}`}>
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <p className="text-xs sm:text-sm font-mono text-accent/60 uppercase tracking-wide mb-2">
+                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isPrimarySelection ? "text-accent/80" : "text-accent/60"}`}>
                         Marvin Minsky's Model
                       </p>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-accent">{minskyNode.label}</h3>
+                      <h3 className={`text-2xl sm:text-3xl font-bold ${isPrimarySelection ? "text-accent drop-shadow-[0_0_10px_rgba(255,106,45,0.3)]" : "text-accent"}`}>
+                        {minskyNode.label}
+                      </h3>
                     </div>
                   </div>
 
-                  <div className="space-y-4 sm:space-y-6">
+                  <div className={`space-y-4 sm:space-y-6 ${isPrimarySelection ? "text-accent" : ""}`}>
                     <div>
-                      <p className="text-xs sm:text-sm font-mono text-accent/60 uppercase tracking-wide mb-2">Definition</p>
-                      <p className="text-sm sm:text-base text-foreground">{minskyNode.definition}</p>
+                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isPrimarySelection ? "text-accent/80" : "text-accent/60"}`}>Definition</p>
+                      <p className="text-sm sm:text-base">{minskyNode.definition}</p>
                     </div>
 
                     <div>
-                      <p className="text-xs sm:text-sm font-mono text-accent/60 uppercase tracking-wide mb-2">
+                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isPrimarySelection ? "text-accent/80" : "text-accent/60"}`}>
                         Role in Cognition
                       </p>
-                      <p className="text-sm sm:text-base text-foreground">{minskyNode.roleInCognition}</p>
+                      <p className="text-sm sm:text-base">{minskyNode.roleInCognition}</p>
                     </div>
                   </div>
                 </div>
@@ -236,17 +244,17 @@ export default function SCLComparisonSection() {
 
             return (
               <div className="space-y-6 sm:space-y-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                <div className="bg-primary/5 border border-primary/30 rounded-lg p-6 sm:p-8 hover:border-primary/50 transition-colors">
+                <div className="bg-primary/20 border border-primary rounded-lg p-6 sm:p-8 transition-all duration-300 transform scale-105 shadow-[0_0_20px_rgba(139,90,60,0.3)]">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <p className="text-xs sm:text-sm font-mono text-primary/60 uppercase tracking-wide mb-2">
+                      <p className="text-xs sm:text-sm font-mono text-primary/80 uppercase tracking-wide mb-2">
                         SCL Component
                       </p>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-primary">{sclNode.label}</h3>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-primary drop-shadow-[0_0_10px_rgba(139,90,60,0.3)]">{sclNode.label}</h3>
                     </div>
                   </div>
 
-                  <p className="text-sm sm:text-base text-foreground/70">{sclNode.description}</p>
+                  <p className="text-sm sm:text-base text-primary/90">{sclNode.description}</p>
                 </div>
               </div>
             )
@@ -353,8 +361,9 @@ export default function SCLComparisonSection() {
                       strokeWidth="1.2"
                       className="cursor-pointer transition-all duration-300"
                       onClick={() => {
-                        // Toggle Minsky selection independently
-                        setSelectedMinskyId(selectedMinskyId === node.id ? null : node.id)
+                        // Paired selection: Select Minsky, clear SCL
+                        setSelectedMinskyId(node.id)
+                        setSelectedSclId(null)
                       }}
                       onMouseEnter={() => setHoveredId(node.id)}
                       onMouseLeave={() => setHoveredId(null)}
@@ -450,8 +459,9 @@ export default function SCLComparisonSection() {
                         strokeWidth="1"
                         className="cursor-pointer transition-all duration-300"
                         onClick={() => {
-                          // Toggle SCL selection independently
-                          setSelectedSclId(selectedSclId === sclNode.id ? null : sclNode.id)
+                          // Paired selection: Select SCL, force parent Minsky context
+                          setSelectedSclId(sclNode.id)
+                          setSelectedMinskyId(minskyNode.id)
                         }}
                         onMouseEnter={() => setHoveredId(sclNode.id)}
                         onMouseLeave={() => setHoveredId(null)}

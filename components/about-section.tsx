@@ -13,7 +13,7 @@ const aboutItems: AboutItem[] = [
   },
   {
     title: "Philosophy",
-    description: "Structured cognition (SCL) as the foundation for trustworthy, human-centered intelligence.",
+    description: "Structured Cognitive Loop (SCL) as the foundation for trustworthy, human-centered intelligence.",
   },
   {
     title: "Team",
