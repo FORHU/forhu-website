@@ -94,6 +94,7 @@ const sclComponents: SCLComponent[] = [
 export default function SCLComparisonSection() {
   const [selectedMinskyId, setSelectedMinskyId] = useState<string | null>("reasoning")
   const [selectedSclId, setSelectedSclId] = useState<string | null>("judgment-module")
+  const [selectionSource, setSelectionSource] = useState<"minsky" | "scl" | null>("minsky")
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -199,9 +200,9 @@ export default function SCLComparisonSection() {
             const minskyNode = minskyLayers.find((n) => n.id === selectedMinskyId)
             if (!minskyNode) return null
 
-            // Glow logic: Only glow if it's the primary selection (no SCL selected)
-            const isPrimarySelection = !selectedSclId
-            const containerClasses = isPrimarySelection
+            // Glow logic: Glow only if explicitly clicked (selectionSource === 'minsky')
+            const isGlowActive = selectionSource === "minsky"
+            const containerClasses = isGlowActive
               ? "bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(200,90,58,0.3)] transform scale-105"
               : "bg-accent/5 border-accent/30 text-foreground/80"
 
@@ -210,23 +211,23 @@ export default function SCLComparisonSection() {
                 <div className={`border rounded-lg p-6 sm:p-8 transition-all duration-300 ${containerClasses}`}>
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isPrimarySelection ? "text-accent/80" : "text-accent/60"}`}>
+                      <p className={`text-sm sm:text-base font-mono uppercase tracking-wide mb-2 ${isGlowActive ? "text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" : "text-accent/60"}`}>
                         Marvin Minsky's Model
                       </p>
-                      <h3 className={`text-2xl sm:text-3xl font-bold ${isPrimarySelection ? "text-accent drop-shadow-[0_0_10px_rgba(255,106,45,0.3)]" : "text-accent"}`}>
+                      <h3 className={`text-2xl sm:text-3xl font-bold ${isGlowActive ? "text-accent drop-shadow-[0_0_10px_rgba(255,106,45,0.3)]" : "text-accent"}`}>
                         {minskyNode.label}
                       </h3>
                     </div>
                   </div>
 
-                  <div className={`space-y-4 sm:space-y-6 ${isPrimarySelection ? "text-accent" : ""}`}>
+                  <div className={`space-y-4 sm:space-y-6 ${isGlowActive ? "text-accent" : ""}`}>
                     <div>
-                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isPrimarySelection ? "text-accent/80" : "text-accent/60"}`}>Definition</p>
+                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isGlowActive ? "text-accent/80" : "text-accent/60"}`}>Definition</p>
                       <p className="text-sm sm:text-base">{minskyNode.definition}</p>
                     </div>
 
                     <div>
-                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isPrimarySelection ? "text-accent/80" : "text-accent/60"}`}>
+                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isGlowActive ? "text-accent/80" : "text-accent/60"}`}>
                         Role in Cognition
                       </p>
                       <p className="text-sm sm:text-base">{minskyNode.roleInCognition}</p>
@@ -242,19 +243,27 @@ export default function SCLComparisonSection() {
             const sclNode = sclComponents.find((n) => n.id === selectedSclId)
             if (!sclNode) return null
 
+            // Glow logic: Glow only if explicitly clicked (selectionSource === 'scl')
+            const isGlowActive = selectionSource === "scl"
+            const containerClasses = isGlowActive
+              ? "bg-primary/20 border-primary text-primary shadow-[0_0_20px_rgba(139,90,60,0.3)] transform scale-105"
+              : "bg-primary/5 border-primary/30 text-foreground/80"
+
             return (
               <div className="space-y-6 sm:space-y-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                <div className="bg-primary/20 border border-primary rounded-lg p-6 sm:p-8 transition-all duration-300 transform scale-105 shadow-[0_0_20px_rgba(139,90,60,0.3)]">
+                <div className={`border rounded-lg p-6 sm:p-8 transition-all duration-300 ${containerClasses}`}>
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <p className="text-xs sm:text-sm font-mono text-primary/80 uppercase tracking-wide mb-2">
-                        SCL Component
+                      <p className={`text-sm sm:text-base font-mono uppercase tracking-wide mb-2 ${isGlowActive ? "text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" : "text-primary/60"}`}>
+                        SCL Component Model
                       </p>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-primary drop-shadow-[0_0_10px_rgba(139,90,60,0.3)]">{sclNode.label}</h3>
+                      <h3 className={`text-2xl sm:text-3xl font-bold ${isGlowActive ? "text-primary drop-shadow-[0_0_10px_rgba(139,90,60,0.3)]" : "text-primary"}`}>
+                        {sclNode.label}
+                      </h3>
                     </div>
                   </div>
 
-                  <p className="text-sm sm:text-base text-primary/90">{sclNode.description}</p>
+                  <p className={`text-sm sm:text-base ${isGlowActive ? "text-primary/90" : "text-foreground/70"}`}>{sclNode.description}</p>
                 </div>
               </div>
             )
@@ -361,9 +370,11 @@ export default function SCLComparisonSection() {
                       strokeWidth="1.2"
                       className="cursor-pointer transition-all duration-300"
                       onClick={() => {
-                        // Paired selection: Select Minsky, clear SCL
+                        // Paired selection: Select Minsky, show SCL pair, highlight Minsky
                         setSelectedMinskyId(node.id)
-                        setSelectedSclId(null)
+                        const relatedSCL = getRelatedSCLComponents(node.id)[0]
+                        if (relatedSCL) setSelectedSclId(relatedSCL.id)
+                        setSelectionSource("minsky")
                       }}
                       onMouseEnter={() => setHoveredId(node.id)}
                       onMouseLeave={() => setHoveredId(null)}
@@ -459,9 +470,10 @@ export default function SCLComparisonSection() {
                         strokeWidth="1"
                         className="cursor-pointer transition-all duration-300"
                         onClick={() => {
-                          // Paired selection: Select SCL, force parent Minsky context
+                          // Paired selection: Select SCL, force parent Minsky context, highlight SCL
                           setSelectedSclId(sclNode.id)
                           setSelectedMinskyId(minskyNode.id)
+                          setSelectionSource("scl")
                         }}
                         onMouseEnter={() => setHoveredId(sclNode.id)}
                         onMouseLeave={() => setHoveredId(null)}
