@@ -77,7 +77,7 @@ const sclComponents: SCLComponent[] = [
   },
   {
     id: "metaprompt-regulatory-system",
-    label: "Metaprompt Regulatory System",
+    label: "Metaprompt Module",
     minkskyLayerId: "meta-control",
     description:
       "Oversees high-level goals, constraints, and the overall direction of decision-making. It ensures that actions and outputs align with identity, context, and long-term intentions.",
