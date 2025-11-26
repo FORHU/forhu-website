@@ -12,7 +12,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Forhu - AI Academic Excellence",
+  title: "Forhu - Structure Cognitive Loop",
   description: "Advancing AI research and education through cutting-edge academic innovation",
   generator: "v0.app",
   icons: {
