@@ -19,7 +19,7 @@ export default function ContactSection() {
               href="mailto:support@forhu.ai"
               className="text-2xl font-semibold text-foreground hover:text-accent transition-colors block mt-2"
             >
-              support@forhu.ai
+            support@forhu.ai
             </a>
           </div>
         </div>
