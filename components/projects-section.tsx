@@ -12,6 +12,7 @@ interface Project {
   icon: React.ReactNode
   image: string
   color?: string
+  link?: string
 }
 
 const projects: Project[] = [
@@ -33,7 +34,8 @@ const projects: Project[] = [
     tags: ["LegalTech", "Cognitive Analysis", "SCL"],
     icon: <Scale className="w-6 h-6" />,
     image: "/ilovelawyer.png",
-    color: "from-blue-600 to-indigo-600"
+    color: "from-blue-600 to-indigo-600",
+    link: "https://ilovelawyer.com"
   }
 ]
 
@@ -58,7 +60,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center mb-32 sm:mb-48`}
     >
       {/* Project Image / Visual */}
-      <div className="w-full lg:w-1/2 relative group">
+      <a 
+        href={project.link} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="w-full lg:w-1/2 relative group block cursor-pointer"
+      >
         <motion.div 
           style={{ y: index % 2 === 0 ? y : -y }}
           className={`relative aspect-video rounded-3xl overflow-hidden border border-white/10 backdrop-blur-sm ${project.id === 'ilovelawyer' ? 'bg-white' : 'bg-black/20'}`}
@@ -71,6 +78,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <img
             src={project.image}
             alt={project.title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-contain p-12 transition-transform duration-1000 group-hover:scale-110"
           />
           
@@ -83,11 +92,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               </span>
             ))}
           </div>
+
+          {/* External Link Icon Overlay on Hover */}
+          <div className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <ExternalLink className="w-5 h-5" />
+          </div>
         </motion.div>
         
         {/* Ambient Glow */}
         <div className={`absolute -inset-4 bg-gradient-to-r ${project.color || 'from-accent to-accent-secondary'} rounded-[2rem] blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-1000`} />
-      </div>
+      </a>
 
       {/* Project Info */}
       <div className="w-full lg:w-1/2 flex flex-col items-start">
@@ -102,7 +116,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.icon}
           </div>
           
-          <h3 className="text-3xl sm:text-5xl font-bold text-foreground mb-6 tracking-tight">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
             {project.title}
           </h3>
         </motion.div>
@@ -164,7 +178,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl sm:text-7xl md:text-8xl font-bold text-foreground mb-8 tracking-tighter"
+            className="text-4xl sm:text-6xl md:text-7xl font-bold text-foreground mb-8 tracking-tighter"
           >
             SCL in <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/40">Action.</span>
           </motion.h2>

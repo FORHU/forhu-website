@@ -73,13 +73,13 @@ export default function Footer() {
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground font-light">© 2025 FORHU. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="FORHU GitHub">
                 <Github className="h-4 w-4" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="FORHU LinkedIn">
                 <Linkedin className="h-4 w-4" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="FORHU Twitter">
                 <Twitter className="h-4 w-4" />
               </a>
             </div>

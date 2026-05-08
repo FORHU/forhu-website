@@ -49,12 +49,12 @@ export default function AboutSection() {
   }, [])
 
   return (
-    <section id="about" className="relative py-16 sm:py-32 px-4 sm:px-6 bg-background font-poppins">
+    <section id="about" className="relative py-12 sm:py-24 px-4 sm:px-6 bg-background font-poppins">
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Main heading */}
         <div className="text-center mb-12 sm:mb-20">
           <span className="text-accent text-xs sm:text-sm font-bold uppercase tracking-widest">ABOUT US</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 text-foreground mb-6 sm:mb-8 leading-tight">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold mt-3 sm:mt-4 text-foreground mb-6 sm:mb-8 tracking-tighter leading-tight">
             The People and Philosophy <br /> Behind FORHU
           </h2>
           <div className="max-w-3xl mx-auto px-4">
@@ -77,13 +77,13 @@ export default function AboutSection() {
                 if (el) itemRefs.current[index] = el
               }}
               className={`group p-6 sm:p-8 md:p-10 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm transition-all duration-700 transform ${visibleItems[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                } hover:border-accent/30 hover:bg-card/50 hover:shadow-2xl hover:-translate-y-1`}
+                } hover:border-accent/30 hover:bg-card/50 hover:shadow-accent/20 hover:-translate-y-1`}
               style={{
                 transitionDelay: visibleItems[index] ? `${index * 150}ms` : "0ms",
               }}
             >
               <div className="h-1 w-12 bg-accent/50 mb-6 sm:mb-8 rounded-full group-hover:w-20 transition-all duration-500"></div>
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4 group-hover:text-accent transition-colors duration-300">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4 group-hover:text-accent transition-colors duration-300 tracking-tight">
                 {item.title}
               </h3>
               <p className="text-muted-foreground leading-relaxed text-base sm:text-lg group-hover:text-foreground/80 transition-colors duration-300">

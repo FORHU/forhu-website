@@ -133,7 +133,7 @@ export default function SCLLoopSection() {
                       opacity={isActive ? 0.9 : 0.3}
                       className="transition-all duration-500 cursor-pointer"
                       onClick={() => setActiveStep(idx)}
-                      style={{ filter: isActive ? "drop-shadow(0 0 20px rgba(200,90,58,0.6))" : "none" }}
+                      style={{ filter: isActive ? "drop-shadow(0 0 20px var(--accent))" : "none" }}
                     />
 
                     {/* Step number */}
@@ -168,10 +168,10 @@ export default function SCLLoopSection() {
                 y="200"
                 textAnchor="middle"
                 dominantBaseline="middle"
-                fontSize="14"
+                fontSize="18"
                 fontWeight="bold"
-                fill="rgb(200,90,58)"
-                className="pointer-events-none"
+                fill="var(--accent)"
+                className="pointer-events-none drop-shadow-[0_0_8px_var(--accent)]"
               >
                 SCL
               </text>

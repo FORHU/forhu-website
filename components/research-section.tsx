@@ -149,7 +149,7 @@ export default function ResearchSection() {
               Featured Research
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground mb-6 sm:mb-8 leading-tight max-w-5xl">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-foreground mb-6 sm:mb-8 tracking-tighter leading-tight max-w-5xl">
             Recent Publications in <br className="hidden md:block" />
             <span className="text-muted-foreground">Cognitive Architecture</span>
           </h2>
@@ -168,8 +168,8 @@ export default function ResearchSection() {
                 setTimeout(() => setClickedId(null), 600)
               }}
               className={`group relative border rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer ${clickedId === pub.id
-                ? "border-accent shadow-[0_0_40px_rgba(255,106,45,0.3)] scale-[1.02]"
-                : "border-border/50 bg-card/30 hover:bg-card/50 hover:border-accent/30 hover:shadow-2xl hover:-translate-y-1"
+                ? "border-accent shadow-accent/30 scale-[1.02]"
+                : "border-border/50 bg-card/30 hover:bg-card/50 hover:border-accent/30 hover:shadow-accent/20 hover:-translate-y-1"
                 }`}
             >
               <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 p-6 sm:p-8 md:p-10">
@@ -191,7 +191,7 @@ export default function ResearchSection() {
 
                     {/* Title and subtitle */}
                     <div className="mb-4 sm:mb-6">
-                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2 sm:mb-3 leading-tight group-hover:text-accent transition-colors duration-300">
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2 sm:mb-3 leading-tight group-hover:text-accent transition-colors duration-300 tracking-tight">
                         {pub.title}
                       </h3>
                       <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{pub.subtitle}</p>

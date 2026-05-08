@@ -203,7 +203,7 @@ export default function SCLComparisonSection() {
             // Glow logic: Glow only if explicitly clicked (selectionSource === 'minsky')
             const isGlowActive = selectionSource === "minsky"
             const containerClasses = isGlowActive
-              ? "bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(200,90,58,0.3)] transform scale-105"
+              ? "bg-accent/20 border-accent text-accent shadow-accent/30 transform scale-105"
               : "bg-accent/5 border-accent/30 text-foreground/80"
 
             return (
@@ -246,7 +246,7 @@ export default function SCLComparisonSection() {
             // Glow logic: Glow only if explicitly clicked (selectionSource === 'scl')
             const isGlowActive = selectionSource === "scl"
             const containerClasses = isGlowActive
-              ? "bg-primary/20 border-primary text-primary shadow-[0_0_20px_rgba(139,90,60,0.3)] transform scale-105"
+              ? "bg-primary/20 border-primary text-primary shadow-primary/30 transform scale-105"
               : "bg-primary/5 border-primary/30 text-foreground/80"
 
             return (
