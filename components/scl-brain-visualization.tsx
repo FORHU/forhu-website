@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 interface BrainRegion {
   id: string
@@ -84,6 +84,29 @@ export default function SCLBrainVisualization() {
   const [glowEffects, setGlowEffects] = useState<GlowEffect[]>([])
   const [activeButton, setActiveButton] = useState<string>('judgment')
   const [animationKey, setAnimationKey] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  // 3D Tilt Logic
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const springConfig = { stiffness: 150, damping: 20 }
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), springConfig)
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    mouseX.set(x)
+    mouseY.set(y)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
 
   const selected = brainRegions.find(r => r.id === selectedRegion)
 
@@ -117,7 +140,7 @@ export default function SCLBrainVisualization() {
     <section id="scl" className="relative py-12 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-background via-card to-background overflow-hidden">
       {/* Background glow animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] sm:w-[900px] sm:h-[900px] bg-accent/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] sm:w-[900px] sm:h-[900px] bg-accent/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-[300px] h-[300px] sm:w-[700px] sm:h-[700px] bg-gradient-to-tl from-accent/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
@@ -137,43 +160,34 @@ export default function SCLBrainVisualization() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12 items-center">
           {/* Brain image with interactive overlay */}
           <div className="lg:col-span-2 flex justify-center order-1">
-            <div className="relative w-full max-w-[300px] sm:max-w-sm">
+            <motion.div 
+              ref={containerRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ 
+                rotateX, 
+                rotateY, 
+                perspective: 1000,
+                transformStyle: "preserve-3d" 
+              }}
+              className="relative w-full max-w-[300px] sm:max-w-sm transition-shadow duration-500"
+            >
               {/* Outer Bloom Effect */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.1, 0.3, 0.1],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="absolute inset-0 bg-accent rounded-full blur-[80px] z-0"
+              <div
+                className="absolute inset-0 bg-accent/10 rounded-full blur-[80px] z-0"
+                style={{ transform: "translateZ(-50px)" }}
               />
 
-              <motion.img
+              <img
                 src={brainImageUrl || "/placeholder.svg"}
                 alt="Interactive brain diagram"
                 loading="lazy"
                 decoding="async"
-                animate={{
-                  scale: [1, 1.08, 1],
-                  filter: [
-                    "drop-shadow(0 0 20px rgba(255,106,45,0.4))",
-                    "drop-shadow(0 0 80px rgba(255,106,45,0.8))",
-                    "drop-shadow(0 0 20px rgba(255,106,45,0.4))"
-                  ]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className={`w-full h-auto relative z-10`}
+                className={`w-full h-auto relative z-10 drop-shadow-[0_0_30px_rgba(255,106,45,0.2)]`}
+                style={{ transform: "translateZ(20px)" }}
               />
 
-              <div className="absolute inset-0 w-full h-full">
+              <div className="absolute inset-0 w-full h-full" style={{ transform: "translateZ(40px)" }}>
                 {Object.entries(textLabels).map(([regionId, labelData]) => (
                   <button
                     key={regionId}
@@ -210,6 +224,8 @@ export default function SCLBrainVisualization() {
                 className="absolute inset-0 w-full h-full cursor-pointer"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="xMidYMid meet"
+                aria-label="Interactive hotspots for brain regions"
+                style={{ transform: "translateZ(41px)" }}
               >
                 {Object.entries(wordLocations).map(([regionId, coords]) => (
                   <circle
@@ -229,6 +245,7 @@ export default function SCLBrainVisualization() {
                 className="absolute inset-0 w-full h-full cursor-pointer"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="xMidYMid meet"
+                style={{ transform: "translateZ(42px)" }}
               >
                 <defs>
                   <style>
@@ -264,7 +281,7 @@ export default function SCLBrainVisualization() {
                   )
                 })}
               </svg>
-            </div>
+            </motion.div>
           </div>
 
           {/* Info panel */}
@@ -284,7 +301,7 @@ export default function SCLBrainVisualization() {
                     {/* Role Container */}
                     <div className="group bg-accent/5 border border-accent/15 rounded-xl p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:bg-accent/8 hover:border-accent/25">
                       <p className="text-accent text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-                        <span className="w-1 h-1 bg-accent rounded-full animate-pulse"></span>
+                        <span className="w-1 h-1 bg-accent rounded-full"></span>
                         Role
                       </p>
                       <p className="text-xl sm:text-3xl font-bold text-foreground leading-tight tracking-tight">
@@ -295,7 +312,7 @@ export default function SCLBrainVisualization() {
                     {/* Function Container */}
                     <div className="group bg-accent/10 border border-accent/30 rounded-xl p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:bg-accent/15 hover:border-accent/40">
                       <p className="text-accent text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-                        <span className="w-1 h-1 bg-accent rounded-full animate-pulse"></span>
+                        <span className="w-1 h-1 bg-accent rounded-full"></span>
                         Function
                       </p>
                       <p className="text-foreground/90 text-sm sm:text-lg leading-relaxed font-medium">
