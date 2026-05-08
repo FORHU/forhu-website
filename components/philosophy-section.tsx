@@ -95,7 +95,7 @@ export default function PhilosophySection() {
                 if (el) cardRefs.current[index] = el
               }}
               className={`group relative bg-gradient-to-br from-foreground/5 to-foreground/[0.02] border border-accent/20 rounded-xl p-6 sm:p-8 backdrop-blur-sm transition-all duration-700 ${visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                } hover:border-accent/50 hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]`}
+                } hover:border-accent/50 hover:shadow-accent/20`}
               style={{
                 transitionDelay: visibleCards[index] ? `${index * 150}ms` : "0ms",
               }}

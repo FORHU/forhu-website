@@ -21,7 +21,7 @@ export default function CTAFinal() {
   }, [])
 
   return (
-    <section className="relative py-32 px-6 bg-gradient-to-b from-background via-background to-background">
+    <section className="relative py-16 sm:py-24 px-6 bg-gradient-to-b from-background via-background to-background">
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-accent/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
@@ -30,11 +30,11 @@ export default function CTAFinal() {
 
       <div ref={containerRef} className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Core message */}
-        <h2 className="text-5xl md:text-6xl font-bold mb-12 leading-tight">
-          <div className="mb-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 leading-tight tracking-tight">
+          <div className="mb-4">
             <span className="text-foreground">In an age where AI cannot be trusted,</span>
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-foreground to-accent">
               FORHU has given AI the structure of thought.
             </span>
@@ -45,7 +45,7 @@ export default function CTAFinal() {
         </h2>
 
         {/* Rotating CTA */}
-        <div className="h-20 flex items-center justify-center mb-12">
+        <div className="h-16 flex items-center justify-center mb-8">
           <div className="relative w-full">
             {ctaMessages.map((msg, idx) => (
               <div
@@ -64,7 +64,7 @@ export default function CTAFinal() {
         <div className="flex flex-col md:flex-row gap-6 justify-center">
           <a
             href="#"
-            className="px-10 py-5 bg-accent text-background font-bold text-lg rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[0_0_30px_rgba(0,217,255,0.4)]"
+            className="px-10 py-5 bg-accent text-background font-bold text-lg rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-accent/40"
           >
             Get Started
           </a>
@@ -77,7 +77,7 @@ export default function CTAFinal() {
         </div>
 
         {/* Dots indicator */}
-        <div className="flex gap-3 justify-center mt-16">
+        <div className="flex gap-3 justify-center mt-12">
           {ctaMessages.map((_, idx) => (
             <button
               key={idx}

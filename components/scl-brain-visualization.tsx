@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 interface BrainRegion {
   id: string
@@ -68,11 +69,11 @@ const wordLocations: Record<string, { x: number; y: number; radius: number }> = 
 
 // Text label positions and styling configuration
 const textLabels: Record<string, { x: number; y: number; label: string }> = {
-  judgment: { x: 32, y: 26, label: 'Judgment' },
-  memory: { x: 48, y: 52, label: 'Memory' },
-  control: { x: 64, y: 28, label: 'Control' },
-  runtime: { x: 68, y: 58, label: 'Runtime' },
-  metaprompt: { x: 35, y: 72, label: 'Metaprompt' }
+  judgment: { x: 42, y: 28, label: 'Judgment' },
+  memory: { x: 38, y: 48, label: 'Memory' },
+  control: { x: 68, y: 30, label: 'Control' },
+  runtime: { x: 62, y: 52, label: 'Runtime' },
+  metaprompt: { x: 50, y: 65, label: 'Metaprompt' }
 }
 
 const brainImageUrl = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRAIN1-QhdBYgaBYxYloew4GF20YmVKRLyUJp.png"
@@ -113,21 +114,21 @@ export default function SCLBrainVisualization() {
   }
 
   return (
-    <section id="scl" className="relative py-12 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-[#0f0d0a] via-[#1a1612] to-[#0f0d0a] overflow-hidden">
+    <section id="scl" className="relative py-12 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-background via-card to-background overflow-hidden">
       {/* Background glow animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] sm:w-[900px] sm:h-[900px] bg-[#ff6a2d]/8 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] sm:w-[700px] sm:h-[700px] bg-gradient-to-tl from-[#ff6a2d]/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] sm:w-[900px] sm:h-[900px] bg-accent/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] sm:w-[700px] sm:h-[700px] bg-gradient-to-tl from-accent/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-[#ff6a2d] mb-4 tracking-tight">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-accent mb-4 tracking-tighter">
             Structured Cognitive Loop
           </h2>
-          <p className="text-xl sm:text-2xl text-[#f5ede6] font-medium">The Brain Behind SCL</p>
-          <p className="text-base sm:text-lg text-[#f5ede6]/70 mt-4 px-4">
+          <p className="text-xl sm:text-2xl text-foreground font-medium">The Brain Behind SCL</p>
+          <p className="text-base sm:text-lg text-muted-foreground mt-4 px-4">
             Click on each brain region to explore its role in intelligent reasoning
           </p>
         </div>
@@ -137,10 +138,39 @@ export default function SCLBrainVisualization() {
           {/* Brain image with interactive overlay */}
           <div className="lg:col-span-2 flex justify-center order-1">
             <div className="relative w-full max-w-[300px] sm:max-w-sm">
-              <img
+              {/* Outer Bloom Effect */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="absolute inset-0 bg-accent rounded-full blur-[80px] z-0"
+              />
+
+              <motion.img
                 src={brainImageUrl || "/placeholder.svg"}
                 alt="Interactive brain diagram"
-                className={`w-full h-auto drop-shadow-[0_0_50px_rgba(255,106,45,0.3)] transition-all duration-700`}
+                loading="lazy"
+                decoding="async"
+                animate={{
+                  scale: [1, 1.08, 1],
+                  filter: [
+                    "drop-shadow(0 0 20px rgba(255,106,45,0.4))",
+                    "drop-shadow(0 0 80px rgba(255,106,45,0.8))",
+                    "drop-shadow(0 0 20px rgba(255,106,45,0.4))"
+                  ]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className={`w-full h-auto relative z-10`}
               />
 
               <div className="absolute inset-0 w-full h-full">
@@ -148,9 +178,9 @@ export default function SCLBrainVisualization() {
                   <button
                     key={regionId}
                     onClick={() => handleLabelClick(regionId)}
-                    className={`absolute px-2 py-0.5 sm:px-3 sm:py-1 font-sans text-sm sm:text-base md:text-lg font-bold transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 ${activeButton === regionId
+                    className={`absolute px-4 py-2 sm:px-3 sm:py-1 font-sans text-base sm:text-base md:text-lg font-bold transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg ${activeButton === regionId
                       ? 'text-yellow-300'
-                      : 'text-orange-500 hover:text-yellow-200'
+                      : 'text-accent hover:text-yellow-200'
                       }`}
                     style={{
                       left: `${labelData.x}%`,
@@ -208,11 +238,13 @@ export default function SCLBrainVisualization() {
                         transition: all 0.3s ease;
                       }
                       .brain-region:hover {
-                        fill: rgba(255, 106, 45, 0.1);
+                        fill: var(--accent);
+                        opacity: 0.1;
                       }
                       .brain-region.active {
-                        fill: rgba(255, 200, 87, 0.15);
-                        filter: drop-shadow(0 0 8px rgba(255, 200, 87, 0.4));
+                        fill: var(--accent);
+                        opacity: 0.15;
+                        filter: drop-shadow(0 0 8px var(--accent));
                       }
                     `}
                   </style>
@@ -242,26 +274,34 @@ export default function SCLBrainVisualization() {
                 <div className="space-y-6">
                   {/* Title and label */}
                   <div>
-                    <p className="text-[#ff6a2d] text-xs sm:text-sm font-mono uppercase tracking-widest mb-2">
+                    <p className="text-accent text-xs sm:text-sm font-mono uppercase tracking-widest mb-2">
                       SCL Component
                     </p>
-                    <h3 className="text-3xl sm:text-5xl font-bold text-[#f5ede6]">{selected.label}</h3>
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight">{selected.label}</h3>
                   </div>
 
-                  {/* Role */}
-                  <div className="space-y-2">
-                    <p className="text-[#ff6a2d] text-xs uppercase tracking-widest font-semibold">Role</p>
-                    <p className="text-xl sm:text-2xl font-semibold text-[#f5ede6]">{selected.role}</p>
-                  </div>
+                  <div className="grid grid-cols-1 gap-4 sm:gap-6">
+                    {/* Role Container */}
+                    <div className="group bg-accent/5 border border-accent/15 rounded-xl p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:bg-accent/8 hover:border-accent/25">
+                      <p className="text-accent text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
+                        <span className="w-1 h-1 bg-accent rounded-full animate-pulse"></span>
+                        Role
+                      </p>
+                      <p className="text-xl sm:text-3xl font-bold text-foreground leading-tight tracking-tight">
+                        {selected.role}
+                      </p>
+                    </div>
 
-                  {/* Function */}
-                  <div className="bg-[#ff6a2d]/10 border border-[#ff6a2d]/30 rounded-lg p-6 backdrop-blur-sm">
-                    <p className="text-[#ff6a2d] text-xs uppercase tracking-widest font-semibold mb-3">
-                      Function
-                    </p>
-                    <p className="text-[#f5ede6]/90 text-sm sm:text-base leading-relaxed">
-                      {selected.function}
-                    </p>
+                    {/* Function Container */}
+                    <div className="group bg-accent/10 border border-accent/30 rounded-xl p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:bg-accent/15 hover:border-accent/40">
+                      <p className="text-accent text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
+                        <span className="w-1 h-1 bg-accent rounded-full animate-pulse"></span>
+                        Function
+                      </p>
+                      <p className="text-foreground/90 text-sm sm:text-lg leading-relaxed font-medium">
+                        {selected.function}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -270,8 +310,8 @@ export default function SCLBrainVisualization() {
         </div>
 
         {/* Footer caption */}
-        <div className="text-center mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-[#ff6a2d]/15">
-          <p className="text-[#f5ede6]/60 text-xs sm:text-sm leading-relaxed px-4">
+        <div className="text-center mt-8 sm:mt-12">
+          <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed px-4">
             Explore the Cognitive Roles of the Structured Cognitive Loop.
           </p>
         </div>

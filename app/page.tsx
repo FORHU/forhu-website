@@ -9,6 +9,7 @@ import ResearchSection from "@/components/research-section"
 import AboutSection from "@/components/about-section"
 import CTAFinal from "@/components/cta-final"
 import ContactSection from "@/components/contact-section"
+import ProjectsSection from "@/components/projects-section"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <SCLBrainVisualization />
         <SCLComparisonSection />
         <ResearchSection />
+        <ProjectsSection />
         <AboutSection />
         <ContactSection />
         <CTAFinal />

@@ -13,24 +13,17 @@ export default function Navigation() {
     { label: "Philosophy", href: "#philosophy" },
     { label: "SCL", href: "#scl" },
     { label: "Research", href: "#research" },
+    { label: "Projects", href: "#projects" },
     { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" },
   ]
-
-  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    const contactSection = document.getElementById("contact")
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" })
-      setIsOpen(false)
-    }
-  }
 
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2 hover:opacity-70 transition-opacity">
-            <Logo className="w-20 h-20 sm:w-24 sm:h-24 text-foreground" />
+            <Logo className="w-24 h-24 sm:w-32 sm:h-32 text-foreground" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -39,21 +32,11 @@ export default function Navigation() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground transition-all duration-300 hover:text-accent"
               >
                 {item.label}
               </a>
             ))}
-          </div>
-
-          <div className="hidden md:flex md:items-center md:space-x-4">
-            <a
-              href="#contact"
-              onClick={handleContactClick}
-              className="px-4 py-2 text-sm font-light text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Contact
-            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -88,13 +71,6 @@ export default function Navigation() {
                   {item.label}
                 </a>
               ))}
-              <a
-                href="#contact"
-                className="block px-3 py-3 text-base font-light text-muted-foreground hover:text-foreground hover:bg-secondary/30 rounded-md transition-colors"
-                onClick={handleContactClick}
-              >
-                Contact
-              </a>
             </div>
           </div>
         )}
