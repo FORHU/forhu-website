@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 interface BrainRegion {
   id: string
@@ -137,10 +138,37 @@ export default function SCLBrainVisualization() {
           {/* Brain image with interactive overlay */}
           <div className="lg:col-span-2 flex justify-center order-1">
             <div className="relative w-full max-w-[300px] sm:max-w-sm">
-              <img
+              {/* Outer Bloom Effect */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="absolute inset-0 bg-[#ff6a2d] rounded-full blur-[80px] z-0"
+              />
+
+              <motion.img
                 src={brainImageUrl || "/placeholder.svg"}
                 alt="Interactive brain diagram"
-                className={`w-full h-auto drop-shadow-[0_0_50px_rgba(255,106,45,0.3)] transition-all duration-700`}
+                animate={{
+                  scale: [1, 1.08, 1],
+                  filter: [
+                    "drop-shadow(0 0 20px rgba(255,106,45,0.4))",
+                    "drop-shadow(0 0 80px rgba(255,106,45,0.8))",
+                    "drop-shadow(0 0 20px rgba(255,106,45,0.4))"
+                  ]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className={`w-full h-auto relative z-10`}
               />
 
               <div className="absolute inset-0 w-full h-full">
@@ -270,7 +298,7 @@ export default function SCLBrainVisualization() {
         </div>
 
         {/* Footer caption */}
-        <div className="text-center mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-[#ff6a2d]/15">
+        <div className="text-center mt-8 sm:mt-12">
           <p className="text-[#f5ede6]/60 text-xs sm:text-sm leading-relaxed px-4">
             Explore the Cognitive Roles of the Structured Cognitive Loop.
           </p>

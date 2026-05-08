@@ -13,6 +13,7 @@ export default function Navigation() {
     { label: "Philosophy", href: "#philosophy" },
     { label: "SCL", href: "#scl" },
     { label: "Research", href: "#research" },
+    { label: "Projects", href: "#projects" },
     { label: "About", href: "#about" },
   ]
 
