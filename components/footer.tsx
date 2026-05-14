@@ -36,15 +36,9 @@ const X = (props: { className?: string }) => (
 
 export default function Footer() {
   const footerLinks = {
-    Research: [
-      { label: "Papers", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Preprints", href: "#" },
-    ],
     About: [
       { label: "Team", href: "#" },
       { label: "Mission", href: "#" },
-      { label: "Careers", href: "#" },
     ],
     Legal: [
       { label: "Privacy", href: "#" },
