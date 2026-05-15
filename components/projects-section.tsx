@@ -20,7 +20,7 @@ const projects: Project[] = [
     id: "chumme",
     title: "Chumme",
     description: "A revolutionary social ecosystem for artists and creators, utilizing SCL architecture to foster authentic community engagement and creative autonomy.",
-    connection: "Demonstrates SCL's ability to manage complex social dynamics and creative workflows while maintaining human-centric values.",
+    connection: "Demonstrates SCL's ability to detect and correct complex social dynamics and emotions, while maintaining human-centric values.",
     tags: ["Social Tech", "Artist Platform", "SCL Integration"],
     icon: <Users className="w-6 h-6" />,
     image: "/chumme.png",

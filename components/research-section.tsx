@@ -16,8 +16,6 @@ export default function ResearchSection() {
       year: 2025,
       // authors: "Forhu et al.",
       domains: ["Philosophy", "Cognitive Science"],
-      // archiveId: "26865",
-      // doi: "10.31234/osf.io/preprints/psyarxiv",
       abstract:
         "This paper presents a novel framework for understanding knowledge representation in artificial systems through the lens of executable philosophy. We propose that epistemology—the study of how we know what we know—can be formalized as computational processes.",
       keyContributions: [
@@ -26,6 +24,7 @@ export default function ResearchSection() {
         "Integration of philosophical and computational frameworks",
       ],
       diagram: "schema",
+      video: "/assets/videos/executableepistemology.mp4",
       link: "https://philsci-archive.pitt.edu/26865/",
     },
     {
@@ -35,8 +34,6 @@ export default function ResearchSection() {
       year: 2025,
       // authors: "Forhu, Smith, Johnson",
       domains: ["AI Architecture", "LLMs"],
-      // archiveId: "2510.05107",
-      // doi: "arXiv:2510.05107",
       abstract:
         "We introduce the Structured Cognitive Loop (SCL), a hierarchical control architecture for LLM agents. SCL integrates perception, cognition, and action through recursive feedback mechanisms.",
       keyContributions: [
@@ -45,6 +42,7 @@ export default function ResearchSection() {
         "Empirical validation on complex tasks",
       ],
       diagram: "layered",
+      video: "/assets/videos/structured-cognitive-loop.mp4",
       link: "https://arxiv.org/abs/2510.05107",
     },
     {
@@ -54,8 +52,6 @@ export default function ResearchSection() {
       year: 2025,
       // authors: "Forhu, Lee, Patel",
       domains: ["Cognitive Science", "AI Theory"],
-      // archiveId: "2507.16184",
-      // doi: "arXiv:2507.16184",
       abstract:
         "This work demonstrates how different computational frameworks converge on similar cognitive principles. We map implementations to classical theories of mind from psychology and philosophy.",
       keyContributions: [
@@ -64,6 +60,7 @@ export default function ResearchSection() {
         "Unified cognitive principles extraction",
       ],
       diagram: "network",
+      video: "/assets/videos/emergent-convergence.mp4",
       link: "https://arxiv.org/abs/2507.16184",
     },
     {
@@ -73,8 +70,6 @@ export default function ResearchSection() {
       year: 2025,
       // authors: "Forhu, Chen, Martinez",
       domains: ["LLM Analysis", "Epistemology"],
-      // archiveId: "x2c8p_v1",
-      // doi: "osf.io/preprints/psyarxiv/x2c8p_v1",
       abstract:
         "We analyze hallucinations in LLMs not as failures but as predictable artifacts of lossy information compression. This perspective reframes the epistemological status of model outputs.",
       keyContributions: [
@@ -83,6 +78,7 @@ export default function ResearchSection() {
         "Implications for AI safety and interpretability",
       ],
       diagram: "neural",
+      video: "/assets/videos/hallucination-informed.mp4",
       link: "https://osf.io/preprints/psyarxiv/x2c8p_v1",
     },
     {
@@ -92,8 +88,6 @@ export default function ResearchSection() {
       year: 2025,
       // authors: "Forhu, Davis, Gupta",
       domains: ["LLM Theory", "AI Design"],
-      // archiveId: "q2c94_v1",
-      // doi: "osf.io/preprints/psyarxiv/q2c94_v1",
       abstract:
         "We argue that hallucinations emerge necessarily from the architectural constraints of LLMs and cannot be fully eliminated without sacrificing generalization capabilities.",
       keyContributions: [
@@ -102,6 +96,7 @@ export default function ResearchSection() {
         "Architectural implications for future models",
       ],
       diagram: "schema",
+      video: "/assets/videos/hallucination-byproduct.mp4",
       link: "https://osf.io/preprints/psyarxiv/q2c94_v1",
     },
     {
@@ -111,8 +106,6 @@ export default function ResearchSection() {
       year: 2025,
       // authors: "Forhu, Wilson, Kumar",
       domains: ["Cognitive Architecture", "Systems Design"],
-      // archiveId: "j259k_v1",
-      // doi: "osf.io/preprints/psyarxiv/j259k_v1",
       abstract:
         "This foundational work synthesizes cognitive science and AI systems design into unified architectural principles applicable to both biological and artificial minds.",
       keyContributions: [
@@ -121,6 +114,7 @@ export default function ResearchSection() {
         "Scalability and composability analysis",
       ],
       diagram: "layered",
+      video: "/assets/videos/cognitive-architecture.mp4",
       link: "https://osf.io/preprints/psyarxiv/j259k_v1",
     },
   ]
@@ -173,10 +167,25 @@ export default function ResearchSection() {
                 }`}
             >
               <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 p-6 sm:p-8 md:p-10">
-                {/* Diagram Section */}
-                <div className="flex-shrink-0 w-full lg:w-1/3 min-h-[200px] sm:min-h-[240px] lg:h-auto bg-background/50 border border-border/50 rounded-xl p-4 sm:p-6 flex items-center justify-center group-hover:border-accent/20 transition-colors duration-500">
-                  <div className="w-full h-full text-muted-foreground/80 group-hover:text-accent/80 transition-colors duration-500">
-                    {getDiagram(pub.diagram)}
+                {/* Media Section — video if available, else diagram */}
+                <div className="flex-shrink-0 w-full lg:w-1/3 self-stretch rounded-xl overflow-hidden border border-border/50 group-hover:border-accent/20 transition-colors duration-500">
+                  <div className="relative w-full min-h-[240px] h-full">
+                    {pub.video ? (
+                      <video
+                        src={pub.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-background/50 p-4 sm:p-6 flex items-center justify-center">
+                        <div className="w-full h-full text-muted-foreground/80 group-hover:text-accent/80 transition-colors duration-500">
+                          {getDiagram(pub.diagram)}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
