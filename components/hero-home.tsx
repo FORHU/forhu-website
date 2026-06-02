@@ -31,7 +31,7 @@ export default function HeroHome() {
             </div>
           </div>
 
-          {/* Main headline - Simple and powerful */}
+          {/* Main headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-foreground text-center leading-tight mb-6 tracking-tight">
             Where AI and humanity <span className="font-semibold text-accent">connect</span>
             <br />
@@ -48,15 +48,12 @@ export default function HeroHome() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center mt-10 md:mt-16 items-center w-full sm:w-auto">
-            {/* Learn about SCL button */}
             <a
               href="#scl"
               className="w-full sm:w-auto px-6 py-3 rounded-md border border-border bg-primary text-primary-foreground font-light hover:opacity-90 transition-opacity text-center"
             >
               Learn about SCL
             </a>
-
-            {/* Read our research button */}
             <a
               href="#research"
               className="w-full sm:w-auto px-6 py-3 rounded-md border border-border bg-transparent text-foreground font-light hover:bg-card/50 transition-colors text-center"

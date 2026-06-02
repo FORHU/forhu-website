@@ -58,22 +58,20 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="border-t border-border/50 md:hidden animate-fade-in-up">
-            <div className="space-y-1 px-2 py-4 bg-background/95 backdrop-blur-md">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="block px-3 py-3 text-base font-light text-muted-foreground hover:text-foreground hover:bg-secondary/30 rounded-md transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
+        <div className={`border-t border-border/50 md:hidden ${isOpen ? "animate-fade-in-up" : "hidden"}`}>
+          <div className="space-y-1 px-2 py-4 bg-background/95 backdrop-blur-md">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="block px-3 py-3 text-base font-light text-muted-foreground hover:text-foreground hover:bg-secondary/30 rounded-md transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </nav>
   )

@@ -51,6 +51,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const y = useTransform(scrollYProgress, [0, 1], [50, -50])
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
+  const imageWrapperClass = "w-full lg:w-1/2 relative group block"
+
   return (
     <motion.div
       ref={ref}
@@ -60,12 +62,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center mb-32 sm:mb-48`}
     >
       {/* Project Image / Visual */}
-      <a 
-        href={project.link} 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="w-full lg:w-1/2 relative group block cursor-pointer"
-      >
+      {project.link ? (
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${imageWrapperClass} cursor-pointer`}
+        >
         <motion.div 
           style={{ y: index % 2 === 0 ? y : -y }}
           className={`relative aspect-video rounded-3xl overflow-hidden border border-white/10 backdrop-blur-sm ${project.id === 'ilovelawyer' ? 'bg-white' : 'bg-black/20'}`}
@@ -101,7 +104,35 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         
         {/* Ambient Glow */}
         <div className={`absolute -inset-4 bg-gradient-to-r ${project.color || 'from-accent to-accent-secondary'} rounded-[2rem] blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-1000`} />
-      </a>
+        </a>
+      ) : (
+        <div className={imageWrapperClass}>
+          <motion.div
+            style={{ y: index % 2 === 0 ? y : -y }}
+            className={`relative aspect-video rounded-3xl overflow-hidden border border-white/10 backdrop-blur-sm bg-black/20`}
+          >
+            {project.id === "chumme" && (
+              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10`} />
+            )}
+            <img
+              src={project.image}
+              alt={project.title}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-contain p-12"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+            <div className="absolute bottom-8 left-8 flex gap-3">
+              {project.tags.map(tag => (
+                <span key={tag} className="px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-xl text-[10px] font-bold uppercase tracking-wider text-white border border-white/10">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+          <div className={`absolute -inset-4 bg-gradient-to-r ${project.color || 'from-accent to-accent-secondary'} rounded-[2rem] blur-3xl opacity-0 transition-opacity duration-1000`} />
+        </div>
+      )}
 
       {/* Project Info */}
       <div className="w-full lg:w-1/2 flex flex-col items-start">

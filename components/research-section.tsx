@@ -237,8 +237,13 @@ export default function ResearchSection() {
                 </div>
               </div>
 
-              {expandedPaper === pub.id && (
-                <div className="border-t border-border/50 bg-muted/5 px-6 sm:px-8 md:px-10 py-6 sm:py-8 animate-in slide-in-from-top-4 duration-300">
+              <div
+                className={`overflow-hidden transition-all duration-300 ${
+                  expandedPaper === pub.id ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+                }`}
+                aria-hidden={expandedPaper !== pub.id}
+              >
+                <div className="border-t border-border/50 bg-muted/5 px-6 sm:px-8 md:px-10 py-6 sm:py-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                     <div>
                       <p className="font-bold text-foreground mb-3 text-xs sm:text-sm uppercase tracking-wider">Abstract</p>
@@ -259,7 +264,7 @@ export default function ResearchSection() {
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
