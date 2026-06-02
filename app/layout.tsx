@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
 }
 
-const jsonLd = {
+const organizationLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Forhu",
@@ -74,6 +74,58 @@ const jsonLd = {
   description:
     "Advancing AI research and education through the Structured Cognitive Loop (SCL) — a recursive, human-centric cognitive architecture.",
   sameAs: [],
+}
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Forhu — Structured Cognitive Loop",
+  url: "https://forhu.ai",
+  description:
+    "Advancing AI research and education through the Structured Cognitive Loop (SCL) — a recursive, human-centric cognitive architecture.",
+  hasPart: [
+    {
+      "@type": "WebPageElement",
+      name: "Philosophy",
+      url: "https://forhu.ai/#philosophy",
+      description:
+        "Forhu's foundational philosophy behind human-centric AI development and the principles driving the Structured Cognitive Loop.",
+    },
+    {
+      "@type": "WebPageElement",
+      name: "Structured Cognitive Loop (SCL)",
+      url: "https://forhu.ai/#scl",
+      description:
+        "The Structured Cognitive Loop (SCL) — a recursive, hierarchical cognitive architecture for AI agents that integrates perception, cognition, and action through feedback mechanisms.",
+    },
+    {
+      "@type": "WebPageElement",
+      name: "Research & Publications",
+      url: "https://forhu.ai/#research",
+      description:
+        "Peer-reviewed research and preprints on cognitive architecture, AI hallucination, and the Structured Cognitive Loop published by Forhu.",
+    },
+    {
+      "@type": "WebPageElement",
+      name: "Projects",
+      url: "https://forhu.ai/#projects",
+      description:
+        "Real-world applications of the Structured Cognitive Loop including Chumme and I Love Lawyer.",
+    },
+    {
+      "@type": "WebPageElement",
+      name: "About Forhu",
+      url: "https://forhu.ai/#about",
+      description:
+        "About Forhu — the team advancing AI research and education through the Structured Cognitive Loop.",
+    },
+    {
+      "@type": "WebPageElement",
+      name: "Contact",
+      url: "https://forhu.ai/#contact",
+      description: "Get in touch with the Forhu team.",
+    },
+  ],
 }
 
 export default function RootLayout({
@@ -89,7 +141,11 @@ export default function RootLayout({
       >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }}
         />
         {children}
       </body>
