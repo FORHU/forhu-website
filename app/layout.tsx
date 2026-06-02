@@ -12,26 +12,68 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Forhu - Structured Cognitive Loop",
-  description: "Advancing AI research and education through cutting-edge academic innovation",
-  generator: "v0.app",
+  metadataBase: new URL("https://forhu.ai"),
+  title: {
+    default: "Forhu — Structured Cognitive Loop",
+    template: "%s | Forhu",
+  },
+  description:
+    "Advancing AI research and education through the Structured Cognitive Loop (SCL) — a recursive, human-centric cognitive architecture.",
+  keywords: [
+    "AI research",
+    "Structured Cognitive Loop",
+    "SCL",
+    "cognitive architecture",
+    "AI education",
+    "Forhu",
+  ],
+  authors: [{ name: "Forhu", url: "https://forhu.ai" }],
+  openGraph: {
+    type: "website",
+    url: "https://forhu.ai",
+    title: "Forhu — Structured Cognitive Loop",
+    description:
+      "Advancing AI research and education through the Structured Cognitive Loop (SCL).",
+    siteName: "Forhu",
+    images: [
+      {
+        url: "/forhu.ico.png",
+        width: 1200,
+        height: 630,
+        alt: "Forhu — Structured Cognitive Loop",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Forhu — Structured Cognitive Loop",
+    description:
+      "Advancing AI research and education through the Structured Cognitive Loop (SCL).",
+    images: ["/forhu.ico.png"],
+  },
+  alternates: {
+    canonical: "https://forhu.ai",
+  },
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
+        url: "/forhu.ico.png",
+        type: "image/png",
       },
     ],
-    apple: "/apple-icon.png",
+    apple: "/forhu.ico.png",
   },
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Forhu",
+  url: "https://forhu.ai",
+  logo: "https://forhu.ai/forhu.ico.png",
+  description:
+    "Advancing AI research and education through the Structured Cognitive Loop (SCL) — a recursive, human-centric cognitive architecture.",
+  sameAs: [],
 }
 
 export default function RootLayout({
@@ -41,7 +83,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`font-sans antialiased bg-background text-foreground ${poppins.variable}`} suppressHydrationWarning>
+      <body
+        className={`font-sans antialiased bg-background text-foreground ${poppins.variable}`}
+        suppressHydrationWarning
+      >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>
