@@ -87,9 +87,9 @@ export default function SCLLoopSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Main visualization */}
-        <div className="flex items-center justify-center mb-12 sm:mb-16">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 sm:gap-16 mb-12 sm:mb-16">
           {/* The Loop Visualization */}
-          <div className="relative h-64 sm:h-96 flex items-center justify-center">
+          <div className="relative h-64 sm:h-96 flex items-center justify-center shrink-0">
             <svg className="w-full h-full max-w-[300px] sm:max-w-sm" viewBox="0 0 400 400" style={{ overflow: "visible" }}>
               {/* Circle path */}
               <circle
@@ -185,6 +185,39 @@ export default function SCLLoopSection() {
               </defs>
             </svg>
           </div>
+
+          {/* Active step info panel */}
+          {sclSteps[activeStep] && (
+            <div className="w-full max-w-md transition-all duration-500">
+              <div className={`p-8 sm:p-10 rounded-2xl border border-accent/20 bg-gradient-to-br ${sclSteps[activeStep].color} backdrop-blur-sm`}>
+                <p className="text-accent text-xs font-bold uppercase tracking-[0.3em] mb-2">
+                  Step {sclSteps[activeStep].number} of 5
+                </p>
+                <p className="text-muted-foreground text-sm uppercase tracking-widest mb-3">
+                  {sclSteps[activeStep].role}
+                </p>
+                <h3 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tighter mb-4">
+                  {sclSteps[activeStep].title}
+                </h3>
+                <p className="text-lg sm:text-xl text-muted-foreground font-light leading-relaxed">
+                  {sclSteps[activeStep].copy}
+                </p>
+                {/* Step dots */}
+                <div className="flex gap-2 mt-8">
+                  {sclSteps.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveStep(i)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        i === activeStep ? "w-8 bg-accent" : "w-3 bg-accent/30"
+                      }`}
+                      aria-label={`Go to step ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
