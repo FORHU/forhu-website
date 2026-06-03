@@ -10,12 +10,12 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { label: "Philosophy", href: "#philosophy" },
-    { label: "SCL", href: "#scl" },
-    { label: "Research", href: "#research" },
-    { label: "Projects", href: "#projects" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Philosophy", href: "/philosophy" },
+    { label: "SCL", href: "/scl" },
+    { label: "Research", href: "/research" },
+    { label: "Projects", href: "/projects" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/#contact" },
   ]
 
   return (
