@@ -3,8 +3,21 @@
 export default function HeroHome() {
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
-      {/* Subtle dark veil — reduced so background neurons show through clearly */}
-      <div className="absolute inset-0 bg-black/15" />
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        crossOrigin="anonymous"
+        suppressHydrationWarning
+      >
+        <source
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/synapse-6GkWZHBLR3B9YFKFnxnpOfFv0E4Hbm.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div className="absolute inset-0 bg-black/60" />
       {/* Content wrapper */}
       <div className="relative z-10 pt-24 pb-16 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
         <div className="mx-auto max-w-4xl w-full">

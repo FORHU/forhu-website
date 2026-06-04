@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import Link from "next/link"
 import AboutSection from "@/components/about-section"
 
@@ -86,7 +86,7 @@ export default function AboutPage() {
       <main className="bg-background text-foreground min-h-screen">
         {/* Breadcrumb */}
         <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm text-xs font-medium">
+          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.09] backdrop-blur-sm text-xs font-medium">
             <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
             <span className="text-accent/50 mx-1">›</span>
             <span className="text-foreground/90">About</span>
@@ -114,7 +114,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               {/* Left card */}
-              <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+              <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
                 <div className="h-1 w-12 bg-accent/50 mb-6 sm:mb-8 rounded-full group-hover:w-20 transition-all duration-500" />
                 <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Mission</span>
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter mt-4 mb-6">What We're Building and Why</h2>
@@ -129,7 +129,7 @@ export default function AboutPage() {
                 </p>
               </div>
               {/* Right card */}
-              <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+              <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
                 <div className="h-1 w-12 bg-accent/50 mb-6 sm:mb-8 rounded-full group-hover:w-20 transition-all duration-500" />
                 <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Specifically</span>
                 <h3 className="text-2xl font-bold text-foreground mt-4 mb-6">What This Means in Practice</h3>
@@ -158,7 +158,7 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {values.map((v, i) => (
-                <div key={v.title} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 hover:border-accent/30 hover:bg-card/50 hover:shadow-accent/20 hover:-translate-y-1 transition-all duration-500 transform">
+                <div key={v.title} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 hover:border-accent/30 hover:bg-card/50 hover:shadow-accent/20 hover:-translate-y-1 transition-all duration-500 transform">
                   {/* Exact same accent bar as Mission & Vision cards */}
                   <div className="h-1 w-12 bg-accent/50 mb-6 sm:mb-8 rounded-full group-hover:w-20 transition-all duration-500" />
                   <span className="text-accent text-xs font-bold uppercase tracking-widest">0{i + 1}</span>

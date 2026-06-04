@@ -1,4 +1,4 @@
-import { CheckCircle2 } from 'lucide-react'
+﻿import { CheckCircle2 } from 'lucide-react'
 
 export default function FeaturesSection() {
   const CheckIcon = () => (
@@ -32,7 +32,7 @@ export default function FeaturesSection() {
             </div>
           </div>
 
-          <div className="relative h-96 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 overflow-hidden">
+          <div className="relative h-96 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center space-y-4">
                 <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-accent/20 border border-accent/50">

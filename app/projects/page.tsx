@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import Link from "next/link"
 import ProjectsSection from "@/components/projects-section"
 
@@ -99,7 +99,7 @@ export default function ProjectsPage() {
       <main className="bg-background text-foreground min-h-screen">
         {/* Breadcrumb */}
         <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm text-xs font-medium">
+          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.09] backdrop-blur-sm text-xs font-medium">
             <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
             <span className="text-accent/50 mx-1">›</span>
             <span className="text-foreground/90">Projects</span>
@@ -134,7 +134,7 @@ export default function ProjectsPage() {
             </div>
             <div className="space-y-8">
               {caseStudies.map((cs) => (
-                <div key={cs.id} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 hover:border-accent/30 transition-all duration-300">
+                <div key={cs.id} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 hover:border-accent/30 transition-all duration-300">
                   {/* Accent bar */}
                   <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
 
@@ -161,7 +161,7 @@ export default function ProjectsPage() {
                         <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">SCL Layers Used</p>
                         <div className="flex flex-wrap gap-2">
                           {cs.scl_layers.map((l) => (
-                            <span key={l} className="text-xs px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-muted-foreground">{l}</span>
+                            <span key={l} className="text-xs px-3 py-1 rounded-full border border-white/10 bg-white/[0.09] text-muted-foreground">{l}</span>
                           ))}
                         </div>
                       </div>
@@ -193,7 +193,7 @@ export default function ProjectsPage() {
         {/* CTA */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-4xl mx-auto">
-            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
               <div>
                 <div className="h-1 w-12 bg-accent/50 mb-4 rounded-full group-hover:w-20 transition-all duration-500" />
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">Want to build with SCL?</h2>
@@ -201,7 +201,7 @@ export default function ProjectsPage() {
               </div>
               <div className="flex gap-4 shrink-0">
                 <Link href="/research" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">Read Research</Link>
-                <Link href="/#contact" className="px-6 py-3 rounded-md border border-white/15 text-foreground hover:bg-white/[0.04] transition-colors">Contact Us</Link>
+                <Link href="/#contact" className="px-6 py-3 rounded-md border border-white/15 text-foreground hover:bg-white/[0.08] transition-colors">Contact Us</Link>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useMemo } from "react"
+import { useRef, useMemo, useEffect } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Html, QuadraticBezierLine } from "@react-three/drei"
 import { EffectComposer, Bloom } from "@react-three/postprocessing"
@@ -45,8 +45,10 @@ function NodeSphere({
   label:      string
   onClick:    () => void
 }) {
-  const meshRef = useRef<THREE.Mesh>(null!)
-  const matRef  = useRef<THREE.MeshStandardMaterial>(null!)
+  const meshRef  = useRef<THREE.Mesh>(null!)
+  const matRef   = useRef<THREE.MeshStandardMaterial>(null!)
+  const sphereGeo = useMemo(() => new THREE.SphereGeometry(0.3, 16, 16), [])
+  useEffect(() => () => { sphereGeo.dispose() }, [sphereGeo])
 
   const targetScale     = isActive ? 1.35 : isRelated ? 1.1 : 1.0
   const targetEmissive  = isActive ? 2.2 : isRelated ? 0.9 : isFaded ? 0.04 : 0.22
@@ -70,7 +72,7 @@ function NodeSphere({
         ref={meshRef}
         onClick={(e) => { e.stopPropagation(); onClick() }}
       >
-        <sphereGeometry args={[0.3, 22, 22]} />
+        <primitive object={sphereGeo} attach="geometry" />
         <meshStandardMaterial
           ref={matRef}
           color={baseColor}

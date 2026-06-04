@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState } from "react"
 import { ChevronDown, ExternalLink } from "lucide-react"
@@ -166,12 +166,12 @@ export default function ResearchSection() {
               }}
               className={`group relative border rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer shadow-lg ${clickedId === pub.id
                 ? "border-accent shadow-accent/25 scale-[1.015] shadow-xl"
-                : "border-white/8 bg-white/[0.03] shadow-black/40 hover:bg-white/[0.06] hover:border-accent/35 hover:shadow-accent/15 hover:shadow-xl hover:-translate-y-1"
+                : "border-white/8 bg-white/[0.07] shadow-black/40 hover:bg-white/[0.12] hover:border-accent/35 hover:shadow-accent/15 hover:shadow-xl hover:-translate-y-1"
                 }`}
             >
               <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 p-6 sm:p-8 md:p-10">
                 {/* Diagram Section */}
-                <div className="flex-shrink-0 w-full lg:w-1/3 min-h-[240px] sm:min-h-[280px] lg:h-auto bg-white/[0.04] border border-white/8 rounded-xl p-4 sm:p-6 flex items-center justify-center group-hover:border-accent/20 transition-colors duration-500">
+                <div className="flex-shrink-0 w-full lg:w-1/3 min-h-[240px] sm:min-h-[280px] lg:h-auto bg-white/[0.09] border border-white/8 rounded-xl p-4 sm:p-6 flex items-center justify-center group-hover:border-accent/20 transition-colors duration-500">
                   <div className="w-full h-full text-muted-foreground/80 group-hover:text-accent/80 transition-colors duration-500">
                     {getDiagram(pub.diagram)}
                   </div>

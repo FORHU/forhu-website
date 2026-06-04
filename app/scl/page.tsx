@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import Link from "next/link"
 import SclBrainVisualization from "@/components/scl-brain-visualization"
 import SclComparisonSection from "@/components/scl-comparison-section"
@@ -146,7 +146,7 @@ export default function SclPage() {
       <main className="bg-background text-foreground min-h-screen">
         {/* Breadcrumb */}
         <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm text-xs font-medium">
+          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.09] backdrop-blur-sm text-xs font-medium">
             <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
             <span className="text-accent/50 mx-1">›</span>
             <span className="text-foreground/90">SCL</span>
@@ -174,7 +174,7 @@ export default function SclPage() {
         {/* Performance vs Justification */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
               <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
               <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">The Core Premise</span>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter mt-4 mb-6 text-foreground">Performance is a race.<br />Justification is a condition.</h2>
@@ -182,7 +182,7 @@ export default function SclPage() {
               <p className="text-muted-foreground leading-relaxed mb-5">The industry has competed on accuracy, benchmark scores, and inference speed. But as AI moves into loan screening, medical diagnosis, and legal review, the question changes from <em>"how accurately does it answer?"</em> to <em>"why was this judgment permitted?"</em></p>
               <p className="text-muted-foreground leading-relaxed">Justification, accountability, and reproducibility do not emerge on their own as models improve. Like a car's brakes, they are structural properties that must be designed separately — and that is what SCL is.</p>
             </div>
-            <div className="p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 space-y-3">
+            <div className="p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 space-y-3">
               <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full" />
               <div className="grid grid-cols-3 gap-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground pb-2">
                 <span>Config<br />(Combination)</span><span>Config<br />(Harness)</span><span className="text-accent">SCL Architecture</span>
@@ -196,7 +196,7 @@ export default function SclPage() {
                 ["Accountability blurred","Accountability diffused","Clear attribution"],
                 ["Reproducibility low","Reproducibility difficult","Fully traceable"],
               ].map(([l,m,r],i) => (
-                <div key={i} className="grid grid-cols-3 gap-3 p-3 rounded-xl border border-white/8 bg-white/[0.04] text-xs">
+                <div key={i} className="grid grid-cols-3 gap-3 p-3 rounded-xl border border-white/8 bg-white/[0.09] text-xs">
                   <span className="text-muted-foreground">{l}</span><span className="text-muted-foreground">{m}</span><span className="text-foreground font-medium">{r}</span>
                 </div>
               ))}
@@ -217,7 +217,7 @@ export default function SclPage() {
                 { num:"Root 01", title:"Role Error", body:"An LLM is, at heart, a next-token predictor. Treating it as an autonomous decision-maker is a category mistake. This mismatch appears in two forms:", items:[{label:"Capability-deficit type",text:"The model cannot perform the task. Obvious, and easy to catch."},{label:"Role-overreach type",text:'The model is so capable it reaches for work it was never asked to do. The intuition that "a stronger model is a safer model" does not hold.'}]},
                 { num:"Root 02", title:"Cognitive Overload", body:"As context accumulates, noise enters. Error operates as reinforcement, not correction: each prior output pushes the next judgment in the same direction until it hardens into a self-narrative.", items:[{label:"Intrinsic overload",text:"The model tries to verify its own reasoning, amplifying its own burden."},{label:"Extrinsic overload",text:"Past context contaminates current judgment. The more context accumulates, the worse it gets."}]},
               ].map((root) => (
-                <div key={root.num} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+                <div key={root.num} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
                   <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
                   <span className="text-accent text-xs font-bold uppercase tracking-widest">{root.num}</span>
                   <h3 className="text-2xl font-bold text-foreground mt-3 mb-4">{root.title}</h3>
@@ -232,7 +232,7 @@ export default function SclPage() {
                 </div>
               ))}
             </div>
-            <div className="p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+            <div className="p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-5">Seven Symptoms That Grow From These Two Roots</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {[
@@ -244,7 +244,7 @@ export default function SclPage() {
                   ["Reproducibility Failure","Grounds differ each time, so the same input yields different results"],
                   ["No Accountability","The decision path is buried inside the LLM and cannot be traced afterward"],
                 ].map(([name,desc]) => (
-                  <div key={name} className="p-4 rounded-xl border border-white/8 bg-white/[0.03]">
+                  <div key={name} className="p-4 rounded-xl border border-white/8 bg-white/[0.07]">
                     <p className="text-sm font-semibold text-foreground mb-1">{name}</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
                   </div>
@@ -264,7 +264,7 @@ export default function SclPage() {
             </div>
             <div className="space-y-4">
               {rcchamSteps.map((step, i) => (
-                <div key={step.name} className={`group grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 p-6 sm:p-8 rounded-2xl border bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 ${step.optional ? "border-accent/30" : "border-white/8"}`}>
+                <div key={step.name} className={`group grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 p-6 sm:p-8 rounded-2xl border bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 ${step.optional ? "border-accent/30" : "border-white/8"}`}>
                   <div>
                     <span className="text-accent text-xs font-bold uppercase tracking-widest">Step {i + 1}</span>
                     <div className="flex items-baseline gap-3 mt-2">
@@ -291,7 +291,7 @@ export default function SclPage() {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
               {mechanisms.map((m) => (
-                <div key={m.id} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col">
+                <div key={m.id} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col">
                   <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
                   <span className="text-accent text-xs font-bold uppercase tracking-widest">Mechanism {m.id}</span>
                   <h3 className="text-xl font-bold text-foreground mt-3 mb-1">{m.name}</h3>
@@ -306,7 +306,7 @@ export default function SclPage() {
         {/* EU AI Act alignment */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
-            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
               <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
               <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Regulatory Alignment</span>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter mt-4 mb-6 text-foreground">Built for the EU AI Act Era</h2>
@@ -323,7 +323,7 @@ export default function SclPage() {
                 {label:"Reproducibility",desc:"Fresh Instance Protocol ensures same epistemic state = same cognitive process"},
                 {label:"Controllability",desc:"The LLM proposes; the structure decides admission — authority is architectural"},
               ].map((item) => (
-                <div key={item.label} className="p-5 rounded-xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-md shadow-black/20">
+                <div key={item.label} className="p-5 rounded-xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-md shadow-black/20">
                   <p className="text-xs font-bold text-accent uppercase tracking-widest mb-2">{item.label}</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
@@ -339,7 +339,7 @@ export default function SclPage() {
             <h2 className="text-4xl font-bold tracking-tighter mt-4 mb-10 text-foreground">Common Questions</h2>
             <div className="space-y-4">
               {faqs.map((f) => (
-                <div key={f.q} className="p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+                <div key={f.q} className="p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
                   <h3 className="text-base font-semibold text-foreground mb-3">{f.q}</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm">{f.a}</p>
                 </div>
@@ -351,7 +351,7 @@ export default function SclPage() {
         {/* CTA */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-4xl mx-auto">
-            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
               <div>
                 <div className="h-1 w-12 bg-accent/50 mb-4 rounded-full group-hover:w-20 transition-all duration-500" />
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">Explore the research behind SCL</h2>
@@ -359,7 +359,7 @@ export default function SclPage() {
               </div>
               <div className="flex gap-4 shrink-0">
                 <Link href="/research" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">Read Research</Link>
-                <Link href="/" className="px-6 py-3 rounded-md border border-white/15 text-foreground hover:bg-white/[0.04] transition-colors">Back to Home</Link>
+                <Link href="/" className="px-6 py-3 rounded-md border border-white/15 text-foreground hover:bg-white/[0.08] transition-colors">Back to Home</Link>
               </div>
             </div>
           </div>

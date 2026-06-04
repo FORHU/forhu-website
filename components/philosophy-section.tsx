@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 import { useEffect, useRef, useState } from "react"
 import type { ReactNode } from "react"
 
@@ -139,7 +139,7 @@ export default function PhilosophySection() {
             <div
               key={index}
               ref={(el) => { if (el) cardRefs.current[index] = el }}
-              className={`group relative overflow-hidden bg-white/[0.04] border border-white/8 rounded-2xl p-6 sm:p-8 backdrop-blur-sm shadow-lg shadow-black/30 transition-all duration-500 ${
+              className={`group relative overflow-hidden bg-white/[0.09] border border-white/8 rounded-2xl p-6 sm:p-8 backdrop-blur-sm shadow-lg shadow-black/30 transition-all duration-500 ${
                 visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               } hover:border-accent/35 hover:shadow-accent/15 hover:shadow-xl hover:-translate-y-1`}
               style={{ transitionDelay: visibleCards[index] ? `${index * 150}ms` : "0ms" }}
@@ -147,7 +147,7 @@ export default function PhilosophySection() {
               {/* Accent bar */}
               <div className="h-1 w-10 bg-accent/50 mb-5 sm:mb-7 rounded-full group-hover:w-16 transition-all duration-500" />
               {/* Icon — frosted glass badge */}
-              <div className="mb-4 w-fit p-3 rounded-xl bg-white/[0.06] border border-white/10 backdrop-blur-sm shadow-md shadow-black/20 group-hover:border-accent/30 group-hover:bg-white/[0.09] transition-all duration-400">
+              <div className="mb-4 w-fit p-3 rounded-xl bg-white/[0.11] border border-white/10 backdrop-blur-sm shadow-md shadow-black/20 group-hover:border-accent/30 group-hover:bg-white/[0.15] transition-all duration-400">
                 {card.icon}
               </div>
 

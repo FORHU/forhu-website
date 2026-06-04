@@ -56,7 +56,8 @@ function NeuronScene() {
     []
   )
 
-  const signals = useRef<Signal[]>([])
+  const signals   = useRef<Signal[]>([])
+  const edgesBuf  = useRef<[number, number][]>([])
 
   // ── pre-allocated buffers ──────────────────────────────────────────────────
   const armBuf  = useMemo(() => new Float32Array(NODE_COUNT * 120 * 3), [])
@@ -106,9 +107,10 @@ function NeuronScene() {
     armGeo.attributes.position.needsUpdate = true
     armGeo.setDrawRange(0, av / 3)
 
-    // 3 ─ rebuild connection edges
+    // 3 ─ rebuild connection edges (reuse pre-allocated array — no per-frame allocation)
     let cv = 0
-    const edges: [number, number][] = []
+    const edges = edgesBuf.current
+    edges.length = 0
     for (let i = 0; i < ns.length; i++) {
       for (let j = i + 1; j < ns.length; j++) {
         const dx = ns[i].x - ns[j].x, dy = ns[i].y - ns[j].y

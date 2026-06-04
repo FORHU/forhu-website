@@ -1,5 +1,6 @@
-"use client"
+﻿"use client"
 import { useRef, useState } from "react"
+import { useInView } from "framer-motion"
 import dynamic from "next/dynamic"
 
 const SclComparison3D = dynamic(() => import("./scl-comparison-3d"), { ssr: false })
@@ -100,6 +101,7 @@ export default function SCLComparisonSection() {
   const [selectionSource, setSelectionSource] = useState<"minsky" | "scl" | null>("minsky")
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const canvasInView = useInView(containerRef, { margin: "100px 0px 100px 0px" })
 
   const handleSelectPair = (minskyId: string, sclId: string, source: "minsky" | "scl") => {
     setSelectedMinskyId(minskyId)
@@ -213,8 +215,8 @@ export default function SCLComparisonSection() {
             return (
               <div className={`rounded-2xl border p-6 sm:p-8 backdrop-blur-md shadow-lg transition-all duration-300 ${
                 isActive
-                  ? "border-accent/50 bg-white/[0.06] shadow-accent/15 shadow-xl"
-                  : "border-white/8 bg-white/[0.03] shadow-black/20"
+                  ? "border-accent/50 bg-white/[0.11] shadow-accent/15 shadow-xl"
+                  : "border-white/8 bg-white/[0.07] shadow-black/20"
               }`}>
                 <p className="text-accent text-[10px] font-bold uppercase tracking-[0.35em] mb-1">
                   Marvin Minsky's Model
@@ -246,8 +248,8 @@ export default function SCLComparisonSection() {
             return (
               <div className={`rounded-2xl border p-6 sm:p-8 backdrop-blur-md shadow-lg transition-all duration-300 ${
                 isActive
-                  ? "border-accent/50 bg-white/[0.06] shadow-accent/15 shadow-xl"
-                  : "border-white/8 bg-white/[0.03] shadow-black/20"
+                  ? "border-accent/50 bg-white/[0.11] shadow-accent/15 shadow-xl"
+                  : "border-white/8 bg-white/[0.07] shadow-black/20"
               }`}>
                 <p className="text-accent text-[10px] font-bold uppercase tracking-[0.35em] mb-1">
                   SCL Component Model
@@ -268,14 +270,16 @@ export default function SCLComparisonSection() {
         {/* Interactive 3D Map - Right */}
         <div className="relative order-1 lg:order-2 bg-black/20 rounded-2xl border border-white/8 shadow-lg shadow-black/30 overflow-hidden min-h-[380px] sm:min-h-[500px] lg:min-h-[820px]">
           <div className="w-full h-full min-h-[380px] sm:min-h-[500px] lg:min-h-[820px]">
-            <SclComparison3D
-              selectedMinskyId={selectedMinskyId}
-              selectedSclId={selectedSclId}
-              selectionSource={selectionSource}
-              onSelectPair={handleSelectPair}
-              minskyLayers={minskyLayers}
-              sclComponents={sclComponents}
-            />
+            {canvasInView && (
+              <SclComparison3D
+                selectedMinskyId={selectedMinskyId}
+                selectedSclId={selectedSclId}
+                selectionSource={selectionSource}
+                onSelectPair={handleSelectPair}
+                minskyLayers={minskyLayers}
+                sclComponents={sclComponents}
+              />
+            )}
             {/* old SVG removed */}
             <svg style={{ display: "none" }}>
               <defs>

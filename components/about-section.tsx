@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 import { useEffect, useRef, useState } from "react"
 
 interface AboutItem {
@@ -76,8 +76,8 @@ export default function AboutSection() {
               ref={(el) => {
                 if (el) itemRefs.current[index] = el
               }}
-              className={`group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 transition-all duration-700 transform ${visibleItems[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                } hover:border-accent/35 hover:bg-white/[0.07] hover:shadow-accent/15 hover:shadow-xl hover:-translate-y-1`}
+              className={`group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 transition-all duration-700 transform ${visibleItems[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                } hover:border-accent/35 hover:bg-white/[0.13] hover:shadow-accent/15 hover:shadow-xl hover:-translate-y-1`}
               style={{
                 transitionDelay: visibleItems[index] ? `${index * 150}ms` : "0ms",
               }}

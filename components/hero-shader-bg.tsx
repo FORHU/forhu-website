@@ -21,7 +21,8 @@ interface Neuron {
   pulsePhase:number; pulseSpeed:number
   arms:  Seg[]
   paths: Pt[][]
-  splinePairs: SplinePair[]   // pre-baked: all arm curve segments in local space
+  pathCumLengths: Float32Array[]  // pre-baked cumulative arc lengths per path
+  splinePairs: SplinePair[]       // pre-baked: all arm curve segments in local space
 }
 
 interface Signal        { from:number; to:number; t:number; speed:number }
@@ -89,29 +90,24 @@ function catmullRom(p0:Pt, p1:Pt, p2:Pt, p3:Pt, t:number): Pt {
   }
 }
 
-// ── lerp along a path at t ∈ [0,1] ─────────────────────────────────────────
-function lerpAlongPath(path:Pt[], t:number): Pt {
-  if (path.length < 2) return path[0] ?? { x:0, y:0, z:0 }
-  // Compute cumulative lengths
-  const lengths: number[] = [0]
-  for (let i = 1; i < path.length; i++) {
-    const dx=path[i].x-path[i-1].x, dy=path[i].y-path[i-1].y, dz=path[i].z-path[i-1].z
-    lengths.push(lengths[i-1] + Math.sqrt(dx*dx+dy*dy+dz*dz))
-  }
-  const total = lengths[lengths.length-1]
+// ── lerp along a path at t ∈ [0,1] using pre-baked cumulative lengths ───────
+function lerpAlongPath(path: Pt[], t: number, cumLengths: Float32Array): Pt {
+  if (path.length < 2) return path[0] ?? { x: 0, y: 0, z: 0 }
+  const total  = cumLengths[cumLengths.length - 1]
   const target = t * total
-  for (let i = 1; i < lengths.length; i++) {
-    if (lengths[i] >= target) {
-      const segT = (target - lengths[i-1]) / (lengths[i] - lengths[i-1])
-      const a = path[i-1], b = path[i]
+  for (let i = 1; i < cumLengths.length; i++) {
+    if (cumLengths[i] >= target) {
+      const denom = cumLengths[i] - cumLengths[i - 1]
+      const segT  = denom > 0 ? (target - cumLengths[i - 1]) / denom : 0
+      const a = path[i - 1], b = path[i]
       return {
-        x: a.x + (b.x-a.x)*segT,
-        y: a.y + (b.y-a.y)*segT,
-        z: a.z + (b.z-a.z)*segT,
+        x: a.x + (b.x - a.x) * segT,
+        y: a.y + (b.y - a.y) * segT,
+        z: a.z + (b.z - a.z) * segT,
       }
     }
   }
-  return path[path.length-1]
+  return path[path.length - 1]
 }
 
 // ── constants ──────────────────────────────────────────────────────────────
@@ -133,6 +129,18 @@ function NeuronScene() {
         0.38 + Math.random()*0.24
       )
       const filteredPaths = paths.filter(p => p.length >= 2)
+
+      // Pre-bake cumulative arc lengths per path — eliminates per-frame sqrt allocations
+      const pathCumLengths: Float32Array[] = filteredPaths.map(path => {
+        const cl = new Float32Array(path.length)
+        for (let i = 1; i < path.length; i++) {
+          const dx = path[i].x - path[i-1].x
+          const dy = path[i].y - path[i-1].y
+          const dz = path[i].z - path[i-1].z
+          cl[i] = cl[i-1] + Math.sqrt(dx*dx + dy*dy + dz*dz)
+        }
+        return cl
+      })
 
       // Pre-bake all spline pairs ONCE — eliminates Catmull-Rom + sqrt every frame
       const splinePairs: SplinePair[] = []
@@ -169,6 +177,7 @@ function NeuronScene() {
         pulseSpeed: 0.008 + Math.random()*0.006,
         arms:  segs,
         paths: filteredPaths,
+        pathCumLengths,
         splinePairs,
       }
     }), [])
@@ -429,7 +438,7 @@ function NeuronScene() {
       const n = ns[neuronIdx]
       const path = n.paths[pathIdx]
       if (!path) continue
-      const pos = lerpAlongPath(path, dt)
+      const pos = lerpAlongPath(path, dt, n.pathCumLengths[pathIdx])
       // Match the same dual-sway so signal stays on the moving branch
       const dist = Math.sqrt(pos.x*pos.x + pos.y*pos.y + pos.z*pos.z)
       const ph   = (pos.x + pos.y) * 1.2
@@ -465,7 +474,7 @@ function NeuronScene() {
       </group>
 
       <EffectComposer multisampling={0}>
-        <Bloom intensity={2.2} luminanceThreshold={0.12} luminanceSmoothing={0.80} mipmapBlur radius={0.75} />
+        <Bloom intensity={1.8} luminanceThreshold={0.14} luminanceSmoothing={0.80} mipmapBlur radius={0.70} />
       </EffectComposer>
     </>
   )
@@ -475,8 +484,8 @@ export default function HeroShaderBg() {
   return (
     <Canvas
       camera={{ position:[0,0,5], fov:50 }}
-      gl={{ antialias:true, alpha:false, powerPreference:"high-performance" }}
-      dpr={[1, 2]}
+      gl={{ antialias:false, alpha:false, powerPreference:"high-performance" }}
+      dpr={[1, 1.5]}
       style={{ position:"absolute", inset:0, width:"100%", height:"100%" }}
     >
       <color attach="background" args={["#0c0c0c"]} />

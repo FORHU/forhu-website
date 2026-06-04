@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion'
@@ -301,7 +301,7 @@ export default function SCLBrainVisualization() {
 
                   <div className="grid grid-cols-1 gap-3 sm:gap-4">
                     {/* Role */}
-                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-5 sm:p-6 shadow-lg shadow-black/20">
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.09] backdrop-blur-md p-5 sm:p-6 shadow-lg shadow-black/20">
                       <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
                         Role
                       </p>
@@ -311,7 +311,7 @@ export default function SCLBrainVisualization() {
                     </div>
 
                     {/* Function */}
-                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-5 sm:p-6 shadow-lg shadow-black/20">
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.09] backdrop-blur-md p-5 sm:p-6 shadow-lg shadow-black/20">
                       <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
                         Function
                       </p>
