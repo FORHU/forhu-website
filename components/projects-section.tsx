@@ -143,7 +143,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
-          <div className={`p-4 rounded-2xl bg-gradient-to-br ${project.color || 'from-accent/20 to-accent-secondary/20'} text-foreground mb-8 border border-white/5 shadow-2xl inline-block`}>
+          <div className="p-4 rounded-2xl bg-white/[0.06] border border-white/10 backdrop-blur-sm shadow-lg shadow-black/30 text-foreground mb-8 inline-block group-hover:border-white/20 transition-all duration-300">
             {project.icon}
           </div>
           
@@ -168,7 +168,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-300px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="w-full p-8 rounded-3xl bg-white/[0.03] border border-white/10 relative overflow-hidden group/connection"
+          className="w-full p-8 rounded-2xl bg-white/[0.04] border border-white/8 backdrop-blur-sm shadow-lg shadow-black/30 relative overflow-hidden group/connection hover:border-accent/30 transition-all duration-300"
         >
           <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${project.color || 'from-accent to-accent-secondary'} opacity-[0.03] blur-3xl -mr-24 -mt-24 group-hover/connection:opacity-[0.08] transition-opacity duration-700`}></div>
           

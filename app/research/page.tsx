@@ -161,7 +161,7 @@ export default function ResearchPage() {
               { label: "Focus Areas", text: "Our work centers on three problems: how AI agents can reason reliably, why hallucinations are structurally inevitable, and how cognitive architectures can be designed to govern their own errors." },
               { label: "Open Access", text: "All Forhu research is published through open-access channels — PhilSci Archive, arXiv, and OSF PsyArXiv — to ensure findings are freely available to researchers, engineers, and policymakers worldwide." },
             ].map((item) => (
-              <div key={item.label} className="p-6 rounded-2xl border border-border/40 bg-card/20">
+              <div key={item.label} className="group p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 hover:border-accent/30 transition-all duration-300">
                 <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-3">{item.label}</h2>
                 <p className="text-muted-foreground leading-relaxed text-sm">{item.text}</p>
               </div>
@@ -182,7 +182,7 @@ export default function ResearchPage() {
             </div>
             <div className="space-y-6">
               {publications.map((p) => (
-                <div key={p.title} className="p-6 rounded-xl border border-border/40 bg-card/10 flex flex-col sm:flex-row sm:items-start gap-4">
+                <div key={p.title} className="p-6 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-md shadow-black/30 flex flex-col sm:flex-row sm:items-start gap-4">
                   <div className="flex-1">
                     <div className="flex flex-wrap gap-2 mb-2">
                       {p.domains.map((d) => (
@@ -208,19 +208,22 @@ export default function ResearchPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30 bg-card/10">
-          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight">Understand the architecture behind the research</h2>
-              <p className="text-muted-foreground mt-2">Learn how SCL puts these cognitive principles into practice.</p>
-            </div>
-            <div className="flex gap-4 shrink-0">
-              <Link href="/scl" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">
-                Explore SCL
-              </Link>
-              <Link href="/" className="px-6 py-3 rounded-md border border-border text-foreground hover:bg-card/50 transition-colors">
-                Back to Home
-              </Link>
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
+          <div className="max-w-4xl mx-auto">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+              <div>
+                <div className="h-1 w-12 bg-accent/50 mb-4 rounded-full group-hover:w-20 transition-all duration-500" />
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">Understand the architecture behind the research</h2>
+                <p className="text-muted-foreground mt-2 text-sm">Learn how SCL puts these cognitive principles into practice.</p>
+              </div>
+              <div className="flex gap-4 shrink-0">
+                <Link href="/scl" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">
+                  Explore SCL
+                </Link>
+                <Link href="/" className="px-6 py-3 rounded-md border border-white/15 text-foreground hover:bg-white/[0.04] transition-colors">
+                  Back to Home
+                </Link>
+              </div>
             </div>
           </div>
         </section>

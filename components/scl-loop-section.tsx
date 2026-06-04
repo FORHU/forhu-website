@@ -226,18 +226,19 @@ export default function SCLLoopSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="p-5 sm:p-8 md:p-10 rounded-2xl border border-white/15 bg-black/50 backdrop-blur-md shadow-xl shadow-black/40"
+                className="p-5 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30"
               >
+                <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full" />
                 <p className="text-accent text-[10px] font-bold uppercase tracking-[0.35em] mb-1">
                   Step {sclSteps[activeStep].number} of 5
                 </p>
-                <p className="text-white/60 text-xs uppercase tracking-[0.2em] mb-5">
+                <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] mb-5">
                   {sclSteps[activeStep].role}
                 </p>
-                <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tighter mb-4 leading-none">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tighter mb-4 leading-none">
                   {sclSteps[activeStep].title}
                 </h3>
-                <p className="text-white/75 text-base sm:text-lg font-light leading-relaxed">
+                <p className="text-muted-foreground text-base sm:text-lg font-light leading-relaxed">
                   {sclSteps[activeStep].copy}
                 </p>
                 {/* Progress dots */}

@@ -198,10 +198,33 @@ function NeuronScene() {
   }, [dendBuf, dendOpaBuf])
 
   const armMat  = useMemo(() => new THREE.LineBasicMaterial({ color:"#ddd8cc", transparent:true, opacity:0.70 }), [])
-  const connMat = useMemo(() => new THREE.LineBasicMaterial({ color:"#707068", transparent:true, opacity:0.12 }), [])
-  const sigMat  = useMemo(() => new THREE.PointsMaterial({
-    size:0.08, color:"#ff6a2d", transparent:true, opacity:1.0,
-    sizeAttenuation:true, blending:THREE.AdditiveBlending, depthWrite:false,
+  const connMat = useMemo(() => new THREE.LineBasicMaterial({ color:"#ccc8bc", transparent:true, opacity:0.35 }), [])
+  // Inter-neuron signals — 3D sphere shader with specular highlight
+  const sigMat  = useMemo(() => new THREE.ShaderMaterial({
+    vertexShader: `
+      void main() {
+        vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = clamp(55.0 / -mv.z, 5.0, 16.0);
+        gl_Position = projectionMatrix * mv;
+      }
+    `,
+    fragmentShader: `
+      void main() {
+        vec2 uv = gl_PointCoord - 0.5;
+        float d = length(uv);
+        if (d > 0.5) discard;
+        // Soft sphere glow (outer)
+        float glow = 1.0 - smoothstep(0.1, 0.5, d);
+        // Specular highlight for 3D look
+        vec3 normal = vec3(uv * 2.0, sqrt(max(0.0, 1.0 - dot(uv*2.0, uv*2.0))));
+        vec3 light  = normalize(vec3(-0.4, 0.6, 0.7));
+        float spec  = pow(max(0.0, dot(normal, light)), 5.0);
+        // Orange core fading to bright highlight
+        vec3 col = mix(vec3(1.0, 0.38, 0.12), vec3(1.0, 0.82, 0.55), spec * 0.75);
+        gl_FragColor = vec4(col, glow * 0.95);
+      }
+    `,
+    transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
   }), [])
   // Dendrite signals — custom shader for per-point glow + fade-out at tip
   const dendMat = useMemo(() => new THREE.ShaderMaterial({

@@ -171,44 +171,33 @@ export default function SclPage() {
         <SclBrainVisualization />
         <SclComparisonSection />
 
-        {/* Performance vs Justification framing */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background border-t border-border/30">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div>
+        {/* Performance vs Justification */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+              <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
               <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">The Core Premise</span>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-6">
-                Performance is a race.<br />Justification is a condition.
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                A fast car is not automatically a safe car. Engine output and braking distance belong to two separate design axes — and strengthening one does not pull the other along. The same holds for AI.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                The industry has competed on accuracy, benchmark scores, and inference speed. But as AI moves into loan screening, medical diagnosis, and legal review, the question changes from <em>"how accurately does it answer?"</em> to <em>"why was this judgment permitted?"</em>
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Justification, accountability, and reproducibility do not emerge on their own as models improve. Like a car's brakes, they are structural properties that must be designed separately — and that is what SCL is.
-              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter mt-4 mb-6 text-foreground">Performance is a race.<br />Justification is a condition.</h2>
+              <p className="text-muted-foreground leading-relaxed mb-5">A fast car is not automatically a safe car. Engine output and braking distance belong to two separate design axes — and strengthening one does not pull the other along. The same holds for AI.</p>
+              <p className="text-muted-foreground leading-relaxed mb-5">The industry has competed on accuracy, benchmark scores, and inference speed. But as AI moves into loan screening, medical diagnosis, and legal review, the question changes from <em>"how accurately does it answer?"</em> to <em>"why was this judgment permitted?"</em></p>
+              <p className="text-muted-foreground leading-relaxed">Justification, accountability, and reproducibility do not emerge on their own as models improve. Like a car's brakes, they are structural properties that must be designed separately — and that is what SCL is.</p>
             </div>
-            <div className="space-y-4">
-              {/* Three-column comparison: Config-Combination / Config-Harness / SCL */}
-              <div className="grid grid-cols-3 gap-3 text-xs font-bold uppercase tracking-widest text-muted-foreground px-2 pb-2">
-                <span>Configuration<br />(Combination)</span>
-                <span>Configuration<br />(Harness)</span>
-                <span className="text-accent">SCL Architecture</span>
+            <div className="p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 space-y-3">
+              <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full" />
+              <div className="grid grid-cols-3 gap-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground pb-2">
+                <span>Config<br />(Combination)</span><span>Config<br />(Harness)</span><span className="text-accent">SCL Architecture</span>
               </div>
               {[
-                ["LLM decides", "LLM decides", "Structure decides admission"],
-                ["Maximize performance", "Stabilize execution", "Justifiable judgment"],
-                ["How to do it better?", "How to do it stably?", "Why is it permitted?"],
-                ["Probabilistic grounds", "Dynamic grounds", "External grounds, fixed + immutable"],
-                ["Context accumulates", "Context accumulates", "Separated domains, clean reasoning"],
-                ["Accountability blurred", "Accountability diffused", "Clear attribution"],
-                ["Reproducibility low", "Reproducibility difficult", "Fully traceable"],
-              ].map(([left, mid, right], i) => (
-                <div key={i} className="grid grid-cols-3 gap-3 p-3 rounded-xl border border-border/40 bg-card/20 text-xs">
-                  <span className="text-muted-foreground">{left}</span>
-                  <span className="text-muted-foreground">{mid}</span>
-                  <span className="text-foreground font-medium">{right}</span>
+                ["LLM decides","LLM decides","Structure decides admission"],
+                ["Maximize performance","Stabilize execution","Justifiable judgment"],
+                ["How to do it better?","How to do it stably?","Why is it permitted?"],
+                ["Probabilistic grounds","Dynamic grounds","External grounds, fixed"],
+                ["Context accumulates","Context accumulates","Separated domains"],
+                ["Accountability blurred","Accountability diffused","Clear attribution"],
+                ["Reproducibility low","Reproducibility difficult","Fully traceable"],
+              ].map(([l,m,r],i) => (
+                <div key={i} className="grid grid-cols-3 gap-3 p-3 rounded-xl border border-white/8 bg-white/[0.04] text-xs">
+                  <span className="text-muted-foreground">{l}</span><span className="text-muted-foreground">{m}</span><span className="text-foreground font-medium">{r}</span>
                 </div>
               ))}
             </div>
@@ -216,61 +205,46 @@ export default function SclPage() {
         </section>
 
         {/* Two roots of failure */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background/50 border-t border-border/30">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-16 max-w-2xl">
+            <div className="mb-12 max-w-2xl">
               <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Failure Analysis</span>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-4">Two Roots of Every AI Failure</h2>
-              <p className="text-lg text-muted-foreground">
-                AI failures look varied on the surface. Trace them back and they spring from exactly two structural roots — both of which SCL is designed to address.
-              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-4 text-foreground">Two Roots of Every AI Failure</h2>
+              <p className="text-muted-foreground text-lg">AI failures look varied on the surface. Trace them back and they spring from exactly two structural roots — both of which SCL is designed to address.</p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-              <div className="p-8 rounded-2xl border border-border/50 bg-card/20">
-                <span className="text-accent text-xs font-bold uppercase tracking-widest">Root 01</span>
-                <h3 className="text-2xl font-bold text-foreground mt-3 mb-4">Role Error</h3>
-                <p className="text-base text-muted-foreground leading-relaxed mb-4">
-                  An LLM is, at heart, a next-token predictor. Treating it as an autonomous decision-maker is a category mistake. This mismatch appears in two forms:
-                </p>
-                <ul className="space-y-3">
-                  <li className="text-sm text-muted-foreground border-l-2 border-border/50 pl-4">
-                    <strong className="text-foreground">Capability-deficit type</strong> — the model cannot perform the task. Obvious, and easy to catch.
-                  </li>
-                  <li className="text-sm text-muted-foreground border-l-2 border-accent/40 pl-4">
-                    <strong className="text-foreground">Role-overreach type</strong> — the model is so capable it reaches for work it was never asked to do. The stronger the model, the more strongly this appears. The intuition that "a stronger model is a safer model" does not hold.
-                  </li>
-                </ul>
-              </div>
-              <div className="p-8 rounded-2xl border border-border/50 bg-card/20">
-                <span className="text-accent text-xs font-bold uppercase tracking-widest">Root 02</span>
-                <h3 className="text-2xl font-bold text-foreground mt-3 mb-4">Cognitive Overload</h3>
-                <p className="text-base text-muted-foreground leading-relaxed mb-4">
-                  As context accumulates, noise enters. The AI judges on top of the noise — and error operates as reinforcement, not correction: each prior output pushes the next judgment in the same direction until it hardens into a self-narrative.
-                </p>
-                <ul className="space-y-3">
-                  <li className="text-sm text-muted-foreground border-l-2 border-border/50 pl-4">
-                    <strong className="text-foreground">Intrinsic overload</strong> — the model tries to verify its own reasoning, amplifying its own burden.
-                  </li>
-                  <li className="text-sm text-muted-foreground border-l-2 border-accent/40 pl-4">
-                    <strong className="text-foreground">Extrinsic overload</strong> — past context contaminates current judgment. The more context accumulates, the worse it gets.
-                  </li>
-                </ul>
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8">
+              {[
+                { num:"Root 01", title:"Role Error", body:"An LLM is, at heart, a next-token predictor. Treating it as an autonomous decision-maker is a category mistake. This mismatch appears in two forms:", items:[{label:"Capability-deficit type",text:"The model cannot perform the task. Obvious, and easy to catch."},{label:"Role-overreach type",text:'The model is so capable it reaches for work it was never asked to do. The intuition that "a stronger model is a safer model" does not hold.'}]},
+                { num:"Root 02", title:"Cognitive Overload", body:"As context accumulates, noise enters. Error operates as reinforcement, not correction: each prior output pushes the next judgment in the same direction until it hardens into a self-narrative.", items:[{label:"Intrinsic overload",text:"The model tries to verify its own reasoning, amplifying its own burden."},{label:"Extrinsic overload",text:"Past context contaminates current judgment. The more context accumulates, the worse it gets."}]},
+              ].map((root) => (
+                <div key={root.num} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+                  <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
+                  <span className="text-accent text-xs font-bold uppercase tracking-widest">{root.num}</span>
+                  <h3 className="text-2xl font-bold text-foreground mt-3 mb-4">{root.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{root.body}</p>
+                  <ul className="space-y-3">
+                    {root.items.map((item) => (
+                      <li key={item.label} className="text-sm text-muted-foreground border-l-2 border-accent/30 pl-4">
+                        <strong className="text-foreground">{item.label}</strong> — {item.text}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-            {/* Seven symptoms */}
-            <div>
-              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">Seven Symptoms That Grow From These Two Roots</p>
+            <div className="p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-5">Seven Symptoms That Grow From These Two Roots</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {[
-                  ["Hallucination", "Contaminated context amplifies a simple error in a biased direction"],
-                  ["Goal Drift", "Reacting only to recent context, the original goal is lost"],
-                  ["Confirmation Bias", "The model takes its own earlier output as grounds and hardens further in the same direction"],
-                  ["Rationalization", "The conclusion comes first; reasons are generated afterward"],
-                  ["Post-hoc Explanation", "Plausible reasons attached to the result, not a record of the actual cognitive process"],
-                  ["Reproducibility Failure", "Grounds differ each time, so the same input yields different results"],
-                  ["No Accountability", "The decision path is buried inside the LLM and cannot be traced afterward"],
-                ].map(([name, desc]) => (
-                  <div key={name} className="p-4 rounded-xl border border-border/40 bg-card/20">
+                  ["Hallucination","Contaminated context amplifies a simple error in a biased direction"],
+                  ["Goal Drift","Reacting only to recent context, the original goal is lost"],
+                  ["Confirmation Bias","The model takes its own earlier output as grounds and hardens further in the same direction"],
+                  ["Rationalization","The conclusion comes first; reasons are generated afterward"],
+                  ["Post-hoc Explanation","Plausible reasons attached to the result, not a record of the actual cognitive process"],
+                  ["Reproducibility Failure","Grounds differ each time, so the same input yields different results"],
+                  ["No Accountability","The decision path is buried inside the LLM and cannot be traced afterward"],
+                ].map(([name,desc]) => (
+                  <div key={name} className="p-4 rounded-xl border border-white/8 bg-white/[0.03]">
                     <p className="text-sm font-semibold text-foreground mb-1">{name}</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
                   </div>
@@ -281,39 +255,26 @@ export default function SclPage() {
         </section>
 
         {/* R-CC[H]AM deep-dive */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background border-t border-border/30">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-16">
+            <div className="mb-12">
               <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">The Loop</span>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-4">R-CC[H]AM Cognitive Loop</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl">
-                Every judgment in SCL passes through a fixed, predictable cycle. The loop repeats until the goal is reached, and terminates upon achievement. One turn equals one cognitive loop.
-              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-4 text-foreground">R-CC[H]AM Cognitive Loop</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl">Every judgment in SCL passes through a fixed, predictable cycle. The loop repeats until the goal is reached, and terminates upon achievement. One turn equals one cognitive loop.</p>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {rcchamSteps.map((step, i) => (
-                <div
-                  key={step.name}
-                  className={`grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 p-8 rounded-2xl border bg-card/20 ${
-                    step.optional ? "border-accent/30 bg-accent/5" : "border-border/50"
-                  }`}
-                >
+                <div key={step.name} className={`group grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 p-6 sm:p-8 rounded-2xl border bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 ${step.optional ? "border-accent/30" : "border-white/8"}`}>
                   <div>
                     <span className="text-accent text-xs font-bold uppercase tracking-widest">Step {i + 1}</span>
                     <div className="flex items-baseline gap-3 mt-2">
-                      <span className={`text-4xl font-black ${step.optional ? "text-accent/60" : "text-accent/30"}`}>
-                        {step.label}
-                      </span>
-                      <h3 className="text-2xl font-bold text-foreground">{step.name}</h3>
+                      <span className={`text-3xl font-black ${step.optional ? "text-accent/60" : "text-accent/30"}`}>{step.label}</span>
+                      <h3 className="text-xl font-bold text-foreground">{step.name}</h3>
                     </div>
                     <p className="text-sm text-muted-foreground mt-1">{step.role}</p>
-                    {step.optional && (
-                      <span className="inline-block mt-2 text-xs font-bold text-accent border border-accent/30 rounded px-2 py-0.5">
-                        Contextual
-                      </span>
-                    )}
+                    {step.optional && <span className="inline-block mt-2 text-xs font-bold text-accent border border-accent/30 rounded px-2 py-0.5">Contextual</span>}
                   </div>
-                  <p className="text-base text-muted-foreground leading-relaxed">{step.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
               ))}
             </div>
@@ -321,22 +282,21 @@ export default function SclPage() {
         </section>
 
         {/* Three core mechanisms */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background/50 border-t border-border/30">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-16">
+            <div className="mb-12">
               <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Core Mechanisms</span>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-4">The Infrastructure of Accountability</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl">
-                What does accountable AI need that corresponds to a car's brakes, airbags, and black box? These three mechanisms are SCL's answer.
-              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-4 text-foreground">The Infrastructure of Accountability</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl">What does accountable AI need that corresponds to a car's brakes, airbags, and black box? These three mechanisms are SCL's answer.</p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
               {mechanisms.map((m) => (
-                <div key={m.id} className="p-8 rounded-2xl border border-border/50 bg-card/20 flex flex-col gap-4">
+                <div key={m.id} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col">
+                  <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
                   <span className="text-accent text-xs font-bold uppercase tracking-widest">Mechanism {m.id}</span>
-                  <h3 className="text-2xl font-bold text-foreground">{m.name}</h3>
-                  <p className="text-sm text-accent font-medium">{m.subtitle}</p>
-                  <p className="text-base text-muted-foreground leading-relaxed">{m.body}</p>
+                  <h3 className="text-xl font-bold text-foreground mt-3 mb-1">{m.name}</h3>
+                  <p className="text-xs text-accent font-medium mb-4">{m.subtitle}</p>
+                  <p className="text-muted-foreground leading-relaxed text-sm flex-1">{m.body}</p>
                 </div>
               ))}
             </div>
@@ -344,33 +304,28 @@ export default function SclPage() {
         </section>
 
         {/* EU AI Act alignment */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30 bg-card/10">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div>
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+              <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
               <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Regulatory Alignment</span>
-              <h2 className="text-4xl font-bold tracking-tighter mt-4 mb-6">Built for the EU AI Act Era</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                The EU AI Act targets uncontrolled black-box systems — untraceable decision-making, lack of meaningful human oversight, hallucination-driven actions, and accountability ambiguity. The issue is not whether AI makes mistakes, but whether organizations can understand and control the reasoning behind those mistakes.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                SCL is designed precisely for this environment. Its positioning is not "the smartest AI" but <strong className="text-foreground">Controlled AI. Governed AI. Auditable AI.</strong>
-              </p>
-              <p className="text-sm text-muted-foreground border-l-2 border-accent/40 pl-4 italic">
-                Overclaiming carries regulatory and credibility risk. SCL does not promise "hallucination-free AI" or "100% reliable AI." It provides the structural conditions under which AI judgment can be governed, traced, and trusted.
-              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter mt-4 mb-6 text-foreground">Built for the EU AI Act Era</h2>
+              <p className="text-muted-foreground leading-relaxed mb-5">The EU AI Act targets uncontrolled black-box systems — untraceable decision-making, lack of meaningful human oversight, hallucination-driven actions, and accountability ambiguity.</p>
+              <p className="text-muted-foreground leading-relaxed mb-5">SCL is designed precisely for this environment. Its positioning is not "the smartest AI" but <strong className="text-foreground">Controlled AI. Governed AI. Auditable AI.</strong></p>
+              <p className="text-sm text-muted-foreground border-l-2 border-accent/40 pl-4 italic">SCL does not promise "hallucination-free AI." It provides the structural conditions under which AI judgment can be governed, traced, and trusted.</p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               {[
-                { label: "Transparency", desc: "Glassbox Trace records every reasoning step in real time — not post-hoc" },
-                { label: "Traceability", desc: "Pool-Gated Retrieval makes 'on what grounds did it judge?' answerable" },
-                { label: "Human Oversight", desc: "Contextual HITL places humans inside conditions of judgment, not after the fact" },
-                { label: "Accountability", desc: "Regulation Layer grants outputs institutional force — the conditions of justification are fixed" },
-                { label: "Reproducibility", desc: "Fresh Instance Protocol ensures same epistemic state + same instruction = same cognitive process" },
-                { label: "Controllability", desc: "The LLM proposes; the structure decides admission — authority is architectural, not model-dependent" },
+                {label:"Transparency",desc:"Glassbox Trace records every reasoning step in real time — not post-hoc"},
+                {label:"Traceability",desc:"Pool-Gated Retrieval makes 'on what grounds did it judge?' answerable"},
+                {label:"Human Oversight",desc:"Contextual HITL places humans inside conditions of judgment, not after the fact"},
+                {label:"Accountability",desc:"Regulation Layer grants outputs institutional force — conditions of justification are fixed"},
+                {label:"Reproducibility",desc:"Fresh Instance Protocol ensures same epistemic state = same cognitive process"},
+                {label:"Controllability",desc:"The LLM proposes; the structure decides admission — authority is architectural"},
               ].map((item) => (
-                <div key={item.label} className="p-6 rounded-xl border border-border/40 bg-card/20">
-                  <p className="text-sm font-bold text-accent uppercase tracking-widest mb-2">{item.label}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                <div key={item.label} className="p-5 rounded-xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-md shadow-black/20">
+                  <p className="text-xs font-bold text-accent uppercase tracking-widest mb-2">{item.label}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -381,12 +336,12 @@ export default function SclPage() {
         <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-3xl mx-auto">
             <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">FAQ</span>
-            <h2 className="text-4xl font-bold tracking-tighter mt-4 mb-12">Common Questions</h2>
-            <div className="space-y-8">
+            <h2 className="text-4xl font-bold tracking-tighter mt-4 mb-10 text-foreground">Common Questions</h2>
+            <div className="space-y-4">
               {faqs.map((f) => (
-                <div key={f.q} className="border-b border-border/30 pb-8">
-                  <h3 className="text-lg font-semibold text-foreground mb-3">{f.q}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{f.a}</p>
+                <div key={f.q} className="p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30">
+                  <h3 className="text-base font-semibold text-foreground mb-3">{f.q}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{f.a}</p>
                 </div>
               ))}
             </div>
@@ -394,21 +349,18 @@ export default function SclPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30 bg-card/10">
-          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight">Explore the research behind SCL</h2>
-              <p className="text-muted-foreground mt-2">
-                Peer-reviewed papers on arXiv, PsyArXiv, and PhilSci — covering the R-CC[H]AM loop, hallucination theory, and epistemic architecture.
-              </p>
-            </div>
-            <div className="flex gap-4 shrink-0">
-              <Link href="/research" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">
-                Read Research
-              </Link>
-              <Link href="/" className="px-6 py-3 rounded-md border border-border text-foreground hover:bg-card/50 transition-colors">
-                Back to Home
-              </Link>
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
+          <div className="max-w-4xl mx-auto">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+              <div>
+                <div className="h-1 w-12 bg-accent/50 mb-4 rounded-full group-hover:w-20 transition-all duration-500" />
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">Explore the research behind SCL</h2>
+                <p className="text-muted-foreground mt-2 text-sm">Peer-reviewed papers on arXiv, PsyArXiv, and PhilSci — covering the R-CC[H]AM loop, hallucination theory, and epistemic architecture.</p>
+              </div>
+              <div className="flex gap-4 shrink-0">
+                <Link href="/research" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">Read Research</Link>
+                <Link href="/" className="px-6 py-3 rounded-md border border-white/15 text-foreground hover:bg-white/[0.04] transition-colors">Back to Home</Link>
+              </div>
             </div>
           </div>
         </section>

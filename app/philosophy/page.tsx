@@ -143,11 +143,11 @@ export default function PhilosophyPage() {
         </section>
 
         {/* Comparison */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-card/10 border-t border-border/30">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-7xl mx-auto">
             <div className="mb-12">
               <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Contrast</span>
-              <h2 className="text-4xl font-bold tracking-tighter mt-4 mb-4">Forhu vs. Standard AI Development</h2>
+              <h2 className="text-4xl font-bold tracking-tighter mt-4 mb-4 text-foreground">Forhu vs. Standard AI Development</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
@@ -156,11 +156,11 @@ export default function PhilosophyPage() {
                 { label: "On human control", standard: "Human oversight is a post-deployment consideration, not an architectural requirement.", forhu: "Human control is embedded in the Metaprompt layer — the system cannot act outside defined boundaries." },
                 { label: "On trust", standard: "Trust is built through marketing, accuracy benchmarks, and user testimonials.", forhu: "Trust is built through auditability. If you cannot inspect the reasoning, you cannot trust the output." },
               ].map((row) => (
-                <div key={row.label} className="rounded-xl border border-border/40 overflow-hidden">
-                  <div className="px-5 py-3 border-b border-border/30 bg-card/30">
+                <div key={row.label} className="rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 overflow-hidden">
+                  <div className="px-5 py-3 border-b border-white/8 bg-white/[0.03]">
                     <span className="text-xs font-bold uppercase tracking-widest text-accent">{row.label}</span>
                   </div>
-                  <div className="grid grid-cols-2 divide-x divide-border/30">
+                  <div className="grid grid-cols-2 divide-x divide-white/8">
                     <div className="p-5">
                       <p className="text-xs font-bold text-muted-foreground uppercase mb-2">Standard AI</p>
                       <p className="text-sm text-muted-foreground leading-relaxed">{row.standard}</p>
@@ -178,18 +178,17 @@ export default function PhilosophyPage() {
 
         {/* CTA */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
-          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight">See these principles in action</h2>
-              <p className="text-muted-foreground mt-2">The SCL architecture is how Forhu's philosophy becomes working software.</p>
-            </div>
-            <div className="flex gap-4 shrink-0">
-              <Link href="/scl" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">
-                Explore SCL
-              </Link>
-              <Link href="/" className="px-6 py-3 rounded-md border border-border text-foreground hover:bg-card/50 transition-colors">
-                Back to Home
-              </Link>
+          <div className="max-w-4xl mx-auto">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.04] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+              <div>
+                <div className="h-1 w-12 bg-accent/50 mb-4 rounded-full group-hover:w-20 transition-all duration-500" />
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">See these principles in action</h2>
+                <p className="text-muted-foreground mt-2 text-sm">The SCL architecture is how Forhu's philosophy becomes working software.</p>
+              </div>
+              <div className="flex gap-4 shrink-0">
+                <Link href="/scl" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">Explore SCL</Link>
+                <Link href="/" className="px-6 py-3 rounded-md border border-white/15 text-foreground hover:bg-white/[0.04] transition-colors">Back to Home</Link>
+              </div>
             </div>
           </div>
         </section>
