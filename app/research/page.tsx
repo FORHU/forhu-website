@@ -130,16 +130,7 @@ export default function ResearchPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(researchJsonLd) }}
       />
 
-      <main className="bg-background text-foreground min-h-screen">
-        {/* Breadcrumb */}
-        <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.09] backdrop-blur-sm text-xs font-medium">
-            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
-            <span className="text-accent/50 mx-1">›</span>
-            <span className="text-foreground/90">Research</span>
-          </nav>
-        </div>
-
+      <main className="bg-background text-foreground min-h-screen pt-24">
         {/* Hero */}
         <section className="px-4 sm:px-6 lg:px-8 pb-16 max-w-7xl mx-auto">
           <div className="max-w-3xl">
