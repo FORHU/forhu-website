@@ -96,31 +96,11 @@ export default function ProjectsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
       />
 
-      <main className="bg-background text-foreground min-h-screen">
-        {/* Breadcrumb */}
-        <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.09] backdrop-blur-sm text-xs font-medium">
-            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
-            <span className="text-accent/50 mx-1">›</span>
-            <span className="text-foreground/90">Projects</span>
-          </nav>
+      <main className="bg-background text-foreground min-h-screen pt-24">
+
+        <div className="[&>section]:pt-8 [&>section]:sm:pt-12">
+          <ProjectsSection />
         </div>
-
-        {/* Hero */}
-        <section className="px-4 sm:px-6 lg:px-8 pb-16 max-w-7xl mx-auto">
-          <div className="max-w-3xl">
-            <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Proof of Concept</span>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mt-4 mb-6">
-              SCL in<br />Action
-            </h1>
-            <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed font-light">
-              The Structured Cognitive Loop is not theoretical. These are live applications where SCL governs real decisions affecting real people.
-            </p>
-          </div>
-        </section>
-
-        {/* Existing projects section */}
-        <ProjectsSection />
 
         {/* Case studies */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">

@@ -143,16 +143,7 @@ export default function SclPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(sclJsonLd) }}
       />
 
-      <main className="bg-background text-foreground min-h-screen">
-        {/* Breadcrumb */}
-        <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-foreground">SCL</span>
-          </nav>
-        </div>
-
+      <main className="bg-background text-foreground min-h-screen pt-24">
         {/* Hero */}
         <section className="px-4 sm:px-6 lg:px-8 pb-16 max-w-7xl mx-auto">
           <div className="max-w-3xl">
@@ -205,7 +196,7 @@ export default function SclPage() {
                 ["Accountability blurred", "Accountability diffused", "Clear attribution"],
                 ["Reproducibility low", "Reproducibility difficult", "Fully traceable"],
               ].map(([left, mid, right], i) => (
-                <div key={i} className="grid grid-cols-3 gap-3 p-3 rounded-xl border border-border/40 bg-card/20 text-xs">
+                <div key={i} className="grid grid-cols-3 gap-3 p-3 rounded-xl border border-white/8 bg-white/[0.06] backdrop-blur-sm text-xs">
                   <span className="text-muted-foreground">{left}</span>
                   <span className="text-muted-foreground">{mid}</span>
                   <span className="text-foreground font-medium">{right}</span>
@@ -226,7 +217,7 @@ export default function SclPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-              <div className="p-8 rounded-2xl border border-border/50 bg-card/20">
+              <div className="group p-8 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
                 <span className="text-accent text-xs font-bold uppercase tracking-widest">Root 01</span>
                 <h3 className="text-2xl font-bold text-foreground mt-3 mb-4">Role Error</h3>
                 <p className="text-base text-muted-foreground leading-relaxed mb-4">
@@ -241,7 +232,7 @@ export default function SclPage() {
                   </li>
                 </ul>
               </div>
-              <div className="p-8 rounded-2xl border border-border/50 bg-card/20">
+              <div className="group p-8 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
                 <span className="text-accent text-xs font-bold uppercase tracking-widest">Root 02</span>
                 <h3 className="text-2xl font-bold text-foreground mt-3 mb-4">Cognitive Overload</h3>
                 <p className="text-base text-muted-foreground leading-relaxed mb-4">
@@ -270,7 +261,7 @@ export default function SclPage() {
                   ["Reproducibility Failure", "Grounds differ each time, so the same input yields different results"],
                   ["No Accountability", "The decision path is buried inside the LLM and cannot be traced afterward"],
                 ].map(([name, desc]) => (
-                  <div key={name} className="p-4 rounded-xl border border-border/40 bg-card/20">
+                  <div key={name} className="p-4 rounded-xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-md shadow-black/20">
                     <p className="text-sm font-semibold text-foreground mb-1">{name}</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
                   </div>
@@ -294,8 +285,8 @@ export default function SclPage() {
               {rcchamSteps.map((step, i) => (
                 <div
                   key={step.name}
-                  className={`grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 p-8 rounded-2xl border bg-card/20 ${
-                    step.optional ? "border-accent/30 bg-accent/5" : "border-border/50"
+                  className={`grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 p-8 rounded-2xl border backdrop-blur-sm shadow-lg shadow-black/30 ${
+                    step.optional ? "border-accent/30 bg-accent/[0.08]" : "border-white/8 bg-white/[0.09]"
                   }`}
                 >
                   <div>
@@ -332,7 +323,7 @@ export default function SclPage() {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {mechanisms.map((m) => (
-                <div key={m.id} className="p-8 rounded-2xl border border-border/50 bg-card/20 flex flex-col gap-4">
+                <div key={m.id} className="group p-8 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col gap-4">
                   <span className="text-accent text-xs font-bold uppercase tracking-widest">Mechanism {m.id}</span>
                   <h3 className="text-2xl font-bold text-foreground">{m.name}</h3>
                   <p className="text-sm text-accent font-medium">{m.subtitle}</p>
@@ -368,7 +359,7 @@ export default function SclPage() {
                 { label: "Reproducibility", desc: "Fresh Instance Protocol ensures same epistemic state + same instruction = same cognitive process" },
                 { label: "Controllability", desc: "The LLM proposes; the structure decides admission — authority is architectural, not model-dependent" },
               ].map((item) => (
-                <div key={item.label} className="p-6 rounded-xl border border-border/40 bg-card/20">
+                <div key={item.label} className="p-6 rounded-xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-md shadow-black/20">
                   <p className="text-sm font-bold text-accent uppercase tracking-widest mb-2">{item.label}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>

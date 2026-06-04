@@ -2,6 +2,9 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono, Poppins } from "next/font/google"
 import ShaderBackgroundWrapper from "@/components/shader-background-wrapper"
+import Navigation from "@/components/navigation"
+import Footer from "@/components/footer"
+import GlowSpheres from "@/components/glow-spheres"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -152,7 +155,12 @@ export default function RootLayout({
         {/* <div className="fixed inset-0 -z-10">
           <ShaderBackgroundWrapper />
         </div> */}
+
+        <GlowSpheres />
+
+        <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   )
