@@ -15,7 +15,7 @@ export default function Navigation() {
     { label: "Research", href: "/research" },
     { label: "Projects", href: "/projects" },
     { label: "About", href: "/about" },
-    { label: "Contact", href: "/#contact" },
+    { label: "Contact", href: "/contact" },
   ]
 
   return (

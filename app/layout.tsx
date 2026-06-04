@@ -149,9 +149,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }}
         />
         {/* Fixed shader background — shows through all pages as you scroll */}
-        <div className="fixed inset-0 -z-10">
+        {/* <div className="fixed inset-0 -z-10">
           <ShaderBackgroundWrapper />
-        </div>
+        </div> */}
         {children}
       </body>
     </html>
