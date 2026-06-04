@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import Link from "next/link"
 import AboutSection from "@/components/about-section"
 
@@ -86,10 +86,10 @@ export default function AboutPage() {
       <main className="bg-background text-foreground min-h-screen">
         {/* Breadcrumb */}
         <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-foreground">About</span>
+          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.09] backdrop-blur-sm text-xs font-medium">
+            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
+            <span className="text-accent/50 mx-1">›</span>
+            <span className="text-foreground/90">About</span>
           </nav>
         </div>
 
@@ -111,31 +111,37 @@ export default function AboutPage() {
 
         {/* What we're building */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Mission</span>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-6">What We're Building and Why</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                The AI industry has a transparency problem. Models grow more capable while becoming less interpretable. Outputs improve while reasoning becomes more opaque. Trust is demanded, but the tools for verifying that trust do not exist.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Forhu was founded to fix this at the architectural level. The Structured Cognitive Loop is not a prompting trick or a fine-tuning approach — it is a framework for building AI systems where reasoning is structured, persistent, and auditable by design.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                We are building this because we believe the next decade of AI development will be decided not by who has the largest model, but by who has the most trustworthy architecture. And trustworthiness is a structural property — you cannot add it later.
-              </p>
-            </div>
-            <div>
-              <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Specifically</span>
-              <h3 className="text-2xl font-bold mt-4 mb-6">What This Means in Practice</h3>
-              <ul className="space-y-5">
-                {whatWeAreBuildingPoints.map((point) => (
-                  <li key={point} className="flex gap-4">
-                    <span className="text-accent mt-1 shrink-0">→</span>
-                    <p className="text-muted-foreground leading-relaxed">{point}</p>
-                  </li>
-                ))}
-              </ul>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+              {/* Left card */}
+              <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
+                <div className="h-1 w-12 bg-accent/50 mb-6 sm:mb-8 rounded-full group-hover:w-20 transition-all duration-500" />
+                <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Mission</span>
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter mt-4 mb-6">What We're Building and Why</h2>
+                <p className="text-muted-foreground leading-relaxed mb-5">
+                  The AI industry has a transparency problem. Models grow more capable while becoming less interpretable. Outputs improve while reasoning becomes more opaque. Trust is demanded, but the tools for verifying that trust do not exist.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-5">
+                  Forhu was founded to fix this at the architectural level. The Structured Cognitive Loop is not a prompting trick or a fine-tuning approach — it is a framework for building AI systems where reasoning is structured, persistent, and auditable by design.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  We are building this because we believe the next decade of AI development will be decided not by who has the largest model, but by who has the most trustworthy architecture. And trustworthiness is a structural property — you cannot add it later.
+                </p>
+              </div>
+              {/* Right card */}
+              <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30">
+                <div className="h-1 w-12 bg-accent/50 mb-6 sm:mb-8 rounded-full group-hover:w-20 transition-all duration-500" />
+                <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Specifically</span>
+                <h3 className="text-2xl font-bold text-foreground mt-4 mb-6">What This Means in Practice</h3>
+                <ul className="space-y-5">
+                  {whatWeAreBuildingPoints.map((point) => (
+                    <li key={point} className="flex gap-4">
+                      <span className="text-accent mt-1 shrink-0">→</span>
+                      <p className="text-muted-foreground leading-relaxed">{point}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -150,12 +156,14 @@ export default function AboutPage() {
                 These are not aspirational statements. They are constraints we impose on every decision we make.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {values.map((v, i) => (
-                <div key={v.title} className="p-6 sm:p-8 rounded-2xl border border-border/50 bg-background/50">
+                <div key={v.title} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 hover:border-accent/30 hover:bg-card/50 hover:shadow-accent/20 hover:-translate-y-1 transition-all duration-500 transform">
+                  {/* Exact same accent bar as Mission & Vision cards */}
+                  <div className="h-1 w-12 bg-accent/50 mb-6 sm:mb-8 rounded-full group-hover:w-20 transition-all duration-500" />
                   <span className="text-accent text-xs font-bold uppercase tracking-widest">0{i + 1}</span>
-                  <h3 className="text-xl font-bold text-foreground mt-3 mb-4">{v.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">{v.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mt-3 mb-4 group-hover:text-accent transition-colors duration-300">{v.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm group-hover:text-foreground/80 transition-colors duration-300">{v.description}</p>
                 </div>
               ))}
             </div>

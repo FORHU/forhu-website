@@ -1,46 +1,56 @@
-"use client"
+﻿"use client"
 import { useEffect, useRef, useState } from "react"
 import type { ReactNode } from "react"
 
-// ── Custom brand icons — built around the SCL visual language ────────────────
+// ── Brand icons — neural/SCL visual language matching the website aesthetic ───
 
-// FOR HUMAN: person at the centre of an orbital cognitive loop
+// FOR HUMAN: a neuron whose cell body is a person — human at the centre of the neural network
 const IconForHuman = () => (
-  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-accent">
-    {/* Outer dashed orbit */}
-    <circle cx="16" cy="16" r="13" strokeDasharray="2.5 2" opacity="0.35" />
-    {/* Human head */}
-    <circle cx="16" cy="11.5" r="3" />
-    {/* Human body */}
-    <path d="M9.5 27c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5" />
-    {/* Small orbit node — the AI partner */}
-    <circle cx="28" cy="14" r="1.5" fill="currentColor" fillOpacity="0.6" stroke="none" />
-    <circle cx="5"  cy="20" r="1.5" fill="currentColor" fillOpacity="0.4" stroke="none" />
+  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-accent">
+    {/* Dendrite branches from the head — neural aesthetic */}
+    <line x1="16" y1="7"  x2="10" y2="1"  opacity="0.7" />
+    <line x1="16" y1="7"  x2="22" y2="1"  opacity="0.7" />
+    <line x1="16" y1="7"  x2="16" y2="1"  opacity="0.5" />
+    <line x1="13" y1="8"  x2="7"  y2="4"  opacity="0.45" />
+    <line x1="19" y1="8"  x2="25" y2="4"  opacity="0.45" />
+    {/* Glowing nodes at branch tips */}
+    <circle cx="10" cy="1"  r="1.4" fill="currentColor" stroke="none" />
+    <circle cx="22" cy="1"  r="1.4" fill="currentColor" stroke="none" />
+    <circle cx="16" cy="1"  r="1"   fill="currentColor" stroke="none" opacity="0.6" />
+    <circle cx="7"  cy="4"  r="1"   fill="currentColor" stroke="none" opacity="0.5" />
+    <circle cx="25" cy="4"  r="1"   fill="currentColor" stroke="none" opacity="0.5" />
+    {/* Cell body — the human silhouette */}
+    <circle cx="16" cy="11" r="4" />
+    <path   d="M9 28c0-4 3.1-7 7-7s7 3.1 7 7" />
   </svg>
 )
 
-// HONEST ENGINEERING: stacked transparent layers with a vertical light ray passing through
+// HONEST ENGINEERING: glass-box architecture — open transparent structure you can see through
 const IconHonestEngineering = () => (
-  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-accent">
-    {/* Three horizontal layers (like SCL's stacked architecture) */}
-    <path d="M4 9 L16 4 L28 9 L16 14 Z" opacity="1" />
-    <path d="M4 15.5 L16 10.5 L28 15.5 L16 20.5 Z" opacity="0.55" />
-    <path d="M4 22 L16 17 L28 22 L16 27 Z" opacity="0.25" />
-    {/* Vertical ray of light piercing all layers — transparency */}
-    <line x1="16" y1="1" x2="16" y2="30" strokeDasharray="2 2" opacity="0.5" />
-    <circle cx="16" cy="1.5" r="1.5" fill="currentColor" stroke="none" />
+  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-accent">
+    {/* 3D open-box — the glass box AI */}
+    <path d="M4 10 L16 5 L28 10 L16 15 Z" />
+    <path d="M4 10 L4 22 L16 27 L28 22 L28 10" opacity="0.55" />
+    <line x1="16" y1="15" x2="16" y2="27" opacity="0.55" />
+    {/* Internal ray of light showing transparency */}
+    <line x1="16" y1="5" x2="16" y2="27" strokeDasharray="2 2.5" opacity="0.4" />
+    <circle cx="16" cy="4" r="1.5" fill="currentColor" stroke="none" />
+    {/* Small node inside showing visible internals */}
+    <circle cx="16" cy="18" r="2" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeOpacity="0.6" />
   </svg>
 )
 
-// HALLUCINATION GOVERNANCE: recursive loop with an error caught and corrected
+// HALLUCINATION GOVERNANCE: SCL control loop with a gate that catches errors before they exit
 const IconHallucinationGovernance = () => (
-  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-accent">
-    {/* Circular loop arrow */}
-    <path d="M25 16A9 9 0 1 1 20.5 8" />
-    {/* Arrow head on the loop */}
-    <path d="M20 4.5 L20.5 8 L17 8.5" />
-    {/* Check — the correction applied inside the loop */}
-    <path d="M11 16.5 l3 3 l6.5 -6.5" strokeWidth="1.6" />
+  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-accent">
+    {/* Circular signal path */}
+    <path d="M24 16A8 8 0 1 1 16 8" />
+    {/* Arrow on loop showing direction */}
+    <path d="M16 5 L16 8 L19.5 8" />
+    {/* Gate / control checkpoint — the SCL control layer */}
+    <rect x="11" y="11" width="10" height="10" rx="2" strokeOpacity="0.6" />
+    {/* Check inside gate — error corrected */}
+    <path d="M13.5 16 l2 2 l4 -4" strokeWidth="1.5" />
   </svg>
 )
 
@@ -129,16 +139,15 @@ export default function PhilosophySection() {
             <div
               key={index}
               ref={(el) => { if (el) cardRefs.current[index] = el }}
-              className={`group relative bg-gradient-to-br from-foreground/5 to-foreground/[0.02] border border-accent/20 rounded-xl p-6 sm:p-8 backdrop-blur-sm transition-all duration-700 ${
+              className={`group relative overflow-hidden bg-white/[0.09] border border-white/8 rounded-2xl p-6 sm:p-8 backdrop-blur-sm shadow-lg shadow-black/30 transition-all duration-500 ${
                 visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              } hover:border-accent/50`}
+              } hover:border-accent/35 hover:shadow-accent/15 hover:shadow-xl hover:-translate-y-1`}
               style={{ transitionDelay: visibleCards[index] ? `${index * 150}ms` : "0ms" }}
             >
-              {/* Card accent line */}
-              <div className="absolute top-0 left-0 h-px bg-gradient-to-r from-accent via-accent/60 to-transparent rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-full" />
-
-              {/* Icon */}
-              <div className="mb-5 sm:mb-7 w-fit p-3 rounded-xl bg-accent/8 border border-accent/15 group-hover:bg-accent/12 group-hover:border-accent/30 transition-all duration-500 group-hover:scale-105">
+              {/* Accent bar */}
+              <div className="h-1 w-10 bg-accent/50 mb-5 sm:mb-7 rounded-full group-hover:w-16 transition-all duration-500" />
+              {/* Icon — frosted glass badge */}
+              <div className="mb-4 w-fit p-3 rounded-xl bg-white/[0.11] border border-white/10 backdrop-blur-sm shadow-md shadow-black/20 group-hover:border-accent/30 group-hover:bg-white/[0.15] transition-all duration-400">
                 {card.icon}
               </div>
 

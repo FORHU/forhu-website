@@ -42,19 +42,19 @@
 }
 
 .dark {
-  /* Dark mode updated with warm accent colors */
-  --background: #0f0d0a;
+  /* Semi-transparent so the shader bleeds through as a sticky background */
+  --background: rgba(15, 13, 10, 0.55);
   --foreground: #f5ede6;
-  --card: #1a1612;
+  --card: rgba(26, 22, 18, 0.65);
   --card-foreground: #f5ede6;
-  --popover: #1a1612;
+  --popover: rgba(26, 22, 18, 0.90);
   --popover-foreground: #f5ede6;
   --primary: #d4a574;
   --primary-foreground: #0f0d0a;
-  --secondary: #2a251f;
+  --secondary: rgba(42, 37, 31, 0.70);
   --secondary-foreground: #f5ede6;
-  --muted: #3a3228;
-  --muted-foreground: #a0917f;
+  --muted: rgba(58, 50, 40, 0.60);
+  --muted-foreground: #c8b4a0;
   --accent: #ff6a2d;
   --accent-secondary: #9b7cc7;
   --accent-foreground: #0f0d0a;
@@ -129,7 +129,8 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    /* background removed — shader handles it globally */
   }
 }
 

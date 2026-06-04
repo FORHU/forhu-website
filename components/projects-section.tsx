@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 import { useRef } from "react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { ExternalLink, Brain, Scale, Users, Shield, Zap } from "lucide-react"
@@ -59,7 +59,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center mb-32 sm:mb-48`}
+      className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-6 sm:gap-12 lg:gap-24 items-center mb-16 sm:mb-32 lg:mb-48`}
     >
       {/* Project Image / Visual */}
       {project.link ? (
@@ -83,7 +83,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             alt={project.title}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-contain p-12 transition-transform duration-1000 group-hover:scale-110"
+            className="w-full h-full object-contain p-6 sm:p-10 transition-transform duration-1000 group-hover:scale-110"
           />
           
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
@@ -143,7 +143,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
-          <div className={`p-4 rounded-2xl bg-gradient-to-br ${project.color || 'from-accent/20 to-accent-secondary/20'} text-foreground mb-8 border border-white/5 shadow-2xl inline-block`}>
+          <div className="p-4 rounded-2xl bg-white/[0.11] border border-white/10 backdrop-blur-sm shadow-lg shadow-black/30 text-foreground mb-8 inline-block group-hover:border-white/20 transition-all duration-300">
             {project.icon}
           </div>
           
@@ -168,7 +168,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-300px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="w-full p-8 rounded-3xl bg-white/[0.03] border border-white/10 relative overflow-hidden group/connection"
+          className="w-full p-8 rounded-2xl bg-white/[0.09] border border-white/8 backdrop-blur-sm shadow-lg shadow-black/30 relative overflow-hidden group/connection hover:border-accent/30 transition-all duration-300"
         >
           <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${project.color || 'from-accent to-accent-secondary'} opacity-[0.03] blur-3xl -mr-24 -mt-24 group-hover/connection:opacity-[0.08] transition-opacity duration-700`}></div>
           

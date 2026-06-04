@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import Link from "next/link"
 import ProjectsSection from "@/components/projects-section"
 
@@ -99,10 +99,10 @@ export default function ProjectsPage() {
       <main className="bg-background text-foreground min-h-screen">
         {/* Breadcrumb */}
         <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-foreground">Projects</span>
+          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.09] backdrop-blur-sm text-xs font-medium">
+            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
+            <span className="text-accent/50 mx-1">›</span>
+            <span className="text-foreground/90">Projects</span>
           </nav>
         </div>
 
@@ -132,46 +132,56 @@ export default function ProjectsPage() {
                 A technical breakdown of how each SCL layer contributes to real product decisions.
               </p>
             </div>
-            <div className="space-y-20">
+            <div className="space-y-8">
               {caseStudies.map((cs) => (
-                <div key={cs.id} className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12">
-                  <div>
+                <div key={cs.id} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 hover:border-accent/30 transition-all duration-300">
+                  {/* Accent bar */}
+                  <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
+
+                  {/* Header row */}
+                  <div className="mb-8">
                     <span className="text-xs font-bold uppercase tracking-widest text-accent">{cs.category}</span>
-                    <h3 className="text-3xl font-bold text-foreground mt-2 mb-6">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-foreground mt-2">
                       {cs.link ? (
                         <a href={cs.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
                           {cs.name} →
                         </a>
                       ) : cs.name}
                     </h3>
-                    <div className="mb-6">
-                      <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">The Problem</p>
-                      <p className="text-muted-foreground leading-relaxed">{cs.problem}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">SCL Layers Used</p>
-                      <div className="flex flex-wrap gap-2">
-                        {cs.scl_layers.map((l) => (
-                          <span key={l} className="text-xs px-3 py-1 rounded-full border border-accent/30 text-accent bg-accent/5">{l}</span>
-                        ))}
+                  </div>
+
+                  {/* Two-column content */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-6">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">The Problem</p>
+                        <p className="text-muted-foreground leading-relaxed text-sm">{cs.problem}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">SCL Layers Used</p>
+                        <div className="flex flex-wrap gap-2">
+                          {cs.scl_layers.map((l) => (
+                            <span key={l} className="text-xs px-3 py-1 rounded-full border border-white/10 bg-white/[0.09] text-muted-foreground">{l}</span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div>
-                    <div className="mb-6">
-                      <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">The SCL Solution</p>
-                      <p className="text-muted-foreground leading-relaxed">{cs.sclSolution}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Outcomes</p>
-                      <ul className="space-y-3">
-                        {cs.outcomes.map((o) => (
-                          <li key={o} className="flex gap-3 text-sm text-muted-foreground">
-                            <span className="text-accent shrink-0 mt-0.5">•</span>
-                            <span>{o}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="space-y-6">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">The SCL Solution</p>
+                        <p className="text-muted-foreground leading-relaxed text-sm">{cs.sclSolution}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Outcomes</p>
+                        <ul className="space-y-2">
+                          {cs.outcomes.map((o) => (
+                            <li key={o} className="flex gap-3 text-sm text-muted-foreground">
+                              <span className="text-accent shrink-0 mt-0.5">•</span>
+                              <span>{o}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -181,19 +191,18 @@ export default function ProjectsPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30 bg-card/10">
-          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight">Want to build with SCL?</h2>
-              <p className="text-muted-foreground mt-2">Read the research or get in touch to explore how SCL can apply to your domain.</p>
-            </div>
-            <div className="flex gap-4 shrink-0">
-              <Link href="/research" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">
-                Read Research
-              </Link>
-              <Link href="/#contact" className="px-6 py-3 rounded-md border border-border text-foreground hover:bg-card/50 transition-colors">
-                Contact Us
-              </Link>
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
+          <div className="max-w-4xl mx-auto">
+            <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+              <div>
+                <div className="h-1 w-12 bg-accent/50 mb-4 rounded-full group-hover:w-20 transition-all duration-500" />
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">Want to build with SCL?</h2>
+                <p className="text-muted-foreground mt-2 text-sm">Read the research or get in touch to explore how SCL can apply to your domain.</p>
+              </div>
+              <div className="flex gap-4 shrink-0">
+                <Link href="/research" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">Read Research</Link>
+                <Link href="/#contact" className="px-6 py-3 rounded-md border border-white/15 text-foreground hover:bg-white/[0.08] transition-colors">Contact Us</Link>
+              </div>
             </div>
           </div>
         </section>

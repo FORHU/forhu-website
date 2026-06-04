@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
@@ -89,7 +89,7 @@ export default function HeroSection() {
           >
             <div className="relative w-full max-w-xs sm:max-w-sm">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent/20 via-accent-secondary/20 to-accent/10 blur-2xl" />
-              <div className="relative p-8 sm:p-12 rounded-2xl border-2 border-accent/50 bg-card/60 backdrop-blur-sm text-center">
+              <div className="relative p-8 sm:p-12 rounded-2xl border border-accent/40 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 text-center">
                 <p className="text-2xl sm:text-3xl font-bold text-accent mb-2">We are</p>
                 <p className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-accent to-accent-secondary bg-clip-text text-transparent">
                   FORHU
@@ -104,7 +104,7 @@ export default function HeroSection() {
 
         {/* Solution Box */}
         <div
-          className={`mb-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-accent/10 via-transparent to-accent-secondary/5 border-2 border-accent/30 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`mb-12 p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           style={{ transitionDelay: "400ms" }}
         >

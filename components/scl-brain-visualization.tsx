@@ -1,7 +1,7 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion'
 
 interface BrainRegion {
   id: string
@@ -183,7 +183,7 @@ export default function SCLBrainVisualization() {
                 alt="Interactive brain diagram"
                 loading="lazy"
                 decoding="async"
-                className={`w-full h-auto relative z-10 drop-shadow-[0_0_30px_rgba(255,106,45,0.2)]`}
+                className="w-full h-auto relative z-10"
                 style={{ transform: "translateZ(20px)" }}
               />
 
@@ -192,22 +192,15 @@ export default function SCLBrainVisualization() {
                   <button
                     key={regionId}
                     onClick={() => handleLabelClick(regionId)}
-                    className={`absolute px-4 py-2 sm:px-3 sm:py-1 font-sans text-base sm:text-base md:text-lg font-bold transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg ${activeButton === regionId
-                      ? 'text-yellow-300'
-                      : 'text-accent hover:text-yellow-200'
-                      }`}
+                    className={`absolute px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 font-sans text-sm sm:text-base md:text-lg font-bold transition-colors duration-200 cursor-pointer active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg min-w-[44px] min-h-[44px] flex items-center justify-center ${
+                      activeButton === regionId ? 'text-white' : 'text-accent/80 hover:text-accent'
+                    }`}
                     style={{
                       left: `${labelData.x}%`,
                       top: `${labelData.y}%`,
                       transform: 'translate(-50%, -50%)',
                       background: 'transparent',
                       border: 'none',
-                      textShadow: activeButton === regionId
-                        ? '0 0 8px rgba(255, 235, 59, 1), 0 0 16px rgba(255, 235, 59, 0.8), 0 0 24px rgba(255, 235, 59, 0.6)'
-                        : 'none',
-                      filter: activeButton === regionId
-                        ? 'drop-shadow(0 0 12px rgba(255, 235, 59, 0.9)) drop-shadow(0 0 20px rgba(255, 235, 59, 0.7))'
-                        : 'none',
                       whiteSpace: 'nowrap',
                       zIndex: 20,
                     }}
@@ -286,43 +279,50 @@ export default function SCLBrainVisualization() {
 
           {/* Info panel */}
           <div className="lg:col-span-3 order-2">
-            {selected && (
-              <div className={`transition-all duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
-                <div className="space-y-6">
-                  {/* Title and label */}
+            <AnimatePresence mode="wait">
+              {selected && (
+                <motion.div
+                  key={selected.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="space-y-5"
+                >
+                  {/* Title */}
                   <div>
-                    <p className="text-accent text-xs sm:text-sm font-mono uppercase tracking-widest mb-2">
+                    <p className="text-accent text-[10px] font-bold uppercase tracking-[0.35em] mb-2">
                       SCL Component
                     </p>
-                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight">{selected.label}</h3>
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-none">
+                      {selected.label}
+                    </h3>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-4 sm:gap-6">
-                    {/* Role Container */}
-                    <div className="group bg-accent/5 border border-accent/15 rounded-xl p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:bg-accent/8 hover:border-accent/25">
-                      <p className="text-accent text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-                        <span className="w-1 h-1 bg-accent rounded-full"></span>
+                  <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                    {/* Role */}
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.09] backdrop-blur-md p-5 sm:p-6 shadow-lg shadow-black/20">
+                      <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
                         Role
                       </p>
-                      <p className="text-xl sm:text-3xl font-bold text-foreground leading-tight tracking-tight">
+                      <p className="text-xl sm:text-2xl font-bold text-white leading-tight tracking-tight">
                         {selected.role}
                       </p>
                     </div>
 
-                    {/* Function Container */}
-                    <div className="group bg-accent/10 border border-accent/30 rounded-xl p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:bg-accent/15 hover:border-accent/40">
-                      <p className="text-accent text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-                        <span className="w-1 h-1 bg-accent rounded-full"></span>
+                    {/* Function */}
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.09] backdrop-blur-md p-5 sm:p-6 shadow-lg shadow-black/20">
+                      <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
                         Function
                       </p>
-                      <p className="text-foreground/90 text-sm sm:text-lg leading-relaxed font-medium">
+                      <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                         {selected.function}
                       </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 

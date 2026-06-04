@@ -15,11 +15,11 @@ export default function Navigation() {
     { label: "Research", href: "/research" },
     { label: "Projects", href: "/projects" },
     { label: "About", href: "/about" },
-    { label: "Contact", href: "/#contact" },
+    { label: "Contact", href: "/contact" },
   ]
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
+    <nav className="fixed top-0 z-50 w-full border-b border-white/8 bg-black/60 backdrop-blur-md shadow-lg shadow-black/20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2 hover:opacity-70 transition-opacity">
@@ -32,7 +32,7 @@ export default function Navigation() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground transition-all duration-300 hover:text-accent"
+                className="text-xs font-bold uppercase tracking-[0.2em] text-white/70 transition-all duration-300 hover:text-accent hover:text-shadow-accent"
               >
                 {item.label}
               </a>

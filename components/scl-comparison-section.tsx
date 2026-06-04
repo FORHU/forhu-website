@@ -1,5 +1,9 @@
-"use client"
+﻿"use client"
 import { useRef, useState } from "react"
+import { useInView } from "framer-motion"
+import dynamic from "next/dynamic"
+
+const SclComparison3D = dynamic(() => import("./scl-comparison-3d"), { ssr: false })
 
 interface MinskyLayer {
   id: string
@@ -97,6 +101,13 @@ export default function SCLComparisonSection() {
   const [selectionSource, setSelectionSource] = useState<"minsky" | "scl" | null>("minsky")
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const canvasInView = useInView(containerRef, { margin: "100px 0px 100px 0px" })
+
+  const handleSelectPair = (minskyId: string, sclId: string, source: "minsky" | "scl") => {
+    setSelectedMinskyId(minskyId)
+    setSelectedSclId(sclId)
+    setSelectionSource(source)
+  }
 
   const getMinskyPosition = (index: number) => {
     const centerX = 50
@@ -122,39 +133,39 @@ export default function SCLComparisonSection() {
     }
   }
 
-  // Custom label positioning for Minsky circles (brown)
+  // Minsky labels (inner ring r=20) — push sideways or downward
+  // Pentagon: 0=top(50,30), 1=upper-right(69,44), 2=lower-right(62,66),
+  //           3=lower-left(38,66), 4=upper-left(31,44)
   const getMinskyLabelOffset = (index: number) => {
-    // index 0: Reasoning (top) - below
-    // index 1: Memory (right) - below
-    // index 2: Control (bottom-right) - above
-    // index 3: Meta-control (bottom-left) - below
-    // index 4: Runtime (left) - below
     const offsets = [
-      { x: 0, y: 11 },   // 0: Reasoning - below
-      { x: 0, y: 10 },   // 1: Memory - below
-      { x: -3, y: -8 },  // 2: Control - above
-      { x: 5, y: -8 },   // 3: Meta-control - below
-      { x: 0, y: 10 },   // 4: Runtime - below
+      { x: 0,   y: 9  },  // 0: top → BELOW node (avoids SCL above)
+      { x: 9,   y: 0  },  // 1: upper-right → RIGHT
+      { x: 9,   y: 0  },  // 2: lower-right → RIGHT
+      { x: -9,  y: 0  },  // 3: lower-left  → LEFT
+      { x: -9,  y: 0  },  // 4: upper-left  → LEFT
     ]
-    return offsets[index] || { x: 0, y: 12 }
+    return offsets[index] || { x: 0, y: 9 }
+  }
+  const getMinskyTextAnchor = (index: number): "middle" | "start" | "end" => {
+    if (index === 0) return "middle"
+    if (index === 1 || index === 2) return "start"
+    return "end"
   }
 
-  // Custom label positioning for SCL circles (orange)
+  // SCL labels (outer ring r=35) — push ABOVE/BELOW node (avoids left/right clipping)
+  // Positions: 0=(50,15) top, 1=(83,39) right, 2=(71,78) lower-right,
+  //            3=(29,78) lower-left, 4=(17,39) upper-left
   const getSCLLabelOffset = (sclId: string) => {
-    // judgment-module: above
-    // memory-module: right side
-    // control-module: below-right
-    // metaprompt-regulatory-system: above-left
-    // runtime-module: left side
     const offsets: Record<string, { x: number; y: number }> = {
-      "judgment-module": { x: 0, y: -8 },
-      "memory-module": { x: 0, y: -8 },
-      "control-module": { x: 6, y: 10 },
-      "metaprompt-regulatory-system": { x: -7, y: 9 },
-      "runtime-module": { x: 0, y: -8 },
+      "judgment-module":              { x: 0,  y: -7 },  // top → ABOVE
+      "memory-module":                { x: 0,  y: -7 },  // upper-right → ABOVE
+      "control-module":               { x: 0,  y:  8 },  // lower-right → BELOW
+      "metaprompt-regulatory-system": { x: 0,  y:  8 },  // lower-left → BELOW
+      "runtime-module":               { x: 0,  y: -7 },  // upper-left → ABOVE
     }
-    return offsets[sclId] || { x: 0, y: 10 }
+    return offsets[sclId] || { x: 0, y: 8 }
   }
+  const getSCLTextAnchor = (_sclId: string): "middle" | "start" | "end" => "middle"
 
   const getNodeFocusState = (nodeId: string, type: "minsky" | "scl") => {
     // If nothing is selected or hovered, default state
@@ -192,79 +203,61 @@ export default function SCLComparisonSection() {
 
   return (
     <section ref={containerRef} className="relative py-12 sm:py-20 px-4 sm:px-6 bg-background">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-10">
         {/* Details Panel - Left (Top on mobile) */}
         <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
-          {/* Minsky Details Panel (Orange Selection) */}
+          {/* Minsky Details Panel */}
           {selectedMinskyId && (() => {
             const minskyNode = minskyLayers.find((n) => n.id === selectedMinskyId)
             if (!minskyNode) return null
-
-            // Glow logic: Glow only if explicitly clicked (selectionSource === 'minsky')
-            const isGlowActive = selectionSource === "minsky"
-            const containerClasses = isGlowActive
-              ? "bg-accent/20 border-accent text-accent shadow-accent/30 transform scale-105"
-              : "bg-accent/5 border-accent/30 text-foreground/80"
+            const isActive = selectionSource === "minsky"
 
             return (
-              <div className="space-y-6 sm:space-y-8 animate-fade-in-up">
-                <div className={`border rounded-lg p-6 sm:p-8 transition-all duration-300 ${containerClasses}`}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <p className={`text-sm sm:text-base font-mono uppercase tracking-wide mb-2 ${isGlowActive ? "text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" : "text-accent/60"}`}>
-                        Marvin Minsky's Model
-                      </p>
-                      <h3 className={`text-2xl sm:text-3xl font-bold ${isGlowActive ? "text-accent drop-shadow-[0_0_10px_rgba(255,106,45,0.3)]" : "text-accent"}`}>
-                        {minskyNode.label}
-                      </h3>
-                    </div>
+              <div className={`rounded-2xl border p-6 sm:p-8 backdrop-blur-md shadow-lg transition-all duration-300 ${
+                isActive
+                  ? "border-accent/50 bg-white/[0.11] shadow-accent/15 shadow-xl"
+                  : "border-white/8 bg-white/[0.07] shadow-black/20"
+              }`}>
+                <p className="text-accent text-[10px] font-bold uppercase tracking-[0.35em] mb-1">
+                  Marvin Minsky's Model
+                </p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-5">
+                  {minskyNode.label}
+                </h3>
+
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Definition</p>
+                    <p className="text-white/80 text-sm sm:text-base leading-relaxed">{minskyNode.definition}</p>
                   </div>
-
-                  <div className={`space-y-4 sm:space-y-6 ${isGlowActive ? "text-accent" : ""}`}>
-                    <div>
-                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isGlowActive ? "text-accent/80" : "text-accent/60"}`}>Definition</p>
-                      <p className="text-sm sm:text-base">{minskyNode.definition}</p>
-                    </div>
-
-                    <div>
-                      <p className={`text-xs sm:text-sm font-mono uppercase tracking-wide mb-2 ${isGlowActive ? "text-accent/80" : "text-accent/60"}`}>
-                        Role in Cognition
-                      </p>
-                      <p className="text-sm sm:text-base">{minskyNode.roleInCognition}</p>
-                    </div>
+                  <div>
+                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Role in Cognition</p>
+                    <p className="text-white/80 text-sm sm:text-base leading-relaxed">{minskyNode.roleInCognition}</p>
                   </div>
                 </div>
               </div>
             )
           })()}
 
-          {/* SCL Details Panel (Brown Selection) */}
+          {/* SCL Details Panel */}
           {selectedSclId && (() => {
             const sclNode = sclComponents.find((n) => n.id === selectedSclId)
             if (!sclNode) return null
-
-            // Glow logic: Glow only if explicitly clicked (selectionSource === 'scl')
-            const isGlowActive = selectionSource === "scl"
-            const containerClasses = isGlowActive
-              ? "bg-primary/20 border-primary text-primary shadow-primary/30 transform scale-105"
-              : "bg-primary/5 border-primary/30 text-foreground/80"
+            const isActive = selectionSource === "scl"
 
             return (
-              <div className="space-y-6 sm:space-y-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                <div className={`border rounded-lg p-6 sm:p-8 transition-all duration-300 ${containerClasses}`}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <p className={`text-sm sm:text-base font-mono uppercase tracking-wide mb-2 ${isGlowActive ? "text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" : "text-primary/60"}`}>
-                        SCL Component Model
-                      </p>
-                      <h3 className={`text-2xl sm:text-3xl font-bold ${isGlowActive ? "text-primary drop-shadow-[0_0_10px_rgba(139,90,60,0.3)]" : "text-primary"}`}>
-                        {sclNode.label}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <p className={`text-sm sm:text-base ${isGlowActive ? "text-primary/90" : "text-foreground/70"}`}>{sclNode.description}</p>
-                </div>
+              <div className={`rounded-2xl border p-6 sm:p-8 backdrop-blur-md shadow-lg transition-all duration-300 ${
+                isActive
+                  ? "border-accent/50 bg-white/[0.11] shadow-accent/15 shadow-xl"
+                  : "border-white/8 bg-white/[0.07] shadow-black/20"
+              }`}>
+                <p className="text-accent text-[10px] font-bold uppercase tracking-[0.35em] mb-1">
+                  SCL Component Model
+                </p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                  {sclNode.label}
+                </h3>
+                <p className="text-white/80 text-sm sm:text-base leading-relaxed">{sclNode.description}</p>
               </div>
             )
           })()}
@@ -274,59 +267,82 @@ export default function SCLComparisonSection() {
           )}
         </div>
 
-        {/* Interactive Map - Right (Bottom on mobile) */}
-        <div className="relative order-1 lg:order-2 bg-gradient-to-br from-background to-secondary/5 rounded-2xl border border-accent/20 p-4 sm:p-8 min-h-[400px] sm:min-h-[500px] lg:min-h-[700px] flex items-center justify-center overflow-hidden">
-          <div className="w-full h-full overflow-x-auto overflow-y-hidden">
-            <svg
-              className="w-full h-full min-w-[300px] sm:min-w-[400px]"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="xMidYMid meet"
-              style={{ pointerEvents: "auto" }}
-            >
+        {/* Interactive 3D Map - Right */}
+        <div className="relative order-1 lg:order-2 bg-black/20 rounded-2xl border border-white/8 shadow-lg shadow-black/30 overflow-hidden min-h-[380px] sm:min-h-[500px] lg:min-h-[820px]">
+          <div className="w-full h-full min-h-[380px] sm:min-h-[500px] lg:min-h-[820px]">
+            {canvasInView && (
+              <SclComparison3D
+                selectedMinskyId={selectedMinskyId}
+                selectedSclId={selectedSclId}
+                selectionSource={selectionSource}
+                onSelectPair={handleSelectPair}
+                minskyLayers={minskyLayers}
+                sclComponents={sclComponents}
+              />
+            )}
+            {/* old SVG removed */}
+            <svg style={{ display: "none" }}>
               <defs>
-                <style>{`
-                @keyframes node-pulse {
-                  0%, 100% { r: 5.5px; }
-                  50% { r: 7px; }
-                }
-                @keyframes line-glow {
-                  0%, 100% { filter: drop-shadow(0 0 0px rgba(255, 106, 45, 0.5)); }
-                  50% { filter: drop-shadow(0 0 6px rgba(255, 106, 45, 0.8)); }
-                }
-              `}</style>
-                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                  <polygon points="0 0, 10 3, 0 6" fill="rgba(255, 106, 45, 0.5)" />
-                </marker>
+                {/* Subtle 3D sphere gradients — soft highlight, not shiny */}
+                <radialGradient id="gradOrangeActive" cx="38%" cy="32%" r="62%">
+                  <stop offset="0%"   stopColor="#ff8855" stopOpacity="1" />
+                  <stop offset="60%"  stopColor="#e55520" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#7a2800" stopOpacity="1" />
+                </radialGradient>
+                <radialGradient id="gradOrangeIdle" cx="38%" cy="32%" r="62%">
+                  <stop offset="0%"   stopColor="rgba(220,100,50,0.38)" />
+                  <stop offset="100%" stopColor="rgba(80,30,8,0.20)" />
+                </radialGradient>
+                <radialGradient id="gradPrimaryActive" cx="38%" cy="32%" r="62%">
+                  <stop offset="0%"   stopColor="#dfc080" stopOpacity="1" />
+                  <stop offset="60%"  stopColor="#b07840" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#4a2808" stopOpacity="1" />
+                </radialGradient>
+                <radialGradient id="gradPrimaryIdle" cx="38%" cy="32%" r="62%">
+                  <stop offset="0%"   stopColor="rgba(140,85,40,0.38)" />
+                  <stop offset="100%" stopColor="rgba(50,25,8,0.18)" />
+                </radialGradient>
+                <radialGradient id="gradRelated" cx="38%" cy="32%" r="62%">
+                  <stop offset="0%"   stopColor="rgba(200,110,55,0.28)" />
+                  <stop offset="100%" stopColor="rgba(80,35,8,0.12)" />
+                </radialGradient>
+                {/* arrowhead removed — cleaner without it */}
               </defs>
 
-              {/* Connection lines from Minsky to SCL */}
+              {/* Connection lines — trimmed to stop at sphere edges */}
               {minskyLayers.map((minskyNode, minskyIdx) => {
                 const minskyPos = getMinskyPosition(minskyIdx)
                 const relatedSCL = getRelatedSCLComponents(minskyNode.id)
 
                 return relatedSCL.map((sclNode) => {
                   const sclPos = getSCLPosition(minskyIdx)
-
-                  // Line is active if either end is selected or hovered
                   const isActive =
                     selectedMinskyId === minskyNode.id ||
                     selectedSclId === sclNode.id ||
                     hoveredId === minskyNode.id ||
                     hoveredId === sclNode.id
 
+                  // Trim line so it doesn't pierce either sphere
+                  const ldx = sclPos.x - minskyPos.x
+                  const ldy = sclPos.y - minskyPos.y
+                  const ldist = Math.sqrt(ldx * ldx + ldy * ldy) || 1
+                  const lnx = ldx / ldist, lny = ldy / ldist
+                  const mR = isActive ? 6.5 : 5.0   // Minsky sphere radius
+                  const sR = isActive ? 5.2 : 4.0   // SCL sphere radius
+                  const x1t = minskyPos.x + lnx * (mR + 0.5)
+                  const y1t = minskyPos.y + lny * (mR + 0.5)
+                  const x2t = sclPos.x   - lnx * (sR + 0.5)
+                  const y2t = sclPos.y   - lny * (sR + 0.5)
+
                   return (
                     <line
                       key={`conn-${minskyNode.id}-${sclNode.id}`}
-                      x1={minskyPos.x}
-                      y1={minskyPos.y}
-                      x2={sclPos.x}
-                      y2={sclPos.y}
-                      stroke={isActive ? "rgba(255, 106, 45, 0.6)" : "rgba(255, 106, 45, 0.1)"}
-                      strokeWidth={isActive ? "1.5" : "0.8"}
-                      opacity={(selectedMinskyId || selectedSclId || hoveredId) && !isActive ? 0.2 : 1}
-                      markerEnd="url(#arrowhead)"
+                      x1={x1t} y1={y1t} x2={x2t} y2={y2t}
+                      stroke={isActive ? "rgba(255,106,45,0.55)" : "rgba(255,106,45,0.10)"}
+                      strokeWidth={isActive ? "1.2" : "0.6"}
+                      strokeLinecap="round"
+                      opacity={(selectedMinskyId || selectedSclId || hoveredId) && !isActive ? 0.15 : 1}
                       className="transition-all duration-300"
-                      style={isActive ? { animation: "line-glow 2s ease-in-out infinite" } : {}}
                     />
                   )
                 })
@@ -340,21 +356,21 @@ export default function SCLComparisonSection() {
                 const isRelated = focusState === "related"
                 const isFaded = focusState === "faded"
 
-                let circleRadius = 5.5
+                let circleRadius = 5.0
                 let fillOpacity = 0.3
-                let strokeOpacity = 0.6
+                let strokeOpacity = 0.55
 
                 if (isActive) {
-                  circleRadius = 7.5
+                  circleRadius = 6.5
                   fillOpacity = 1
                   strokeOpacity = 1
                 } else if (isRelated) {
-                  circleRadius = 6.5
-                  fillOpacity = 0.7
-                  strokeOpacity = 0.8
+                  circleRadius = 5.8
+                  fillOpacity = 0.65
+                  strokeOpacity = 0.75
                 } else if (isFaded) {
                   fillOpacity = 0.1
-                  strokeOpacity = 0.2
+                  strokeOpacity = 0.18
                 }
 
                 return (
@@ -363,14 +379,12 @@ export default function SCLComparisonSection() {
                       cx={pos.x}
                       cy={pos.y}
                       r={circleRadius}
-                      fill="var(--accent)"
-                      fillOpacity={fillOpacity}
-                      stroke="var(--accent)"
+                      fill={isActive ? "url(#gradOrangeActive)" : isRelated ? "url(#gradRelated)" : "url(#gradOrangeIdle)"}
+                      stroke="#ff6a2d"
                       strokeOpacity={strokeOpacity}
-                      strokeWidth="1.2"
-                      className="cursor-pointer transition-all duration-300"
+                      strokeWidth={isActive ? "1.4" : "0.8"}
+                      className="cursor-pointer"
                       onClick={() => {
-                        // Paired selection: Select Minsky, show SCL pair, highlight Minsky
                         setSelectedMinskyId(node.id)
                         const relatedSCL = getRelatedSCLComponents(node.id)[0]
                         if (relatedSCL) setSelectedSclId(relatedSCL.id)
@@ -379,49 +393,33 @@ export default function SCLComparisonSection() {
                       onMouseEnter={() => setHoveredId(node.id)}
                       onMouseLeave={() => setHoveredId(null)}
                       style={{
-                        transition: "all 0.3s ease",
-                        animation: isActive ? "node-pulse 2s ease-in-out infinite" : "none",
+                        transition: "r 0.3s ease, opacity 0.3s ease",
+                        filter: isActive ? "drop-shadow(0 0 3px rgba(255,106,45,0.8))" : "none",
+                        cursor: "pointer",
                       }}
                     />
                     {(() => {
                       const offset = getMinskyLabelOffset(idx)
-                      const isMultiLine = node.label === "Meta-Control Module"
-
-                      if (isMultiLine) {
+                      const anchor = getMinskyTextAnchor(idx)
+                      const tx = pos.x + offset.x
+                      const ty = pos.y + offset.y
+                      const labelStyle = {
+                        fontSize: isActive ? "2.8px" : "2.2px",
+                        fontWeight: isActive ? "700" : "500",
+                        fill: isActive ? "#ff6a2d" : "rgba(245,237,230,0.75)",
+                        opacity: isFaded ? 0.25 : 1,
+                        transition: "all 0.3s ease",
+                      }
+                      if (node.label === "Meta-Control" || node.label === "Meta-Control Module") {
                         return (
-                          <text
-                            x={pos.x + offset.x}
-                            y={pos.y + offset.y}
-                            textAnchor="middle"
-                            className="pointer-events-none select-none"
-                            style={{
-                              fontSize: isActive ? "2.8px" : "2.2px",
-                              fontWeight: isActive ? "700" : "600",
-                              fill: "var(--foreground)",
-                              opacity: isFaded ? 0.3 : 1,
-                              transition: "all 0.3s ease",
-                            }}
-                          >
-                            <tspan x={pos.x + offset.x} dy="0">Meta-Control</tspan>
-                            <tspan x={pos.x + offset.x} dy="3">Module</tspan>
+                          <text x={tx} y={ty} textAnchor={anchor} className="pointer-events-none select-none" style={labelStyle}>
+                            <tspan x={tx} dy="-1.5">Meta-</tspan>
+                            <tspan x={tx} dy="3">Control</tspan>
                           </text>
                         )
                       }
-
                       return (
-                        <text
-                          x={pos.x + offset.x}
-                          y={pos.y + offset.y}
-                          textAnchor="middle"
-                          className="pointer-events-none select-none"
-                          style={{
-                            fontSize: isActive ? "2.8px" : "2.2px",
-                            fontWeight: isActive ? "700" : "600",
-                            fill: "var(--foreground)",
-                            opacity: isFaded ? 0.3 : 1,
-                            transition: "all 0.3s ease",
-                          }}
-                        >
+                        <text x={tx} y={ty} textAnchor={anchor} className="pointer-events-none select-none" style={labelStyle}>
                           {node.label}
                         </text>
                       )
@@ -440,21 +438,21 @@ export default function SCLComparisonSection() {
                   const isRelated = focusState === "related"
                   const isFaded = focusState === "faded"
 
-                  let circleRadius = 4.5
+                  let circleRadius = 4.0
                   let fillOpacity = 0.2
-                  let strokeOpacity = 0.4
+                  let strokeOpacity = 0.38
 
                   if (isActive) {
-                    circleRadius = 6
+                    circleRadius = 5.2
                     fillOpacity = 0.9
                     strokeOpacity = 0.9
                   } else if (isRelated) {
-                    circleRadius = 5.2
+                    circleRadius = 4.6
                     fillOpacity = 0.5
-                    strokeOpacity = 0.6
+                    strokeOpacity = 0.55
                   } else if (isFaded) {
                     fillOpacity = 0.08
-                    strokeOpacity = 0.15
+                    strokeOpacity = 0.12
                   }
 
                   return (
@@ -463,14 +461,12 @@ export default function SCLComparisonSection() {
                         cx={pos.x}
                         cy={pos.y}
                         r={circleRadius}
-                        fill="var(--primary)"
-                        fillOpacity={fillOpacity}
-                        stroke="var(--primary)"
+                        fill={isActive ? "url(#gradPrimaryActive)" : isRelated ? "url(#gradRelated)" : "url(#gradPrimaryIdle)"}
+                        stroke="rgba(200,150,80,0.7)"
                         strokeOpacity={strokeOpacity}
-                        strokeWidth="1"
-                        className="cursor-pointer transition-all duration-300"
+                        strokeWidth={isActive ? "1.2" : "0.7"}
+                        className="cursor-pointer"
                         onClick={() => {
-                          // Paired selection: Select SCL, force parent Minsky context, highlight SCL
                           setSelectedSclId(sclNode.id)
                           setSelectedMinskyId(minskyNode.id)
                           setSelectionSource("scl")
@@ -478,49 +474,33 @@ export default function SCLComparisonSection() {
                         onMouseEnter={() => setHoveredId(sclNode.id)}
                         onMouseLeave={() => setHoveredId(null)}
                         style={{
-                          transition: "all 0.3s ease",
-                          animation: isActive ? "node-pulse 2s ease-in-out infinite" : "none",
+                          transition: "r 0.3s ease, opacity 0.3s ease",
+                          filter: isActive ? "drop-shadow(0 0 3px rgba(200,150,80,0.7))" : "none",
+                          cursor: "pointer",
                         }}
                       />
                       {(() => {
                         const offset = getSCLLabelOffset(sclNode.id)
-                        const isMultiLine = sclNode.label === "Metaprompt Regulatory System"
-
-                        if (isMultiLine) {
+                        const anchor = getSCLTextAnchor(sclNode.id)
+                        const tx = pos.x + offset.x
+                        const ty = pos.y + offset.y
+                        const labelStyle = {
+                          fontSize: isActive ? "2.4px" : "2px",
+                          fontWeight: isActive ? "700" : "500",
+                          fill: isActive ? "#c89860" : "rgba(200,160,100,0.65)",
+                          opacity: isFaded ? 0.22 : 1,
+                          transition: "all 0.3s ease",
+                        }
+                        if (sclNode.label === "Metaprompt Regulatory System") {
                           return (
-                            <text
-                              x={pos.x + offset.x}
-                              y={pos.y + offset.y}
-                              textAnchor="middle"
-                              className="pointer-events-none select-none"
-                              style={{
-                                fontSize: isActive ? "2.4px" : "2px",
-                                fontWeight: isActive ? "700" : "500",
-                                fill: "var(--primary)",
-                                opacity: isFaded ? 0.3 : 1,
-                                transition: "all 0.3s ease",
-                              }}
-                            >
-                              <tspan x={pos.x + offset.x} dy="0">Metaprompt</tspan>
-                              <tspan x={pos.x + offset.x} dy="2.5">Regulatory System</tspan>
+                            <text x={tx} y={ty} textAnchor="middle" className="pointer-events-none select-none" style={labelStyle}>
+                              <tspan x={tx} dy="0">Metaprompt</tspan>
+                              <tspan x={tx} dy="2.8">Module</tspan>
                             </text>
                           )
                         }
-
                         return (
-                          <text
-                            x={pos.x + offset.x}
-                            y={pos.y + offset.y}
-                            textAnchor="middle"
-                            className="pointer-events-none select-none"
-                            style={{
-                              fontSize: isActive ? "2.4px" : "2px",
-                              fontWeight: isActive ? "700" : "500",
-                              fill: "var(--primary)",
-                              opacity: isFaded ? 0.3 : 1,
-                              transition: "all 0.3s ease",
-                            }}
-                          >
+                          <text x={tx} y={ty} textAnchor={anchor} className="pointer-events-none select-none" style={labelStyle}>
                             {sclNode.label}
                           </text>
                         )

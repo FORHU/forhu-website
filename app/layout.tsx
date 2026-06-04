@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono, Poppins } from "next/font/google"
+import ShaderBackgroundWrapper from "@/components/shader-background-wrapper"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -134,9 +135,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark" style={{ background: "#0d0d0d" }} suppressHydrationWarning>
       <body
-        className={`font-sans antialiased bg-background text-foreground ${poppins.variable}`}
+        className={`font-sans antialiased text-foreground ${poppins.variable}`}
         suppressHydrationWarning
       >
         <script
@@ -147,6 +148,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }}
         />
+        {/* Fixed shader background — shows through all pages as you scroll */}
+        {/* <div className="fixed inset-0 -z-10">
+          <ShaderBackgroundWrapper />
+        </div> */}
         {children}
       </body>
     </html>
