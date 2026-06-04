@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { ChevronDown, ExternalLink } from "lucide-react"
-import { NetworkGraphDiagram, LayeredModelDiagram, SchemaDiagram, NeuralDiagram } from "./research-diagrams"
+import { NetworkGraphDiagram, LayeredModelDiagram, SchemaDiagram, NeuralDiagram, TradeoffDiagram, CrossDomainDiagram } from "./research-diagrams"
 
 export default function ResearchSection() {
   const [expandedPaper, setExpandedPaper] = useState<string | null>(null)
@@ -101,7 +101,7 @@ export default function ResearchSection() {
         "Trade-off analysis: accuracy vs. generalization",
         "Architectural implications for future models",
       ],
-      diagram: "schema",
+      diagram: "tradeoff",
       link: "https://osf.io/preprints/psyarxiv/q2c94_v1",
     },
     {
@@ -120,23 +120,20 @@ export default function ResearchSection() {
         "Cross-domain design principles",
         "Scalability and composability analysis",
       ],
-      diagram: "layered",
+      diagram: "crossdomain",
       link: "https://osf.io/preprints/psyarxiv/j259k_v1",
     },
   ]
 
   const getDiagram = (diagramType: string) => {
     switch (diagramType) {
-      case "network":
-        return <NetworkGraphDiagram />
-      case "layered":
-        return <LayeredModelDiagram />
-      case "schema":
-        return <SchemaDiagram />
-      case "neural":
-        return <NeuralDiagram />
-      default:
-        return <NetworkGraphDiagram />
+      case "network":     return <NetworkGraphDiagram />
+      case "layered":     return <LayeredModelDiagram />
+      case "schema":      return <SchemaDiagram />
+      case "neural":      return <NeuralDiagram />
+      case "tradeoff":    return <TradeoffDiagram />
+      case "crossdomain": return <CrossDomainDiagram />
+      default:            return <NetworkGraphDiagram />
     }
   }
 
@@ -167,14 +164,14 @@ export default function ResearchSection() {
                 setClickedId(pub.id)
                 setTimeout(() => setClickedId(null), 600)
               }}
-              className={`group relative border rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer ${clickedId === pub.id
-                ? "border-accent shadow-accent/30 scale-[1.02]"
-                : "border-border/50 bg-card/30 hover:bg-card/50 hover:border-accent/30 hover:shadow-accent/20 hover:-translate-y-1"
+              className={`group relative border rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer shadow-lg ${clickedId === pub.id
+                ? "border-accent shadow-accent/25 scale-[1.015] shadow-xl"
+                : "border-white/8 bg-white/[0.03] shadow-black/40 hover:bg-white/[0.06] hover:border-accent/35 hover:shadow-accent/15 hover:shadow-xl hover:-translate-y-1"
                 }`}
             >
               <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 p-6 sm:p-8 md:p-10">
                 {/* Diagram Section */}
-                <div className="flex-shrink-0 w-full lg:w-1/3 min-h-[200px] sm:min-h-[240px] lg:h-auto bg-background/50 border border-border/50 rounded-xl p-4 sm:p-6 flex items-center justify-center group-hover:border-accent/20 transition-colors duration-500">
+                <div className="flex-shrink-0 w-full lg:w-1/3 min-h-[240px] sm:min-h-[280px] lg:h-auto bg-background/50 border border-border/50 rounded-xl p-4 sm:p-6 flex items-center justify-center group-hover:border-accent/20 transition-colors duration-500">
                   <div className="w-full h-full text-muted-foreground/80 group-hover:text-accent/80 transition-colors duration-500">
                     {getDiagram(pub.diagram)}
                   </div>

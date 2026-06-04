@@ -99,10 +99,10 @@ export default function ProjectsPage() {
       <main className="bg-background text-foreground min-h-screen">
         {/* Breadcrumb */}
         <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-foreground">Projects</span>
+          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm text-xs font-medium">
+            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
+            <span className="text-accent/50 mx-1">›</span>
+            <span className="text-foreground/90">Projects</span>
           </nav>
         </div>
 

@@ -129,14 +129,11 @@ export default function PhilosophySection() {
             <div
               key={index}
               ref={(el) => { if (el) cardRefs.current[index] = el }}
-              className={`group relative bg-gradient-to-br from-foreground/5 to-foreground/[0.02] border border-accent/20 rounded-xl p-6 sm:p-8 backdrop-blur-sm transition-all duration-700 ${
+              className={`group relative overflow-hidden bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-sm shadow-lg shadow-black/30 transition-all duration-500 ${
                 visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              } hover:border-accent/50`}
+              } hover:border-accent/40 hover:shadow-accent/20 hover:shadow-xl hover:-translate-y-1`}
               style={{ transitionDelay: visibleCards[index] ? `${index * 150}ms` : "0ms" }}
             >
-              {/* Card accent line */}
-              <div className="absolute top-0 left-0 h-px bg-gradient-to-r from-accent via-accent/60 to-transparent rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-full" />
-
               {/* Icon */}
               <div className="mb-5 sm:mb-7 w-fit p-3 rounded-xl bg-accent/8 border border-accent/15 group-hover:bg-accent/12 group-hover:border-accent/30 transition-all duration-500 group-hover:scale-105">
                 {card.icon}

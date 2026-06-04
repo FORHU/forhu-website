@@ -3,30 +3,14 @@
 export default function HeroHome() {
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        crossOrigin="anonymous"
-        suppressHydrationWarning
-      >
-        <source
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/synapse-6GkWZHBLR3B9YFKFnxnpOfFv0E4Hbm.mp4"
-          type="video/mp4"
-        />
-      </video>
-
-      {/* Dark overlay for text contrast */}
-      <div className="absolute inset-0 bg-black/60"></div>
-
+      {/* Subtle dark veil — reduced so background neurons show through clearly */}
+      <div className="absolute inset-0 bg-black/15" />
       {/* Content wrapper */}
       <div className="relative z-10 pt-24 pb-16 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
         <div className="mx-auto max-w-4xl w-full">
           {/* Header badge */}
           <div className="mb-6 md:mb-8 flex justify-center">
-            <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full border-2 border-accent bg-card/50 backdrop-blur-sm">
+            <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full border-2 border-accent bg-black/30 backdrop-blur-sm">
               <span className="text-xs md:text-sm font-medium text-muted-foreground">An Age of Distrust</span>
             </div>
           </div>
@@ -56,7 +40,7 @@ export default function HeroHome() {
             </a>
             <a
               href="#research"
-              className="w-full sm:w-auto px-6 py-3 rounded-md border border-border bg-transparent text-foreground font-light hover:bg-card/50 transition-colors text-center"
+              className="w-full sm:w-auto px-6 py-3 rounded-md border border-border bg-transparent text-foreground font-light hover:bg-black/20 transition-colors text-center"
             >
               Read our research
             </a>

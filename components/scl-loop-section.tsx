@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface SCLStep {
   number: number
@@ -90,134 +91,173 @@ export default function SCLLoopSection() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 sm:gap-16 mb-12 sm:mb-16">
           {/* The Loop Visualization */}
           <div className="relative h-64 sm:h-96 flex items-center justify-center shrink-0">
-            <svg className="w-full h-full max-w-[300px] sm:max-w-sm" viewBox="0 0 400 400" style={{ overflow: "visible" }}>
-              {/* Circle path */}
-              <circle
-                cx="200"
-                cy="200"
-                r="160"
-                fill="none"
-                stroke="url(#gradientAccent)"
-                strokeWidth="1"
-                opacity="0.3"
-                strokeDasharray="5,5"
-              />
+            <svg className="w-full h-full max-w-[260px] sm:max-w-[300px] md:max-w-sm" viewBox="0 0 400 400" style={{ overflow: "visible" }}>
+              <defs>
+                <radialGradient id="nodeActive" cx="50%" cy="35%" r="60%">
+                  <stop offset="0%" stopColor="#ff8c55" />
+                  <stop offset="100%" stopColor="#ff6a2d" />
+                </radialGradient>
+                <radialGradient id="nodeIdle" cx="50%" cy="35%" r="60%">
+                  <stop offset="0%" stopColor="rgba(255,106,45,0.45)" />
+                  <stop offset="100%" stopColor="rgba(255,106,45,0.18)" />
+                </radialGradient>
+              </defs>
 
-              {/* Step circles */}
+              {/* Outer orbit ring */}
+              <circle cx="200" cy="200" r="160" fill="none" stroke="#ff6a2d" strokeWidth="0.5" opacity="0.2" strokeDasharray="4 6" />
+
+              {/* Step nodes */}
               {sclSteps.map((step, idx) => {
                 const angle = (idx * 72 - 90) * (Math.PI / 180)
                 const x = 200 + 160 * Math.cos(angle)
                 const y = 200 + 160 * Math.sin(angle)
                 const isActive = idx === activeStep
 
+                // Label: just outside the node circle edge, same radial direction
+                const labelDist = 160 + (isActive ? 44 : 36)
+                const lx = 200 + labelDist * Math.cos(angle)
+                const ly = 200 + labelDist * Math.sin(angle)
+                // Text anchor: left for right-side nodes, right for left-side, middle for top/bottom
+                const labelAnchor = Math.abs(Math.cos(angle)) < 0.3 ? "middle"
+                  : Math.cos(angle) > 0 ? "start" : "end"
+
+                // Offset line so it starts at center ring edge, ends at node edge
+                const cdx = x - 200, cdy = y - 200
+                const cdist = Math.sqrt(cdx * cdx + cdy * cdy)
+                const cnx = cdx / cdist, cny = cdy / cdist
+                const lx1 = 200 + cnx * 56
+                const ly1 = 200 + cny * 56
+                const lx2 = x - cnx * (isActive ? 30 : 22)
+                const ly2 = y - cny * (isActive ? 30 : 22)
+
                 return (
-                  <g key={idx}>
-                    {/* Connection line to center */}
+                  <g key={idx} onClick={() => setActiveStep(idx)} style={{ cursor: "pointer" }}>
+                    {/* Connection line — from edge of center ring to edge of node */}
                     <line
-                      x1="200"
-                      y1="200"
-                      x2={x}
-                      y2={y}
-                      stroke="url(#gradientAccent)"
-                      strokeWidth={isActive ? "3" : "1"}
-                      opacity={isActive ? 0.8 : 0.2}
-                      className="transition-all duration-500"
+                      x1={lx1} y1={ly1} x2={lx2} y2={ly2}
+                      stroke="#ff6a2d"
+                      strokeWidth={isActive ? "2" : "0.8"}
+                      opacity={isActive ? 0.75 : 0.18}
+                      strokeLinecap="round"
                     />
 
-                    {/* Step circle */}
+                    {/* Outer pulse ring (active only) */}
+                    {isActive && (
+                      <circle cx={x} cy={y} r="38" fill="none" stroke="#ff6a2d" strokeWidth="1" opacity="0.25" />
+                    )}
+
+                    {/* Node background circle — CSS drop-shadow instead of SVG filter */}
                     <circle
-                      cx={x}
-                      cy={y}
-                      r={isActive ? "30" : "20"}
-                      fill="url(#gradientAccent)"
-                      opacity={isActive ? 0.9 : 0.3}
-                      className="transition-all duration-500 cursor-pointer"
-                      onClick={() => setActiveStep(idx)}
-                      style={{ filter: isActive ? "drop-shadow(0 0 20px var(--accent))" : "none" }}
+                      cx={x} cy={y}
+                      r={isActive ? 26 : 18}
+                      fill={isActive ? "url(#nodeActive)" : "url(#nodeIdle)"}
+                      style={{
+                        transition: "r 0.4s ease, opacity 0.4s ease",
+                        filter: isActive ? "drop-shadow(0 0 8px rgba(255,106,45,0.7))" : "none",
+                      }}
+                    />
+
+                    {/* Node border ring */}
+                    <circle
+                      cx={x} cy={y}
+                      r={isActive ? 26 : 18}
+                      fill="none"
+                      stroke="#ff6a2d"
+                      strokeWidth={isActive ? "1.5" : "0.8"}
+                      opacity={isActive ? 0.9 : 0.45}
                     />
 
                     {/* Step number */}
                     <text
-                      x={x}
-                      y={y}
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      fontSize={isActive ? "16" : "12"}
-                      fontWeight="bold"
-                      fill={isActive ? "#0a0a0a" : "rgb(255,255,255)"}
-                      className="transition-all duration-500 pointer-events-none"
+                      x={x} y={y}
+                      textAnchor="middle" dominantBaseline="middle"
+                      fontSize={isActive ? "14" : "11"}
+                      fontWeight="700"
+                      fill={isActive ? "#fff" : "rgba(255,255,255,0.7)"}
+                      style={{ pointerEvents: "none", userSelect: "none" }}
                     >
                       {step.number}
+                    </text>
+
+                    {/* Step title label — positioned just outside node, anchored by quadrant */}
+                    <text
+                      x={lx} y={ly}
+                      textAnchor={labelAnchor}
+                      dominantBaseline="middle"
+                      fontSize={isActive ? "11" : "9"}
+                      fontWeight={isActive ? "700" : "400"}
+                      fill={isActive ? "#ff6a2d" : "rgba(255,255,255,0.4)"}
+                      style={{ pointerEvents: "none", userSelect: "none", transition: "fill 0.3s ease, font-size 0.3s ease" }}
+                    >
+                      {step.title}
                     </text>
                   </g>
                 )
               })}
 
-              {/* Center pulse */}
-              <circle
-                cx="200"
-                cy="200"
-                r="40"
-                fill="none"
-                stroke="url(#gradientAccent)"
-                strokeWidth="2"
-                opacity="0.4"
-              />
+              {/* Center SCL node */}
+              <circle cx="200" cy="200" r="50" fill="rgba(255,106,45,0.06)" />
+              <circle cx="200" cy="200" r="50" fill="none" stroke="#ff6a2d" strokeWidth="1" opacity="0.35" />
+              <circle cx="200" cy="200" r="38" fill="rgba(255,106,45,0.10)" />
+              <circle cx="200" cy="200" r="38" fill="none" stroke="#ff6a2d" strokeWidth="1.5" opacity="0.55" />
               <text
-                x="200"
-                y="200"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fontSize="18"
-                fontWeight="bold"
-                fill="var(--accent)"
-                className="pointer-events-none drop-shadow-[0_0_8px_var(--accent)]"
+                x="200" y="197" textAnchor="middle" dominantBaseline="middle"
+                fontSize="16" fontWeight="800" fill="#ff6a2d"
+                style={{ pointerEvents: "none", userSelect: "none" }}
               >
                 SCL
               </text>
-
-              {/* Gradients */}
-              <defs>
-                <linearGradient id="gradientAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#ff6a2d" />
-                  <stop offset="100%" stopColor="rgba(255, 106, 45, 0.6)" />
-                </linearGradient>
-              </defs>
+              <text
+                x="200" y="212" textAnchor="middle" dominantBaseline="middle"
+                fontSize="6.5" fontWeight="400" fill="rgba(255,106,45,0.6)"
+                style={{ pointerEvents: "none", userSelect: "none", letterSpacing: "0.12em" }}
+              >
+                CORE
+              </text>
             </svg>
           </div>
 
-          {/* Active step info panel */}
-          {sclSteps[activeStep] && (
-            <div className="w-full max-w-md transition-all duration-500">
-              <div className={`p-8 sm:p-10 rounded-2xl border border-accent/20 bg-gradient-to-br ${sclSteps[activeStep].color} backdrop-blur-sm`}>
-                <p className="text-accent text-xs font-bold uppercase tracking-[0.3em] mb-2">
+          {/* Active step info panel — glass card */}
+          <div className="w-full max-w-md">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStep}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="p-5 sm:p-8 md:p-10 rounded-2xl border border-white/15 bg-black/50 backdrop-blur-md shadow-xl shadow-black/40"
+              >
+                <p className="text-accent text-[10px] font-bold uppercase tracking-[0.35em] mb-1">
                   Step {sclSteps[activeStep].number} of 5
                 </p>
-                <p className="text-muted-foreground text-sm uppercase tracking-widest mb-3">
+                <p className="text-white/60 text-xs uppercase tracking-[0.2em] mb-5">
                   {sclSteps[activeStep].role}
                 </p>
-                <h3 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tighter mb-4">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tighter mb-4 leading-none">
                   {sclSteps[activeStep].title}
                 </h3>
-                <p className="text-lg sm:text-xl text-muted-foreground font-light leading-relaxed">
+                <p className="text-white/75 text-base sm:text-lg font-light leading-relaxed">
                   {sclSteps[activeStep].copy}
                 </p>
-                {/* Step dots */}
+                {/* Progress dots */}
                 <div className="flex gap-2 mt-8">
                   {sclSteps.map((_, i) => (
                     <button
                       key={i}
                       onClick={() => setActiveStep(i)}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        i === activeStep ? "w-8 bg-accent" : "w-3 bg-accent/30"
+                      className={`h-px rounded-full transition-all duration-400 ${
+                        i === activeStep
+                          ? "w-10 bg-accent"
+                          : "w-4 bg-white/20 hover:bg-white/40"
                       }`}
                       aria-label={`Go to step ${i + 1}`}
                     />
                   ))}
                 </div>
-              </div>
-            </div>
-          )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

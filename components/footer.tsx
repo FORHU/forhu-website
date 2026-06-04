@@ -82,20 +82,20 @@ export default function Footer() {
         <div className="border-t border-border/50 pt-8">
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground font-light">© 2025 FORHU. All rights reserved.</p>
-            <div className="flex gap-6">
-              <a href="https://facebook.com/profile.php?id=61585471193562" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="FORHU Facebook">
+            <div className="flex gap-2">
+              <a href="https://facebook.com/profile.php?id=61585471193562" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU Facebook">
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="https://instagram.com/forhuai" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="FORHU Instagram">
+              <a href="https://instagram.com/forhuai" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU Instagram">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="https://tiktok.com/@forhu_ai" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="FORHU TikTok">
+              <a href="https://tiktok.com/@forhu_ai" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU TikTok">
                 <Tiktok className="h-4 w-4" />
               </a>
-              <a href="https://x.com/forhuai" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="FORHU X">
+              <a href="https://x.com/forhuai" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU X">
                 <X className="h-4 w-4" />
               </a>
-              <a href="https://www.linkedin.com/in/forhu-ai-42484a3a3/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="FORHU LinkedIn">
+              <a href="https://www.linkedin.com/in/forhu-ai-42484a3a3/" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU LinkedIn">
                 <Linkedin className="h-4 w-4" />
               </a>
             </div>

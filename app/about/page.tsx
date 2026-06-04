@@ -86,10 +86,10 @@ export default function AboutPage() {
       <main className="bg-background text-foreground min-h-screen">
         {/* Breadcrumb */}
         <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <nav className="text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-foreground">About</span>
+          <nav className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm text-xs font-medium">
+            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors duration-200">Home</Link>
+            <span className="text-accent/50 mx-1">›</span>
+            <span className="text-foreground/90">About</span>
           </nav>
         </div>
 
@@ -152,7 +152,7 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {values.map((v, i) => (
-                <div key={v.title} className="p-6 sm:p-8 rounded-2xl border border-border/50 bg-background/50">
+                <div key={v.title} className="p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.04] shadow-md shadow-black/30 hover:border-accent/30 hover:shadow-accent/10 hover:shadow-lg transition-all duration-300">
                   <span className="text-accent text-xs font-bold uppercase tracking-widest">0{i + 1}</span>
                   <h3 className="text-xl font-bold text-foreground mt-3 mb-4">{v.title}</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm">{v.description}</p>

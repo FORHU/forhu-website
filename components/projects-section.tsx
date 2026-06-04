@@ -59,7 +59,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center mb-32 sm:mb-48`}
+      className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-6 sm:gap-12 lg:gap-24 items-center mb-16 sm:mb-32 lg:mb-48`}
     >
       {/* Project Image / Visual */}
       {project.link ? (
@@ -83,7 +83,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             alt={project.title}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-contain p-12 transition-transform duration-1000 group-hover:scale-110"
+            className="w-full h-full object-contain p-6 sm:p-10 transition-transform duration-1000 group-hover:scale-110"
           />
           
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
