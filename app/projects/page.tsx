@@ -5,12 +5,12 @@ import ProjectsSection from "@/components/projects-section"
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Real-world applications of the Structured Cognitive Loop — Chumme, an AI-powered social platform for artists, and I Love Lawyer, an intelligent legal research platform for Philippine jurisprudence.",
+    "Real-world applications of the Structured Cognitive Loop — Chumme, I Love Lawyer, and CheapestGo. From artist platforms and legal intelligence to AI-powered travel booking.",
   alternates: { canonical: "https://forhu.ai/projects" },
   openGraph: {
     title: "Projects | Forhu",
     description:
-      "See the Structured Cognitive Loop in action — Chumme and I Love Lawyer are proof that SCL works in complex, high-stakes domains.",
+      "See the Structured Cognitive Loop in action — Chumme, I Love Lawyer, and CheapestGo are proof that SCL works across complex, high-stakes domains.",
     url: "https://forhu.ai/projects",
   },
 }
@@ -49,6 +49,19 @@ const projectsJsonLd = {
         keywords: "legal tech, Philippine jurisprudence, AI legal research, SCL",
       },
     },
+    {
+      "@type": "ListItem",
+      position: 3,
+      item: {
+        "@type": "SoftwareApplication",
+        name: "CheapestGo",
+        description:
+          "A travel booking app with live prices on an interactive map and Hey Cheap, an AI travel assistant that handles flights, hotels, itineraries, weather, bookings, and price alerts through natural conversation.",
+        applicationCategory: "Travel Technology",
+        author: { "@type": "Organization", name: "Forhu" },
+        keywords: "travel tech, AI travel assistant, flight booking, hotel booking, SCL",
+      },
+    },
   ],
 }
 
@@ -85,6 +98,23 @@ const caseStudies = [
       "Hallucination governance purpose-built for high-stakes legal use: errors are logged and prevented from recurring",
     ],
     scl_layers: ["Metaprompt (legal constraints + ethics)", "Judgment (citation evaluation)", "Runtime (jurisprudence search)", "Memory (case history)", "Control (hallucination prevention)"],
+  },
+  {
+    id: "cheapestgo",
+    name: "CheapestGo",
+    category: "Travel Technology / AI-Powered Booking",
+    problem:
+      "Travel booking is fragmented across dozens of platforms, each requiring separate searches for flights, hotels, weather, and itineraries. Travelers spend hours cross-referencing prices and logistics across multiple tabs. Existing travel AI tools lack structured reasoning — they hallucinate flight details, return stale prices, or lose context midway through a multi-step booking journey, eroding trust at a critical decision point.",
+    sclSolution:
+      "CheapestGo's Hey Cheap assistant applies SCL to unify the entire travel planning journey in a single conversational thread. The Metaprompt encodes the traveler's destination, budget, travel dates, and preferences as a persistent context frame. The Judgment layer evaluates live flight and hotel data against the user's stated criteria before any option is surfaced. The Memory layer retains full trip context — when a user asks about weather after selecting a flight, Hey Cheap already knows the destination, dates, and current booking state. The Control layer validates all prices and availability data in real time, preventing hallucinated fares or unavailable itineraries from reaching the traveler.",
+    outcomes: [
+      "Live price data validated before every recommendation — no hallucinated fares or phantom availability",
+      "Full trip memory maintained across the conversation: destination, dates, budget, and preferences persist from search to booking",
+      "Multi-domain orchestration: flights, hotels, weather, day-by-day itineraries, and price alerts managed within a single thread",
+      "Itinerary generation grounded in actual booking data — not generic travel templates",
+      "Price alert system driven by structured user intent, not keyword matching",
+    ],
+    scl_layers: ["Metaprompt (traveler preferences + budget)", "Judgment (price + availability evaluation)", "Runtime (live flight + hotel APIs)", "Memory (trip context across conversation)", "Control (data validation + hallucination prevention)"],
   },
 ]
 
