@@ -104,7 +104,7 @@ const caseStudies = [
     name: "CheapestGo",
     category: "Travel Technology / AI-Powered Booking",
     problem:
-      "Travel booking is fragmented across dozens of platforms, each requiring separate searches for flights, hotels, weather, and itineraries. Travelers spend hours cross-referencing prices and logistics across multiple tabs. Existing travel AI tools lack structured reasoning — they hallucinate flight details, return stale prices, or lose context midway through a multi-step booking journey, eroding trust at a critical decision point.",
+      "Travel booking is fragmented across dozens of platforms, each requiring separate searches for flights, hotels, weather, and itineraries. Travelers spend hours cross-referencing prices and logistics across multiple tabs — a frustrating, time-consuming process with no unified place to plan, compare, and book a complete trip.",
     sclSolution:
       "CheapestGo's Hey Cheap assistant applies SCL to unify the entire travel planning journey in a single conversational thread. The Metaprompt encodes the traveler's destination, budget, travel dates, and preferences as a persistent context frame. The Judgment layer evaluates live flight and hotel data against the user's stated criteria before any option is surfaced. The Memory layer retains full trip context — when a user asks about weather after selecting a flight, Hey Cheap already knows the destination, dates, and current booking state. The Control layer validates all prices and availability data in real time, preventing hallucinated fares or unavailable itineraries from reaching the traveler.",
     outcomes: [
@@ -154,7 +154,7 @@ export default function ProjectsPage() {
                     <h3 className="text-2xl sm:text-3xl font-bold text-foreground mt-2">
                       {cs.link ? (
                         <a href={cs.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
-                          {cs.name} →
+                          {cs.name}
                         </a>
                       ) : cs.name}
                     </h3>
