@@ -56,6 +56,11 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground leading-relaxed font-light">
               Building AI that thinks like humans. Trustworthy. Verifiable. Conscious of its limitations.
             </p>
+            <address className="not-italic mt-4 text-xs text-muted-foreground/70 font-light leading-relaxed">
+              30 Wall Street, 8th Floor<br />
+              New York, NY 10005<br />
+              United States
+            </address>
           </div>
 
           <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-8">
