@@ -35,6 +35,31 @@ const sclJsonLd = {
     "SCL, Structured Cognitive Loop, R-CCAM, epistemic operating system, cognitive architecture, AI agents, LLM, glass-box AI, HITL, hallucination governance",
 }
 
+const sclSoftwareJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Structured Cognitive Loop (SCL)",
+  description:
+    "SCL (Structured Cognitive Loop) is an open-source AI architecture framework designed to eliminate hallucinations in agentic workflows by transforming probabilistic LLMs into deterministic, glass-box engines.",
+  operatingSystem: "All",
+  applicationCategory: "Artificial Intelligence",
+  url: "https://forhu.ai/scl",
+  author: {
+    "@type": "Organization",
+    name: "Forhu",
+    url: "https://forhu.ai",
+  },
+  about: [
+    { "@type": "Thing", name: "Structured Cognitive Loop" },
+    { "@type": "Thing", name: "R-CCHAM Cognitive Loop" },
+    { "@type": "Thing", name: "Epistemic Operating System" },
+    { "@type": "Thing", name: "Large Language Model Agents" },
+  ],
+  softwareRequirements: "LLM API or Local model",
+  keywords:
+    "SCL, Structured Cognitive Loop, R-CC[H]AM, epistemic operating system, cognitive architecture, AI agents, LLM, glass-box AI, HITL, hallucination governance",
+}
+
 // R-CC[H]AM: the canonical six-step loop per Institutionalizing Cognition paper
 const rcchamSteps = [
   {
@@ -135,12 +160,33 @@ const faqs = [
   },
 ]
 
+const sclFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+}
+
 export default function SclPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(sclJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(sclSoftwareJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(sclFaqJsonLd) }}
       />
 
       <main className="bg-background text-foreground min-h-screen pt-24">
@@ -152,7 +198,7 @@ export default function SclPage() {
               Structured<br />Cognitive Loop
             </h1>
             <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed font-light">
-              Trustworthy judgment is not obtained by tuning prompts or scaling models. It arises only when the conditions under which judgment is permitted are fixed by structure.
+              <strong>SCL (Structured Cognitive Loop)</strong> is an epistemic operating system and AI architecture framework developed by Forhu, designed to eliminate hallucinations in agentic workflows by transforming probabilistic LLMs into deterministic, glass-box engines through the R-CC[H]AM Cognitive Loop.
             </p>
           </div>
         </section>
