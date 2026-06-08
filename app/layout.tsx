@@ -64,8 +64,10 @@ export const metadata: Metadata = {
       {
         url: "/forhu.ico.png",
         type: "image/png",
+        sizes: "any",
       },
     ],
+    shortcut: "/forhu.ico.png",
     apple: "/forhu.ico.png",
   },
 }
