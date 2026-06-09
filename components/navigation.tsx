@@ -23,7 +23,7 @@ export default function Navigation() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2 hover:opacity-70 transition-opacity">
-            <Logo className="w-24 h-24 sm:w-32 sm:h-32 text-foreground" />
+            <Logo className="h-8 w-auto sm:h-10 text-foreground" />
           </Link>
 
           {/* Desktop Navigation */}

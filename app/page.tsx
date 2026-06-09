@@ -7,6 +7,7 @@ import AboutSection from "@/components/about-section"
 import CTAFinal from "@/components/cta-final"
 import ContactSection from "@/components/contact-section"
 import ProjectsSection from "@/components/projects-section"
+import PressSection from "@/components/press-section"
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <SCLComparisonSection />
       <ResearchSection />
       <ProjectsSection />
+      <PressSection />
       <AboutSection />
       <ContactSection />
       <CTAFinal />
