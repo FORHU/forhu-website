@@ -42,7 +42,7 @@ const projects: Project[] = [
     image: "/ilovelawyer.png",
     color: "from-blue-600 to-indigo-600",
     link: "https://ilovelawyer.com",
-    lightBg: true,
+    lightBg: false,
   },
   {
     id: "cheapestgo",
@@ -108,16 +108,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               alt={project.title}
               loading="lazy"
               decoding="async"
-              className="w-full h-full object-contain p-6 sm:p-10 transition-transform duration-1000 group-hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
 
-            <div className="absolute bottom-8 left-8 flex gap-3">
+            <div className="absolute bottom-3 left-3 sm:bottom-8 sm:left-8 flex flex-wrap gap-1.5 sm:gap-3 max-w-[90%]">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-xl text-[10px] font-bold uppercase tracking-wider text-white border border-white/10"
+                  className="px-2 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/5 backdrop-blur-xl text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-white border border-white/10"
                 >
                   {tag}
                 </span>
@@ -156,11 +156,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {!project.lightBg && !project.bgClass && (
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
             )}
-            <div className="absolute bottom-8 left-8 flex flex-wrap gap-2">
+            <div className="absolute bottom-3 left-3 sm:bottom-8 sm:left-8 flex flex-wrap gap-1.5 sm:gap-2 max-w-[90%]">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className={`px-4 py-1.5 rounded-full backdrop-blur-xl text-[10px] font-bold uppercase tracking-wider border ${project.lightBg ? "bg-black/5 text-gray-700 border-black/10" : "bg-white/10 text-white border-white/20"}`}
+                  className={`px-2 py-1 sm:px-4 sm:py-1.5 rounded-full backdrop-blur-xl text-[9px] sm:text-[10px] font-bold uppercase tracking-wider border ${project.lightBg ? "bg-black/5 text-gray-700 border-black/10" : "bg-white/10 text-white border-white/20"}`}
                 >
                   {tag}
                 </span>
@@ -182,11 +182,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
-          <div className="p-4 rounded-2xl bg-white/[0.11] border border-white/10 backdrop-blur-sm shadow-lg shadow-black/30 text-foreground mb-8 inline-block group-hover:border-white/20 transition-all duration-300">
-            {project.icon}
+          <div className="flex items-center gap-3 mb-4 sm:mb-6">
+            <div className="p-4 rounded-2xl bg-white/[0.11] border border-white/10 backdrop-blur-sm shadow-lg shadow-black/30 text-foreground inline-block transition-all duration-300">
+              {project.icon}
+            </div>
+            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              In Development
+            </span>
           </div>
 
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 tracking-tight">
             {project.title}
           </h3>
         </motion.div>
@@ -200,7 +206,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             delay: 0.1,
             ease: [0.21, 0.47, 0.32, 0.98],
           }}
-          className="text-xl text-muted-foreground mb-10 leading-relaxed font-light"
+          className="text-base sm:text-xl text-muted-foreground mb-8 sm:mb-10 leading-relaxed font-light"
         >
           {project.description}
         </motion.p>
@@ -215,7 +221,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             delay: 0.2,
             ease: [0.21, 0.47, 0.32, 0.98],
           }}
-          className="w-full p-8 rounded-2xl bg-white/[0.09] border border-white/8 backdrop-blur-sm shadow-lg shadow-black/30 relative overflow-hidden group/connection hover:border-accent/30 transition-all duration-300"
+          className="w-full p-5 sm:p-8 rounded-2xl bg-white/[0.09] border border-white/8 backdrop-blur-sm shadow-lg shadow-black/30 relative overflow-hidden group/connection hover:border-accent/30 transition-all duration-300"
         >
           <div
             className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${project.color || "from-accent to-accent-secondary"} opacity-[0.03] blur-3xl -mr-24 -mt-24 group-hover/connection:opacity-[0.08] transition-opacity duration-700`}
@@ -230,7 +236,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 The SCL Core Connection
               </span>
             </div>
-            <p className="text-lg text-foreground/90 font-medium leading-snug">
+            <p className="text-sm sm:text-lg text-foreground/90 font-medium leading-snug">
               {project.connection}
             </p>
           </div>
@@ -276,11 +282,20 @@ export default function ProjectsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl sm:text-2xl text-muted-foreground max-w-3xl font-light leading-relaxed"
+            className="text-base sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl font-light leading-relaxed mb-4"
           >
             Witness the transformation of raw cognitive architecture into
             world-changing applications. From creative hubs and legal
             intelligence to AI-powered travel.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center gap-2 text-sm text-foreground/50 font-light"
+          >
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            These are products we are actively building right now.
           </motion.p>
         </div>
 

@@ -93,7 +93,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-1 flex flex-col gap-4">
             <p className="text-xs text-foreground/80 font-medium tracking-[0.25em] uppercase">We&apos;re participating at</p>
             <a href="https://vivatech.com/exhibitors/forhu-ai" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 transition-opacity w-fit">
-              <img src="/vivatech.png" alt="VivaTech 2026" className="w-full max-w-[260px] object-contain rounded-lg" />
+              <img src="/vivatech.png" alt="VivaTech 2026" className="w-full max-w-[180px] sm:max-w-[260px] object-contain rounded-lg" />
             </a>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
@@ -122,7 +122,7 @@ export default function Footer() {
         <div className="border-t border-border/50 pt-8">
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground font-light">© 2025 FORHU. All rights reserved.</p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap justify-center gap-1 sm:gap-2">
               <a href="https://facebook.com/profile.php?id=61585471193562" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU Facebook">
                 <Facebook className="h-4 w-4" />
               </a>
