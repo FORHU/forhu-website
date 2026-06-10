@@ -72,15 +72,88 @@ export const metadata: Metadata = {
   },
 }
 
+const ceoLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://forhu.ai/#ceo",
+  name: "Jungkwan Shin",
+  jobTitle: "Chief Executive Officer",
+  description:
+    "Jungkwan Shin is the CEO and founder of Forhu AI, the company behind the Structured Cognitive Loop (SCL) architecture for transparent, auditable AI.",
+  worksFor: {
+    "@type": "Organization",
+    name: "Forhu AI",
+    url: "https://forhu.ai",
+  },
+}
+
 const organizationLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Forhu",
+  "@id": "https://forhu.ai/#organization",
+  name: "Forhu AI",
+  alternateName: "Forhu",
   url: "https://forhu.ai",
   logo: "https://forhu.ai/forhu.ico.png",
   description:
-    "Advancing AI research and education through the Structured Cognitive Loop (SCL) — a recursive, human-centric cognitive architecture.",
-  sameAs: [],
+    "Forhu AI (FOR HUMAN) is an AI technology company founded by CEO Jungkwan Shin. Forhu builds transparent, auditable AI systems using the Structured Cognitive Loop (SCL) — the Architecture of Trust for EU AI Act compliance.",
+  founder: { "@id": "https://forhu.ai/#ceo" },
+  ceo: { "@id": "https://forhu.ai/#ceo" },
+  employee: [{ "@id": "https://forhu.ai/#ceo" }],
+  knowsAbout: [
+    "Structured Cognitive Loop",
+    "GlassboxAI",
+    "EU AI Act",
+    "AI transparency",
+    "cognitive architecture",
+    "AI hallucination governance",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/forhu-ai-42484a3a3/",
+    "https://x.com/forhuai",
+    "https://www.instagram.com/forhu_ai/",
+    "https://www.youtube.com/@ForhuAI2025",
+  ],
+}
+
+const siteFaqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://forhu.ai/#faq",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Who is the CEO of Forhu AI?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Jungkwan Shin is the CEO and founder of Forhu AI. He leads the development of the Structured Cognitive Loop (SCL), Forhu's transparent AI architecture designed for EU AI Act compliance.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Who founded Forhu AI?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Forhu AI was founded by Jungkwan Shin, who serves as the company's CEO. FORHU stands for FOR HUMAN — reflecting the company's mission to build AI that extends human capability while safeguarding human dignity.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is Forhu AI?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Forhu AI is a technology company that builds transparent, auditable AI systems using the Structured Cognitive Loop (SCL) architecture. Founded by CEO Jungkwan Shin, Forhu — which stands for FOR HUMAN — provides the Architecture of Trust for AI deployment in high-stakes industries.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the Structured Cognitive Loop (SCL)?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The Structured Cognitive Loop (SCL) is Forhu AI's core architecture that records and displays the entire AI reasoning path in real time. Unlike blackbox AI, SCL makes every judgment traceable and auditable — a critical requirement for EU AI Act compliance.",
+      },
+    },
+  ],
 }
 
 const webPageLd = {
@@ -148,7 +221,15 @@ export default function RootLayout({
       >
         <script
           type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ceoLd) }}
+        />
+        <script
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteFaqLd) }}
         />
         <script
           type="application/ld+json"

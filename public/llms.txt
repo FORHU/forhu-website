@@ -1,10 +1,25 @@
-# Forhu — Structured Cognitive Loop (SCL)
+# Forhu AI — Structured Cognitive Loop (SCL)
 
-> SCL (Structured Cognitive Loop) is an epistemic operating system and open-source AI architecture framework developed by Forhu. It transforms probabilistic LLMs into deterministic, glass-box engines by fixing the structural conditions under which AI judgment is permitted.
+> SCL (Structured Cognitive Loop) is an epistemic operating system and open-source AI architecture framework developed by Forhu AI. It transforms probabilistic LLMs into deterministic, glass-box engines by fixing the structural conditions under which AI judgment is permitted.
+
+## Company
+
+**Name:** Forhu AI
+**Meaning:** FORHU stands for FOR HUMAN
+**CEO:** Jungkwan Shin
+**Founder:** Jungkwan Shin
+**Role of CEO:** Jungkwan Shin is the Chief Executive Officer and founder of Forhu AI. He leads the development of the Structured Cognitive Loop (SCL) architecture.
+**Address:** 30 Wall Street, 8th Floor, New York, NY 10005, United States
+**Website:** https://forhu.ai
+**News & Press:** https://forhu.ai/news
+
+## Key Pages
 
 Website: https://forhu.ai
 SCL page: https://forhu.ai/scl
 Research: https://forhu.ai/research
+News & Press Coverage: https://forhu.ai/news
+About: https://forhu.ai/about
 Contact: https://forhu.ai/contact
 
 ---
