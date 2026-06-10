@@ -40,11 +40,49 @@ const Youtube = (props: { className?: string }) => (
 
 
 
+const footerJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Forhu AI",
+  url: "https://forhu.ai",
+  logo: "https://forhu.ai/forhu.ico.png",
+  description:
+    "Forhu AI (FOR HUMAN) builds transparent, auditable AI systems using the Structured Cognitive Loop (SCL) architecture.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "30 Wall Street, 8th Floor",
+    addressLocality: "New York",
+    addressRegion: "NY",
+    postalCode: "10005",
+    addressCountry: "US",
+  },
+  founder: {
+    "@type": "Person",
+    name: "Jungkwan Shin",
+    jobTitle: "Chief Executive Officer",
+    worksFor: { "@type": "Organization", name: "Forhu AI", url: "https://forhu.ai" },
+  },
+  employee: [
+    {
+      "@type": "Person",
+      name: "Jungkwan Shin",
+      jobTitle: "Chief Executive Officer",
+    },
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/forhu-ai-42484a3a3/",
+    "https://x.com/forhuai",
+    "https://www.instagram.com/forhu_ai/",
+    "https://www.youtube.com/@ForhuAI2025",
+  ],
+}
+
 export default function Footer() {
   const footerLinks = {
     About: [
       { label: "Team", href: "#" },
       { label: "Mission", href: "#" },
+      { label: "News", href: "/news" },
     ],
     Legal: [
       { label: "Privacy", href: "#" },
@@ -55,6 +93,10 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border/50 bg-background px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(footerJsonLd) }}
+      />
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
@@ -62,11 +104,23 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground leading-relaxed font-light">
               Building AI that thinks like humans. Trustworthy. Verifiable. Conscious of its limitations.
             </p>
-            <address className="not-italic mt-4 text-xs text-muted-foreground/70 font-light leading-relaxed">
+            <address className="not-italic mt-4 text-xs text-muted-foreground font-light leading-relaxed">
               30 Wall Street, 8th Floor<br />
               New York, NY 10005<br />
               United States
             </address>
+            <p className="mt-3 text-xs text-muted-foreground font-light">
+              CEO:{" "}
+              <span
+                itemScope
+                itemType="https://schema.org/Person"
+                className="text-foreground/80"
+              >
+                <span itemProp="name">Jungkwan Shin</span>
+                <meta itemProp="jobTitle" content="Chief Executive Officer" />
+                <meta itemProp="worksFor" content="Forhu AI" />
+              </span>
+            </p>
           </div>
 
           <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-8">

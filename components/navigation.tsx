@@ -14,6 +14,7 @@ export default function Navigation() {
     { label: "SCL", href: "/scl" },
     { label: "Research", href: "/research" },
     { label: "Projects", href: "/projects" },
+    { label: "News", href: "/news" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ]

@@ -1,8 +1,10 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
+
+const PAGE_SIZE = 10
 
 const articles = [
   {
@@ -53,6 +55,37 @@ const articles = [
     date: "2026-06-04",
     url: "https://www.issuewire.com/forhu-at-vivatech-scl-structured-cognitive-loop-glassbox-ai-via-smart-mirror-for-the-eu-ai-act-1867045939298699",
   },
+  {
+    publication: "Planet Actu",
+    headline: "Why the future of artificial intelligence relies on GlassboxAI models",
+    date: "2026-06-05",
+    url: "https://planeteactu.fr/pourquoi-lavenir-de-lintelligence-artificielle-repose-sur-les-modeles-glassboxai/",
+  },
+  {
+    publication: "TMCENT",
+    headline: "FORHU at VivaTech: SCL Structured Cognitive Loop Glassbox AI via Smart Mirror for the EU AI Act",
+    date: "2026-06-04",
+    url: "https://tmcent.net/press-release/2026-06-04/33546/forhu-at-vivatech-scl-structured-cognitive-loop-glassbox-ai-via-smart-mirror-for-the-eu-ai-act",
+  },
+  {
+    publication: "Advancefuturerobo",
+    headline: "FORHU at VivaTech: SCL Structured Cognitive Loop Glassbox AI via Smart Mirror for the EU AI Act",
+    date: "2026-06-04",
+    url: "https://advancefuturerobo.com/press-release/2026-06-04/33583/forhu-at-vivatech-scl-structured-cognitive-loop-glassbox-ai-via-smart-mirror-for-the-eu-ai-act",
+  },
+  {
+    publication: "Advanture Brand News",
+    headline: "FORHU at VivaTech: SCL Structured Cognitive Loop Glassbox AI via Smart Mirror for the EU AI Act",
+    date: "2026-06-04",
+    url: "https://advanture.brandingnews.net/press-release/2026-06-04/33524/forhu-at-vivatech-scl-structured-cognitive-loop-glassbox-ai-via-smart-mirror-for-the-eu-ai-act",
+  },
+  {
+    publication: "Market Business News",
+    headline: "FORHU at VivaTech: SCL Structured Cognitive Loop Glassbox AI via Smart Mirror for the EU AI Act",
+    date: "2026-06-04",
+    url: "https://www.marketbusinessnews.com/forhu-at-vivatech-scl-structured-cognitive-loop-glassbox-ai-via-smart-mirror-for-the-eu-ai-act/705510/",
+  }
+
 ]
 
 const listVariants = {
@@ -68,8 +101,11 @@ const itemVariants = {
 const MotionLi = motion.li
 
 export default function PressSection() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-80px" })
+  const [page, setPage] = useState(0)
+  const totalPages = Math.ceil(articles.length / PAGE_SIZE)
+  const visible = articles.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE)
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -125,7 +161,7 @@ export default function PressSection() {
           animate={isInView ? "visible" : "hidden"}
           className="rounded-2xl border border-white/8 bg-white/[0.06] backdrop-blur-md overflow-hidden divide-y divide-white/[0.06]"
         >
-          {articles.map((article) => (
+          {visible.map((article) => (
             <MotionLi key={article.url} variants={itemVariants}>
               <a
                 href={article.url}
@@ -148,14 +184,42 @@ export default function PressSection() {
                     })}
                   </time>
                 </div>
-                <span className="flex items-start gap-1.5 text-foreground/85 text-sm leading-snug hover:text-accent transition-colors duration-150">
+                <span className="flex items-start gap-1.5 text-foreground/85 text-sm leading-snug group-hover:text-accent transition-colors duration-150">
                   <span>{article.headline}</span>
-                  <ExternalLink className="w-3.5 h-3.5 flex-shrink-0 opacity-50 mt-0.5" aria-hidden="true" />
+                </span>
+                <span className="inline-flex items-center gap-1 text-accent text-xs font-semibold mt-0.5 opacity-60 hover:opacity-100 transition-opacity duration-150">
+                  View Release <ExternalLink className="w-3 h-3" aria-hidden="true" />
                 </span>
               </a>
             </MotionLi>
           ))}
         </motion.ul>
+
+        {totalPages > 1 && (
+          <div className="flex items-center justify-between mt-6 px-1">
+            <button
+              onClick={() => { setPage((p) => Math.max(0, p - 1)); ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }) }}
+              disabled={page === 0}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-white/8 bg-white/[0.06] text-sm text-foreground/70 hover:bg-white/[0.1] hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-150"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              Previous
+            </button>
+
+            <span className="text-muted-foreground text-xs tabular-nums">
+              {page + 1} / {totalPages}
+            </span>
+
+            <button
+              onClick={() => { setPage((p) => Math.min(totalPages - 1, p + 1)); ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }) }}
+              disabled={page === totalPages - 1}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-white/8 bg-white/[0.06] text-sm text-foreground/70 hover:bg-white/[0.1] hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-150"
+            >
+              Next
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )
