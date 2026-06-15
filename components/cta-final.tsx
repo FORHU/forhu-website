@@ -5,8 +5,8 @@ const ctaMessages = [
   "See the evolution of intelligence for yourself",
   "Stop doubting AI",
   "Meet structured intelligence: SCL",
-  "Download the Whitepaper for Free",
   "Build the future of AI with FORHU",
+  "Every decision traceable. Every output auditable.",
 ]
 
 export default function CTAFinal() {
@@ -63,7 +63,7 @@ export default function CTAFinal() {
         {/* CTAs */}
         <div className="flex flex-col md:flex-row gap-6 justify-center">
           <a
-            href="#"
+            href="/contact"
             className="px-10 py-5 bg-accent text-background font-bold text-lg rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-accent/40"
           >
             Get Started

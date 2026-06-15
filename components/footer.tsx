@@ -79,15 +79,16 @@ const footerJsonLd = {
 
 export default function Footer() {
   const footerLinks = {
-    About: [
-      { label: "Team", href: "#" },
-      { label: "Mission", href: "#" },
+    Explore: [
+      { label: "SCL", href: "/scl" },
+      { label: "Research", href: "/research" },
+      { label: "Projects", href: "/projects" },
       { label: "News", href: "/news" },
     ],
-    Legal: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
-      { label: "Contact", href: "https://www.forhu.ai/contact" },
+    Company: [
+      { label: "Philosophy", href: "/philosophy" },
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
     ],
   }
 
@@ -175,7 +176,7 @@ export default function Footer() {
 
         <div className="border-t border-border/50 pt-8">
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted-foreground font-light">© 2025 FORHU. All rights reserved.</p>
+            <p className="text-xs text-muted-foreground font-light">© 2026 FORHU. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-1 sm:gap-2">
               <a href="https://facebook.com/profile.php?id=61585471193562" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU Facebook">
                 <Facebook className="h-4 w-4" />
