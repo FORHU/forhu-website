@@ -3,14 +3,14 @@ import Link from "next/link"
 import ResearchSection from "@/components/research-section"
 
 export const metadata: Metadata = {
-  title: "Research & Publications",
+  title: "Research & Publications — Peer-Reviewed Explainable AI",
   description:
-    "Peer-reviewed research and preprints from Forhu on cognitive architecture, LLM hallucination theory, executable epistemology, and the Structured Cognitive Loop.",
+    "Peer-reviewed research on SCL and explainable AI from Forhu — published findings on auditable AI architecture, hallucination governance, and EU AI Act compliance.",
   alternates: { canonical: "https://forhu.ai/research" },
   openGraph: {
-    title: "Research & Publications | Forhu",
+    title: "Research & Publications — Peer-Reviewed Explainable AI | Forhu",
     description:
-      "Academic research on cognitive architecture, AI hallucination, and the Structured Cognitive Loop — published by Forhu.",
+      "Forhu's published research on explainable AI, auditable architecture, and hallucination governance — available on arXiv, PsyArXiv, and PhilSci.",
     url: "https://forhu.ai/research",
   },
 }

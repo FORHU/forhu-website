@@ -19,41 +19,45 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://forhu.ai"),
   title: {
-    default: "Forhu — Structured Cognitive Loop",
+    default: "Forhu — Trustworthy, Auditable AI | EU AI Act Ready",
     template: "%s | Forhu",
   },
   description:
-    "Advancing AI research and education through the Structured Cognitive Loop (SCL) — a recursive, human-centric cognitive architecture.",
+    "Forhu builds explainable AI powered by SCL — trustworthy, auditable AI for finance, healthcare & legal. Every decision traceable. EU AI Act ready.",
   keywords: [
-    "AI research",
+    "explainable AI",
+    "auditable AI",
+    "EU AI Act compliance",
+    "trustworthy AI",
     "Structured Cognitive Loop",
     "SCL",
+    "AI transparency",
+    "AI hallucination governance",
     "cognitive architecture",
-    "AI education",
     "Forhu",
   ],
   authors: [{ name: "Forhu", url: "https://forhu.ai" }],
   openGraph: {
     type: "website",
     url: "https://forhu.ai",
-    title: "Forhu — Structured Cognitive Loop",
+    title: "Forhu — Trustworthy, Auditable AI | EU AI Act Ready",
     description:
-      "Advancing AI research and education through the Structured Cognitive Loop (SCL).",
+      "Forhu builds explainable AI powered by SCL — trustworthy, auditable AI for finance, healthcare & legal. Every decision traceable. EU AI Act ready.",
     siteName: "Forhu",
     images: [
       {
         url: "/forhu.ico.png",
         width: 1200,
         height: 630,
-        alt: "Forhu — Structured Cognitive Loop",
+        alt: "Forhu — Trustworthy, Auditable AI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Forhu — Structured Cognitive Loop",
+    title: "Forhu — Trustworthy, Auditable AI | EU AI Act Ready",
     description:
-      "Advancing AI research and education through the Structured Cognitive Loop (SCL).",
+      "Forhu builds explainable AI powered by SCL — trustworthy, auditable AI for finance, healthcare & legal. Every decision traceable. EU AI Act ready.",
     images: ["/forhu.ico.png"],
   },
   alternates: {
