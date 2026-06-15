@@ -5,14 +5,14 @@ import SclComparisonSection from "@/components/scl-comparison-section"
 import SclLoopSection from "@/components/scl-loop-section"
 
 export const metadata: Metadata = {
-  title: "Structured Cognitive Loop (SCL)",
+  title: "Structured Cognitive Loop (SCL) — Forhu's Explainable AI Architecture",
   description:
-    "The Structured Cognitive Loop (SCL) is an epistemic operating system that transforms probabilistic LLMs into deterministic, glass-box engines through the R-CC[H]AM Cognitive Loop.",
+    "SCL is Forhu's explainable AI architecture — every AI decision is traceable, every output auditable. Built for EU AI Act compliance in finance, healthcare & legal.",
   alternates: { canonical: "https://forhu.ai/scl" },
   openGraph: {
-    title: "Structured Cognitive Loop (SCL) | Forhu",
+    title: "Structured Cognitive Loop (SCL) — Forhu's Explainable AI Architecture",
     description:
-      "An epistemic operating system that fixes the conditions of justification structurally — where the LLM proposes, and the structure decides admission.",
+      "SCL makes every AI judgment traceable and auditable. The LLM proposes; the structure decides admission. See how it works.",
     url: "https://forhu.ai/scl",
   },
 }
