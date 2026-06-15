@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import NewsList from "./news-list"
+import XEmbed from "@/components/x-embed"
 
 export const metadata: Metadata = {
   title: "Forhu AI in the News | Press Coverage & Media",
@@ -258,6 +259,9 @@ export default function NewsPage() {
             </div>
           </div>
         </section>
+
+        {/* Featured X post */}
+        <XEmbed />
 
         {/* Article list */}
         <section className="px-4 sm:px-6 lg:px-8 pb-24 max-w-4xl mx-auto">
