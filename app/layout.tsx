@@ -19,11 +19,11 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://forhu.ai"),
   title: {
-    default: "Forhu — Trustworthy, Auditable AI | EU AI Act Ready",
+    default: "FORHU | SCL Structured Cognitive Loop for Trusted AI",
     template: "%s | Forhu",
   },
   description:
-    "Forhu builds explainable AI powered by SCL — trustworthy, auditable AI for finance, healthcare & legal. Every decision traceable. EU AI Act ready.",
+    "Discover FORHU and its SCL Structured Cognitive Loop, a framework designed to bring transparency, reasoning, and trust to AI systems.",
   keywords: [
     "explainable AI",
     "auditable AI",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://forhu.ai",
-    title: "Forhu — Trustworthy, Auditable AI | EU AI Act Ready",
+    title: "FORHU | SCL Structured Cognitive Loop for Trusted AI",
     description:
-      "Forhu builds explainable AI powered by SCL — trustworthy, auditable AI for finance, healthcare & legal. Every decision traceable. EU AI Act ready.",
+      "Discover FORHU and its SCL Structured Cognitive Loop, a framework designed to bring transparency, reasoning, and trust to AI systems.",
     siteName: "Forhu",
     images: [
       {
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Forhu — Trustworthy, Auditable AI | EU AI Act Ready",
+    title: "FORHU | SCL Structured Cognitive Loop for Trusted AI",
     description:
-      "Forhu builds explainable AI powered by SCL — trustworthy, auditable AI for finance, healthcare & legal. Every decision traceable. EU AI Act ready.",
+      "Discover FORHU and its SCL Structured Cognitive Loop, a framework designed to bring transparency, reasoning, and trust to AI systems.",
     images: ["/forhu.ico.png"],
   },
   alternates: {
