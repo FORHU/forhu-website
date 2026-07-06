@@ -362,6 +362,59 @@ export const TradeoffDiagram = () => (
   </svg>
 )
 
+// ── 6b. "Pool-Gated Retrieval: Beyond RAG Toward Accountable Evidential Admission" ──
+// Simplified 3-stage read of the pipeline: Horizon (recall) → Warrant (LLM gate) →
+// Commitment (audited answer), with the Knowledge Gap branch as the key contribution.
+const PGR_STAGES = [
+  { label:"Horizon",    sub:"High-recall pool search",   color:BLUE   },
+  { label:"Warrant",    sub:"LLM relevance gate",         color:ACCENT },
+  { label:"Commitment", sub:"Auditable grounded answer",  color:GREEN  },
+]
+
+export const GatedPipelineDiagram = () => (
+  <svg viewBox="0 0 220 170" className="w-full h-full">
+    <defs>
+      <style>{`@keyframes gp{from{stroke-dashoffset:16}to{stroke-dashoffset:0}} .gf{animation:gp 1.8s linear infinite}`}</style>
+    </defs>
+
+    <text x="110" y="11" textAnchor="middle" style={{ fontSize:"4.5px", fill:"rgba(255,255,255,0.3)", letterSpacing:"0.1em" }}>
+      POOL-GATED RETRIEVAL
+    </text>
+
+    {PGR_STAGES.map((stage, i) => (
+      <g key={i}>
+        <rect x="22" y={24 + i * 40} width="4" height="28" fill={stage.color} rx="1" opacity="0.9" />
+        <rect x="30" y={24 + i * 40} width="150" height="28" rx="3"
+          fill={stage.color} fillOpacity="0.08"
+          stroke={stage.color} strokeWidth="0.7" strokeOpacity="0.6" />
+        <text x="40" y={24 + i * 40 + 12} dominantBaseline="middle"
+          style={{ fontSize:"7px", fontWeight:700, fill:stage.color }}>
+          {stage.label}
+        </text>
+        <text x="40" y={24 + i * 40 + 21} dominantBaseline="middle"
+          style={{ fontSize:"4.2px", fill:"rgba(255,255,255,0.4)", letterSpacing:"0.03em" }}>
+          {stage.sub}
+        </text>
+        {i < 2 && (
+          <line x1="186" y1={52 + i * 40} x2="186" y2={64 + i * 40}
+            stroke={stage.color} strokeWidth="1" className="gf" strokeDasharray="3,2" opacity="0.6" />
+        )}
+      </g>
+    ))}
+
+    {/* Knowledge Gap branch off the Warrant stage — the paper's central contribution */}
+    <path d="M 174,68 Q 200,80 200,96" fill="none" stroke={RED} strokeWidth="0.8" strokeDasharray="3,3" opacity="0.6" />
+    <path d="M 200,96 Q 200,112 174,124" fill="none" stroke={RED} strokeWidth="0.8" strokeDasharray="3,3" opacity="0.6" />
+    <text x="200" y="99" textAnchor="middle" style={{ fontSize:"4px", fontWeight:700, fill:RED }}>Knowledge</text>
+    <text x="200" y="105" textAnchor="middle" style={{ fontSize:"4px", fontWeight:700, fill:RED }}>Gap</text>
+
+    <text x="110" y="163" textAnchor="middle"
+      style={{ fontSize:"4px", fill:"rgba(255,255,255,0.2)", letterSpacing:"0.08em" }}>
+      ABSENCE AS A FIRST-CLASS EPISTEMIC FACT
+    </text>
+  </svg>
+)
+
 // ── 6. "Understanding Architecture: Fundamental Principles of Cognitive & AI Design" ─
 // Shows unified principles bridging biological cognition and AI systems
 export const CrossDomainDiagram = () => {
