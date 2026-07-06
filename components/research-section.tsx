@@ -2,13 +2,31 @@
 
 import { useState } from "react"
 import { ChevronDown, ExternalLink } from "lucide-react"
-import { NetworkGraphDiagram, LayeredModelDiagram, SchemaDiagram, NeuralDiagram, TradeoffDiagram, CrossDomainDiagram } from "./research-diagrams"
+import { NetworkGraphDiagram, LayeredModelDiagram, SchemaDiagram, NeuralDiagram, TradeoffDiagram, CrossDomainDiagram, GatedPipelineDiagram } from "./research-diagrams"
 
 export default function ResearchSection() {
   const [expandedPaper, setExpandedPaper] = useState<string | null>(null)
   const [clickedId, setClickedId] = useState<string | null>(null)
 
   const publications = [
+    {
+      id: "pool-gated-retrieval",
+      title: "Pool-Gated Retrieval",
+      subtitle: "Beyond Retrieval-Augmented Generation Toward Accountable Evidential Admission",
+      year: 2026,
+      // authors: "Myung Ho Kim",
+      domains: ["RAG Architecture", "LLM Agents"],
+      // doi: "10.20944/preprints202606.0414.v1",
+      abstract:
+        "We introduce Pool-Gated Retrieval (PGR), an architecture that reconceives retrieval-augmented generation as a three-stage epistemic process — Horizon, Warrant, and Commitment. By treating absence as a first-class fact, PGR eliminates absence hallucination and produces a complete, auditable provenance record for every generated answer.",
+      keyContributions: [
+        "Three-stage Horizon-Warrant-Commitment retrieval architecture",
+        "Structural registration of Knowledge Gaps to prevent absence hallucination",
+        "Auditable provenance record for every committed fact",
+      ],
+      diagram: "gated",
+      link: "https://www.preprints.org/manuscript/202606.0414",
+    },
     {
       id: "executable-epistemology-1",
       title: "Executable Epistemology",
@@ -133,6 +151,7 @@ export default function ResearchSection() {
       case "neural":      return <NeuralDiagram />
       case "tradeoff":    return <TradeoffDiagram />
       case "crossdomain": return <CrossDomainDiagram />
+      case "gated":       return <GatedPipelineDiagram />
       default:            return <NetworkGraphDiagram />
     }
   }

@@ -158,7 +158,15 @@ A travel booking app that finds and books the cheapest flights and hotels in one
 
 ## Research & Publications
 
-All papers published 2025. Full list: https://forhu.ai/research
+Full list: https://forhu.ai/research
+
+### Pool-Gated Retrieval
+**Subtitle:** Beyond Retrieval-Augmented Generation Toward Accountable Evidential Admission
+**Year:** 2026
+**Domains:** RAG Architecture, LLM Agents
+**Abstract:** Introduces Pool-Gated Retrieval (PGR), an architecture that reconceives retrieval-augmented generation as a three-stage epistemic process — Horizon, Warrant, and Commitment. Treats absence as a first-class fact, eliminating absence hallucination and producing a complete, auditable provenance record for every generated answer.
+**Key contributions:** Three-stage Horizon-Warrant-Commitment retrieval architecture; Structural registration of Knowledge Gaps to prevent absence hallucination; Auditable provenance record for every committed fact.
+**Link:** https://www.preprints.org/manuscript/202606.0414
 
 ### Executable Epistemology
 **Subtitle:** The Structured Cognitive Loop as an Architecture of Intentional Understanding
@@ -213,4 +221,3 @@ All papers published 2025. Full list: https://forhu.ai/research
 **Instagram:** https://www.instagram.com/forhu_ai/
 **Facebook:** https://facebook.com/profile.php?id=61585471193562
 **TikTok:** https://tiktok.com/@forhu_ai
-**Exhibiting at:** VivaTech 2026, June 17–20, Paris — https://vivatech.com/exhibitors/forhu-ai

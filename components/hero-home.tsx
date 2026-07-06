@@ -65,31 +65,6 @@ export default function HeroHome() {
             <span className="sm:hidden"> </span>
             SCL connects your process to create clarity.
           </p>
-
-          <div className="flex flex-col items-center mt-10 gap-4">
-            <p className="text-xs text-foreground/80 font-medium tracking-[0.3em] uppercase">We&apos;re participating at</p>
-            <a href="https://vivatech.com/exhibitors/forhu-ai" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 transition-opacity">
-              <img src="/vivatech.png" alt="VivaTech 2026 — June 17–20, Paris" className="h-44 sm:h-56 object-contain rounded-2xl" />
-            </a>
-            <div className="flex flex-col items-center gap-3 mt-1">
-              <div className="flex items-center gap-2.5 text-xs text-foreground/80 font-light tracking-widest">
-                <span>June 17–20, 2026</span>
-                <span className="w-1 h-1 rounded-full bg-foreground/50 inline-block" />
-                <span>Paris, France</span>
-              </div>
-              <a
-                href="https://vivatech.com/exhibitors/forhu-ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-5 py-2 rounded-full border border-accent/60 bg-accent/10 hover:bg-accent/20 hover:border-accent transition-all duration-300"
-              >
-                <span className="text-xs text-accent font-medium tracking-wider uppercase">View our exhibitor page</span>
-                <svg className="w-3 h-3 text-accent group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

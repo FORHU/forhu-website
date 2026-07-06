@@ -17,6 +17,20 @@ export const metadata: Metadata = {
 
 const publications = [
   {
+    title: "Pool-Gated Retrieval",
+    subtitle: "Beyond Retrieval-Augmented Generation Toward Accountable Evidential Admission",
+    year: 2026,
+    domains: ["RAG Architecture", "LLM Agents"],
+    abstract:
+      "We introduce Pool-Gated Retrieval (PGR), an architecture that reconceives retrieval-augmented generation as a three-stage epistemic process — Horizon, Warrant, and Commitment. By treating absence as a first-class fact, PGR eliminates absence hallucination and produces a complete, auditable provenance record for every generated answer.",
+    contributions: [
+      "Three-stage Horizon-Warrant-Commitment retrieval architecture",
+      "Structural registration of Knowledge Gaps to prevent absence hallucination",
+      "Auditable provenance record for every committed fact",
+    ],
+    link: "https://www.preprints.org/manuscript/202606.0414",
+  },
+  {
     title: "Executable Epistemology",
     subtitle: "The Structured Cognitive Loop as an Architecture of Intentional Understanding",
     year: 2025,

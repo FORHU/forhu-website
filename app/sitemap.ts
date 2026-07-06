@@ -4,7 +4,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: 'https://forhu.ai',
-      lastModified: new Date('2026-06-15'),
+      lastModified: new Date('2026-07-06'),
       changeFrequency: 'weekly',
       priority: 1,
     },
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: 'https://forhu.ai/research',
-      lastModified: new Date('2026-06-15'),
+      lastModified: new Date('2026-07-06'),
       changeFrequency: 'monthly',
       priority: 0.9,
     },

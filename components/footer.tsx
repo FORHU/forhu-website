@@ -99,7 +99,7 @@ export default function Footer() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(footerJsonLd) }}
       />
       <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
             <h3 className="text-xs sm:text-sm font-light text-foreground mb-4 sm:mb-6 tracking-wide uppercase">forhu</h3>
             <p className="text-sm text-muted-foreground leading-relaxed font-light">
@@ -142,35 +142,6 @@ export default function Footer() {
                 </ul>
               </div>
             ))}
-          </div>
-
-          {/* VivaTech exhibitor column */}
-          <div className="col-span-1 md:col-span-1 flex flex-col gap-4">
-            <p className="text-xs text-foreground/80 font-medium tracking-[0.25em] uppercase">We&apos;re participating at</p>
-            <a href="https://vivatech.com/exhibitors/forhu-ai" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 transition-opacity w-fit">
-              <img src="/vivatech.png" alt="VivaTech 2026" className="w-full max-w-[180px] sm:max-w-[260px] object-contain rounded-lg" />
-            </a>
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-accent/60 inline-block" />
-                <span className="text-xs text-foreground/75 font-light tracking-wide">June 17–20, 2026</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-accent/60 inline-block" />
-                <span className="text-xs text-foreground/75 font-light tracking-wide">Paris, France</span>
-              </div>
-              <a
-                href="https://vivatech.com/exhibitors/forhu-ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group mt-1 flex items-center gap-1.5 text-xs text-accent hover:text-accent/80 font-medium tracking-wider uppercase transition-colors"
-              >
-                Visit our page
-                <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
           </div>
         </div>
 
