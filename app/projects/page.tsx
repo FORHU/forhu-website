@@ -128,6 +128,8 @@ export default function ProjectsPage() {
 
       <main className="bg-background text-foreground min-h-screen pt-24">
 
+        <h1 className="sr-only">Forhu Projects — SCL in Action</h1>
+
         <div className="[&>section]:pt-8 [&>section]:sm:pt-12">
           <ProjectsSection />
         </div>

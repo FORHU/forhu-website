@@ -147,7 +147,12 @@ export default function Footer() {
 
         <div className="border-t border-border/50 pt-8">
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted-foreground font-light">© 2026 FORHU. All rights reserved.</p>
+            <div className="flex items-center gap-3">
+              <p className="text-xs text-muted-foreground font-light">© 2026 FORHU. All rights reserved.</p>
+              <a href="/llms.txt" className="text-xs text-muted-foreground hover:text-foreground transition-colors font-light underline underline-offset-2">
+                llms.txt
+              </a>
+            </div>
             <div className="flex flex-wrap justify-center gap-1 sm:gap-2">
               <a href="https://facebook.com/profile.php?id=61585471193562" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU Facebook">
                 <Facebook className="h-4 w-4" />
