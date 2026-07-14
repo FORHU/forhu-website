@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { cn } from "../lib/utils";
 
 const Linkedin = (props: { className?: string }) => (
   <svg {...props} fill="currentColor" viewBox="0 0 24 24">
@@ -40,11 +41,11 @@ const Youtube = (props: { className?: string }) => (
 
 const socials = [
   { label: "X (Twitter)", href: "https://x.com/forhuai", Icon: X },
-  { label: "LinkedIn",    href: "https://www.linkedin.com/in/forhu-ai-42484a3a3/", Icon: Linkedin },
-  { label: "Instagram",   href: "https://www.instagram.com/forhu_ai/", Icon: Instagram },
-  { label: "Facebook",    href: "https://facebook.com/profile.php?id=61585471193562", Icon: Facebook },
-  { label: "TikTok",      href: "https://tiktok.com/@forhu_ai", Icon: Tiktok },
-  { label: "YouTube",     href: "https://www.youtube.com/@ForhuAI2025", Icon: Youtube },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/forhu-ai-42484a3a3/", Icon: Linkedin },
+  { label: "Instagram", href: "https://www.instagram.com/forhu_ai/", Icon: Instagram },
+  { label: "Facebook", href: "https://facebook.com/profile.php?id=61585471193562", Icon: Facebook },
+  { label: "TikTok", href: "https://tiktok.com/@forhu_ai", Icon: Tiktok },
+  { label: "YouTube", href: "https://www.youtube.com/@forhu_ai", Icon: Youtube },
 ]
 
 const INTERVAL = 900
@@ -60,7 +61,7 @@ export default function SocialGlow() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center gap-12 flex-wrap">
+    <div className={cn('flex', 'items-center', 'justify-center', 'gap-12', 'flex-wrap')}>
       {socials.map((s, i) => (
         <a
           key={s.label}
@@ -71,19 +72,19 @@ export default function SocialGlow() {
           style={
             active === i
               ? {
-                  color: "rgb(217,119,6)",
-                  filter:
-                    "drop-shadow(0 0 8px rgba(217,119,6,0.9)) drop-shadow(0 0 20px rgba(217,119,6,0.5))",
-                  transition: "color 0.4s ease, filter 0.4s ease",
-                }
+                color: "rgb(217,119,6)",
+                filter:
+                  "drop-shadow(0 0 8px rgba(217,119,6,0.9)) drop-shadow(0 0 20px rgba(217,119,6,0.5))",
+                transition: "color 0.4s ease, filter 0.4s ease",
+              }
               : {
-                  color: "rgba(255,255,255,0.25)",
-                  filter: "none",
-                  transition: "color 0.4s ease, filter 0.4s ease",
-                }
+                color: "rgba(255,255,255,0.25)",
+                filter: "none",
+                transition: "color 0.4s ease, filter 0.4s ease",
+              }
           }
         >
-          <s.Icon className="w-12 h-12" />
+          <s.Icon className={cn('w-12', 'h-12')} />
         </a>
       ))}
     </div>
