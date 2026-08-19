@@ -82,7 +82,7 @@ export default function Footer() {
     Explore: [
       { label: "SCL", href: "/scl" },
       { label: "Research", href: "/research" },
-      { label: "Projects", href: "/projects" },
+      // { label: "Projects", href: "/projects" },
       { label: "News", href: "/news" },
     ],
     Company: [

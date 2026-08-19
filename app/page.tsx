@@ -6,7 +6,7 @@ import ResearchSection from "@/components/research-section"
 import AboutSection from "@/components/about-section"
 import CTAFinal from "@/components/cta-final"
 import ContactSection from "@/components/contact-section"
-import ProjectsSection from "@/components/projects-section"
+// import ProjectsSection from "@/components/projects-section"
 import PressSection from "@/components/press-section"
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
       <SCLBrainVisualization />
       <SCLComparisonSection />
       <ResearchSection />
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
       <PressSection />
       <AboutSection />
       <ContactSection />

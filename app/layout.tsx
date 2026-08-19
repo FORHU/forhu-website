@@ -189,13 +189,13 @@ const webPageLd = {
       description:
         "Peer-reviewed research and preprints on cognitive architecture, AI hallucination, and the Structured Cognitive Loop published by Forhu.",
     },
-    {
-      "@type": "WebPageElement",
-      name: "Projects",
-      url: "https://forhu.ai/#projects",
-      description:
-        "Real-world applications of the Structured Cognitive Loop including Chumme and I Love Lawyer.",
-    },
+    // {
+    //   "@type": "WebPageElement",
+    //   name: "Projects",
+    //   url: "https://forhu.ai/#projects",
+    //   description:
+    //     "Real-world applications of the Structured Cognitive Loop including Chumme and I Love Lawyer.",
+    // },
     {
       "@type": "WebPageElement",
       name: "About Forhu",
