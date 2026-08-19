@@ -1,4 +1,12 @@
-﻿import type { Metadata } from "next"
+import { notFound } from "next/navigation"
+
+// Projects page disabled — entire page content commented out below.
+export default function ProjectsPage() {
+  notFound()
+}
+
+/*
+import type { Metadata } from "next"
 import Link from "next/link"
 import ProjectsSection from "@/components/projects-section"
 
@@ -134,7 +142,7 @@ export default function ProjectsPage() {
           <ProjectsSection />
         </div>
 
-        {/* Case studies */}
+        {/* Case studies -- }
         <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-7xl mx-auto">
             <div className="mb-16">
@@ -147,10 +155,10 @@ export default function ProjectsPage() {
             <div className="space-y-8">
               {caseStudies.map((cs) => (
                 <div key={cs.id} className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 hover:border-accent/30 transition-all duration-300">
-                  {/* Accent bar */}
+                  {/* Accent bar -- }
                   <div className="h-1 w-12 bg-accent/50 mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
 
-                  {/* Header row */}
+                  {/* Header row -- }
                   <div className="mb-8">
                     <span className="text-xs font-bold uppercase tracking-widest text-accent">{cs.category}</span>
                     <h3 className="text-2xl sm:text-3xl font-bold text-foreground mt-2">
@@ -162,7 +170,7 @@ export default function ProjectsPage() {
                     </h3>
                   </div>
 
-                  {/* Two-column content */}
+                  {/* Two-column content -- }
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div className="space-y-6">
                       <div>
@@ -202,7 +210,7 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* CTA */}
+        {/* CTA -- }
         <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
           <div className="max-w-4xl mx-auto">
             <div className="group p-6 sm:p-8 md:p-10 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
@@ -222,3 +230,4 @@ export default function ProjectsPage() {
     </>
   )
 }
+*/

@@ -26,12 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    {
-      url: 'https://forhu.ai/projects',
-      lastModified: new Date('2026-06-15'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
+    // {
+    //   url: 'https://forhu.ai/projects',
+    //   lastModified: new Date('2026-06-15'),
+    //   changeFrequency: 'monthly',
+    //   priority: 0.7,
+    // },
     {
       url: 'https://forhu.ai/about',
       lastModified: new Date('2026-06-15'),

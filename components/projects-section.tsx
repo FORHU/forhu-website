@@ -247,12 +247,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsSection() {
+  return null;
+  /*
   return (
     <section
       id="projects"
       className="relative py-32 sm:py-48 px-6 bg-background"
     >
-      {/* Background Decorative Element */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none opacity-20">
         <div className="absolute top-[10%] left-[10%] w-[40rem] h-[40rem] bg-accent/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[10%] right-[10%] w-[40rem] h-[40rem] bg-accent-secondary/10 rounded-full blur-[120px]" />
@@ -307,4 +308,5 @@ export default function ProjectsSection() {
       </div>
     </section>
   );
+  */
 }
