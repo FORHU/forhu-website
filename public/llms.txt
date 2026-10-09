@@ -21,6 +21,17 @@ Research: https://forhu.ai/research
 News & Press Coverage: https://forhu.ai/news
 About: https://forhu.ai/about
 Contact: https://forhu.ai/contact
+ilovelawyer: https://forhu.ai/ilovelawyer
+
+---
+
+## Products
+
+**ilovelawyer** (also written I Love Lawyer): an AI case workspace built for lawyers: organize a client's matter, interrogate the documents, and see the strategy on one screen. Developed by Forhu AI. It is a software application for legal professionals, not a law firm or legal service provider. It includes case-aware AI consultation with cited case law, a per-case Case Workspace (Sources, Chat, Studio), analysis refresh, and the Legal Terminal, a multi-pane litigation workspace.
+- ilovelawyer page on forhu.ai: https://forhu.ai/ilovelawyer
+- Legal Terminal: a multi-pane litigation workspace in ilovelawyer. Details: https://forhu.ai/ilovelawyer
+- ilovelawyer Philippines: https://ph.ilovelawyer.com
+- ilovelawyer United Kingdom: https://uk.ilovelawyer.com
 
 ---
 
@@ -143,10 +154,11 @@ A revolutionary social ecosystem for artists and creators, utilizing SCL archite
 - **SCL Connection:** Demonstrates SCL's ability to manage complex social dynamics and creative workflows while maintaining human-centric values.
 - Tags: Social Tech, Artist Platform, SCL Integration
 
-### I Love Lawyer
-An intelligent legal research platform that applies recursive cognitive loops to analyze Philippine jurisprudence, providing unprecedented clarity to legal professionals.
+### ilovelawyer (I Love Lawyer)
+An AI case workspace built for lawyers, developed by Forhu AI, with separate jurisdiction-specific sites for the Philippines and the United Kingdom.
 - **SCL Connection:** Applies the Structured Cognitive Loop to complex, high-stakes decision-making in the legal domain.
-- URL: https://ilovelawyer.com
+- URL: https://forhu.ai/ilovelawyer
+- Sites: https://ph.ilovelawyer.com , https://uk.ilovelawyer.com
 - Tags: LegalTech, Cognitive Analysis, SCL
 
 ### CheapestGo

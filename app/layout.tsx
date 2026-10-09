@@ -112,11 +112,25 @@ const organizationLd = {
     "cognitive architecture",
     "AI hallucination governance",
   ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "30 Wall Street, 8th Floor",
+    addressLocality: "New York",
+    addressRegion: "NY",
+    postalCode: "10005",
+    addressCountry: "US",
+  },
+  brand: [
+    { "@type": "Brand", name: "ilovelawyer", url: "https://uk.ilovelawyer.com" },
+    { "@type": "Brand", name: "ilovelawyer", url: "https://ph.ilovelawyer.com" },
+  ],
   sameAs: [
     "https://www.linkedin.com/in/forhu-ai-42484a3a3/",
     "https://x.com/forhuai",
     "https://www.instagram.com/forhu_ai/",
     "https://www.youtube.com/@ForhuAI2025",
+    "https://facebook.com/profile.php?id=61585471193562",
+    "https://tiktok.com/@forhu_ai",
   ],
 }
 

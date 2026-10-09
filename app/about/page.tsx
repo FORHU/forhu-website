@@ -137,6 +137,23 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Products */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
+          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight">Built by Forhu AI</h2>
+              <p className="text-muted-foreground mt-2">
+                ilovelawyer is an AI-powered legal research and case-management platform for legal professionals, developed by Forhu AI.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4 shrink-0">
+              <Link href="/ilovelawyer" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">
+                About ilovelawyer
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Values */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 bg-card/10 border-t border-border/30">
           <div className="max-w-7xl mx-auto">
