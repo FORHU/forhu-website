@@ -40,43 +40,6 @@ const Youtube = (props: { className?: string }) => (
 
 
 
-const footerJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Forhu AI",
-  url: "https://forhu.ai",
-  logo: "https://forhu.ai/forhu.ico.png",
-  description:
-    "Forhu AI (FOR HUMAN) builds transparent, auditable AI systems using the Structured Cognitive Loop (SCL) architecture.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "30 Wall Street, 8th Floor",
-    addressLocality: "New York",
-    addressRegion: "NY",
-    postalCode: "10005",
-    addressCountry: "US",
-  },
-  founder: {
-    "@type": "Person",
-    name: "Jungkwan Shin",
-    jobTitle: "Chief Executive Officer",
-    worksFor: { "@type": "Organization", name: "Forhu AI", url: "https://forhu.ai" },
-  },
-  employee: [
-    {
-      "@type": "Person",
-      name: "Jungkwan Shin",
-      jobTitle: "Chief Executive Officer",
-    },
-  ],
-  sameAs: [
-    "https://www.linkedin.com/in/forhu-ai-42484a3a3/",
-    "https://x.com/forhuai",
-    "https://www.instagram.com/forhu_ai/",
-    "https://www.youtube.com/@ForhuAI2025",
-  ],
-}
-
 export default function Footer() {
   const footerLinks = {
     Explore: [
@@ -90,14 +53,13 @@ export default function Footer() {
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
     ],
+    Products: [
+      { label: "ilovelawyer", href: "/ilovelawyer" },
+    ],
   }
 
   return (
     <footer className="border-t border-border/50 bg-background px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(footerJsonLd) }}
-      />
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
@@ -124,7 +86,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-8">
+          <div className="col-span-1 md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8">
             {Object.entries(footerLinks).map(([section, links]) => (
               <div key={section}>
                 <h4 className="text-xs sm:text-sm font-light text-foreground mb-3 sm:mb-4 tracking-wide uppercase">{section}</h4>
@@ -149,9 +111,6 @@ export default function Footer() {
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <p className="text-xs text-muted-foreground font-light">© 2026 FORHU. All rights reserved.</p>
-              <a href="/llms.txt" className="text-xs text-muted-foreground hover:text-foreground transition-colors font-light underline underline-offset-2">
-                llms.txt
-              </a>
             </div>
             <div className="flex flex-wrap justify-center gap-1 sm:gap-2">
               <a href="https://facebook.com/profile.php?id=61585471193562" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg" aria-label="FORHU Facebook">

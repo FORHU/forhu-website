@@ -156,7 +156,7 @@ const faqs = [
   },
   {
     q: "Where is SCL used in practice?",
-    a: "SCL currently powers two live applications: Chumme (a human-centered social platform for artists) and I Love Lawyer (an AI legal research platform for Philippine jurisprudence). The underlying architecture is documented in peer-reviewed papers on arXiv, PsyArXiv, and PhilSci.",
+    a: "SCL currently powers two live applications: Chumme (a human-centered social platform for artists) and ilovelawyer (an AI case workspace built for lawyers, with separate sites for the Philippines and the United Kingdom). The underlying architecture is documented in peer-reviewed papers on arXiv, PsyArXiv, and PhilSci.",
   },
 ]
 
