@@ -57,9 +57,9 @@ const values = [
       "We believe the AI industry moves too fast to application and too slowly to foundation. Before we build a product, we ask: what cognitive architecture should govern it? The SCL framework answers that question for every application we build.",
   },
   {
-    title: "Research-first, always",
+    title: "Built on open research",
     description:
-      "Forhu publishes everything. Our research on cognitive architecture, hallucination theory, and executable epistemology is openly available because trustworthy AI cannot be built on proprietary science.",
+      "Forhu uses the Structured Cognitive Loop, which is described in openly published research by Myung Ho Kim on cognitive architecture, hallucination theory, and executable epistemology.",
   },
   {
     title: "Human dignity as a hard constraint",
@@ -70,7 +70,7 @@ const values = [
 
 const whatWeAreBuildingPoints = [
   "A cognitive architecture (SCL) that any LLM can be wrapped in to become more trustworthy",
-  "A body of peer-reviewed research that establishes the theoretical foundation for human-centered AI",
+  "A body of open-access research that establishes the theoretical foundation for human-centered AI",
   "Real applications that prove SCL works in complex, high-stakes environments",
   "A public record of how AI systems should reason — open to scrutiny, critique, and improvement",
 ]
@@ -183,7 +183,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
             <div>
               <h2 className="text-3xl font-bold tracking-tight">Ready to go deeper?</h2>
-              <p className="text-muted-foreground mt-2">Read our research or explore how SCL works in practice.</p>
+              <p className="text-muted-foreground mt-2">Read the research behind SCL or explore how it works in practice.</p>
             </div>
             <div className="flex gap-4 shrink-0">
               <Link href="/research" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">

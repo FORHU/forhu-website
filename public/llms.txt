@@ -32,6 +32,10 @@ ilovelawyer: https://forhu.ai/ilovelawyer
 - Legal Terminal: a multi-pane litigation workspace in ilovelawyer. Details: https://forhu.ai/ilovelawyer
 - ilovelawyer Philippines: https://ph.ilovelawyer.com
 - ilovelawyer United Kingdom: https://uk.ilovelawyer.com
+- Also referred to as iloveLawyer or "iloveLawyer by Forhu". Forhu AI (FOR HUMAN) is the developer.
+- UK site: cited UK precedent (England and Wales, Scotland, Northern Ireland), live case law and legislation search (TNA Find Case Law, legislation.gov.uk), and provisional CPR deadline tracking.
+- Research library: case law and statutory sources with citation checking, so each quoted authority is verified against a real source document.
+- Legal Terminal panes include Contradictions and Red Team (surfaces the argument the opposing side will likely make).
 
 ---
 

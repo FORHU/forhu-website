@@ -18,11 +18,12 @@ export default function ResearchSection() {
       domains: ["RAG Architecture", "LLM Agents"],
       // doi: "10.20944/preprints202606.0414.v1",
       abstract:
-        "We introduce Pool-Gated Retrieval (PGR), an architecture that reconceives retrieval-augmented generation as a three-stage epistemic process — Horizon, Warrant, and Commitment. By treating absence as a first-class fact, PGR eliminates absence hallucination and produces a complete, auditable provenance record for every generated answer.",
+        "We introduce Pool-Gated Retrieval (PGR), an architecture that reconceives retrieval-augmented generation as a three-stage epistemic process — Horizon, Warrant, and Commitment. By treating absence as a first-class fact, PGR registers confirmed absences as structural facts and propagates them to the answer, addressing absence hallucination by structural design, and every answer carries an auditable provenance record. Demonstrated on a single synthetic partial-coverage scenario against a naive RAG baseline.",
       keyContributions: [
         "Three-stage Horizon-Warrant-Commitment retrieval architecture",
         "Structural registration of Knowledge Gaps to prevent absence hallucination",
         "Auditable provenance record for every committed fact",
+        "Taxonomy of eight RAG failure modes, with an open Python reference implementation",
       ],
       diagram: "gated",
       link: "https://www.preprints.org/manuscript/202606.0414",
@@ -37,11 +38,11 @@ export default function ResearchSection() {
       // archiveId: "26865",
       // doi: "10.31234/osf.io/preprints/psyarxiv",
       abstract:
-        "This paper presents a novel framework for understanding knowledge representation in artificial systems through the lens of executable philosophy. We propose that epistemology—the study of how we know what we know—can be formalized as computational processes.",
+        "Large language models exhibit intelligence without genuine epistemic understanding, revealing a missing epistemic architecture. This paper introduces the Structured Cognitive Loop (SCL) as an executable epistemological framework, asking under what conditions cognition emerges rather than what intelligence is. Intelligence is reframed as a performed process — a continuous loop of judgment, memory, control, action, and regulation.",
       keyContributions: [
-        "Formal epistemological model for AI systems",
-        "Structured Cognitive Loop architecture",
-        "Integration of philosophical and computational frameworks",
+        "\"Executable epistemology\": philosophy operationalized as structural experiment",
+        "Five structural conditions for understanding: evidential grounding, memorial persistence, normative control, environmental coupling, recursive self-reference",
+        "Intelligence redefined as the capacity to reconstruct one's own epistemic state",
       ],
       diagram: "schema",
       link: "https://philsci-archive.pitt.edu/26865/",
@@ -49,37 +50,40 @@ export default function ResearchSection() {
     {
       id: "structured-cognitive",
       title: "Structured Cognitive Loop",
-      subtitle: "Behavioral Intelligence in Large Language Model Agents",
+      subtitle: "Behavioral Intelligence in Large Language Model Agents — Extended Revision: From Behavioral Architecture to Epistemic Accountability",
       year: 2025,
+      revised: 2026,
       // authors: "Forhu, Smith, Johnson",
       domains: ["AI Architecture", "LLMs"],
       // archiveId: "2510.05107",
       // doi: "arXiv:2510.05107",
       abstract:
-        "We introduce the Structured Cognitive Loop (SCL), a hierarchical control architecture for LLM agents. SCL integrates perception, cognition, and action through recursive feedback mechanisms.",
+        "We introduce the Structured Cognitive Loop (SCL), an agent architecture that separates cognition, control, action, and memory. The language model only proposes actions, a lightweight controller validates every proposal before execution, and memory is kept externally as a structured store of verified facts. Across 360 episodes in three controlled scenarios, SCL reached 86.3% task success versus 70.5–76.8% for prompt-based baselines using the same model and tools.",
       keyContributions: [
-        "SCL hierarchical architecture design",
-        "Behavioral intelligence framework",
-        "Empirical validation on complex tasks",
+        "Modular loop: Cognition → Control → Action → Memory, with Retrieval at turn onset",
+        "Controller-mediated execution with an auditable trace of proposals and approvals",
+        "Controlled evaluation against ReAct and LangChain agents, with ablations of memory and control",
+        "Extended revision: human-in-the-loop, Pool-Gated Retrieval, and the Horizon-Warrant-Commitment framework",
       ],
       diagram: "layered",
       link: "https://arxiv.org/abs/2510.05107",
     },
     {
       id: "emergent-convergence",
-      title: "Emergent Cognitive Convergence",
-      subtitle: "Implementation and Four Theories of Mind",
+      title: "Emergent Cognitive Convergence via Implementation",
+      subtitle: "Structured Cognitive Loop Reflecting Four Theories of Mind",
       year: 2025,
+      revised: 2026,
       // authors: "Forhu, Lee, Patel",
       domains: ["Cognitive Science", "AI Theory"],
       // archiveId: "2507.16184",
       // doi: "arXiv:2507.16184",
       abstract:
-        "This work demonstrates how different computational frameworks converge on similar cognitive principles. We map implementations to classical theories of mind from psychology and philosophy.",
+        "A position paper reporting that a practical LLM agent architecture, Agentic Flow, structurally echoes four theories of mind — Kahneman's dual-system theory, Friston's predictive processing, Minsky's society of mind, and Clark's extended mind. The convergence emerged from implementation demands rather than deliberate synthesis, and is described as a partial reflection, not a unification of the theories.",
       keyContributions: [
-        "Multi-theory cognitive convergence mapping",
-        "Empirical validation across 4 frameworks",
-        "Unified cognitive principles extraction",
+        "Structural mapping of one five-module architecture onto four theories of mind",
+        "PEACE: a descriptive meta-architecture of recurring design patterns, later formalized as SCL",
+        "Controlled comparison with LLM-only agents: 95.8% vs 62.3% task success",
       ],
       diagram: "network",
       link: "https://arxiv.org/abs/2507.16184",
@@ -94,11 +98,11 @@ export default function ResearchSection() {
       // archiveId: "x2c8p_v1",
       // doi: "osf.io/preprints/psyarxiv/x2c8p_v1",
       abstract:
-        "We analyze hallucinations in LLMs not as failures but as predictable artifacts of lossy information compression. This perspective reframes the epistemological status of model outputs.",
+        "A theoretical follow-up asking whether hallucination could be eliminated if lossless abstraction were possible. Drawing on Kolmogorov complexity, Chaitin's incompleteness theorem, and Shannon's entropy limit, it argues that any sufficiently intelligent system must rely on lossy compression, so hallucination is a structural feature rather than a flaw to engineer away.",
       keyContributions: [
-        "Novel theoretical framework for LLM hallucinations",
-        "Information-theoretic analysis",
-        "Implications for AI safety and interpretability",
+        "Extends the compression–generalization–hallucination triad with a lossless-abstraction counter-hypothesis",
+        "Information-theoretic argument from Kolmogorov, Chaitin, and Shannon",
+        "Proposes hallucination-aware architectures and epistemically humble interfaces",
       ],
       diagram: "neural",
       link: "https://osf.io/preprints/psyarxiv/x2c8p_v1",
@@ -113,33 +117,14 @@ export default function ResearchSection() {
       // archiveId: "q2c94_v1",
       // doi: "osf.io/preprints/psyarxiv/q2c94_v1",
       abstract:
-        "We argue that hallucinations emerge necessarily from the architectural constraints of LLMs and cannot be fully eliminated without sacrificing generalization capabilities.",
+        "We argue that hallucination is not an incidental flaw but an unavoidable structural property of generative intelligence: generalization rests on lossy compression, and reconstructive inference fills the gaps. Combining theoretical modeling with a synthesis of recent empirical work and parallels to human reconstructive memory, the paper concludes that attempts to eliminate hallucination may dismantle the mechanisms behind generalization.",
       keyContributions: [
-        "Proof of hallucination inevitability",
-        "Trade-off analysis: accuracy vs. generalization",
-        "Architectural implications for future models",
+        "Three hypotheses: inseparability, memorization–generalization trade-off, creativity–error duality",
+        "Logical-theoretical argument grounded in information theory and cognitive science",
+        "Implications for AI safety, sovereign AI policy, and high-stakes domains such as law, medicine, and national security",
       ],
       diagram: "tradeoff",
       link: "https://osf.io/preprints/psyarxiv/q2c94_v1",
-    },
-    {
-      id: "cognitive-architecture",
-      title: "Understanding Architecture",
-      subtitle: "Fundamental Principles of Cognitive and AI System Design",
-      year: 2025,
-      // authors: "Forhu, Wilson, Kumar",
-      domains: ["Cognitive Architecture", "Systems Design"],
-      // archiveId: "j259k_v1",
-      // doi: "osf.io/preprints/psyarxiv/j259k_v1",
-      abstract:
-        "This foundational work synthesizes cognitive science and AI systems design into unified architectural principles applicable to both biological and artificial minds.",
-      keyContributions: [
-        "Unified cognitive architecture framework",
-        "Cross-domain design principles",
-        "Scalability and composability analysis",
-      ],
-      diagram: "crossdomain",
-      link: "https://osf.io/preprints/psyarxiv/j259k_v1",
     },
   ]
 
@@ -170,7 +155,7 @@ export default function ResearchSection() {
             <span className="text-muted-foreground">Cognitive Architecture</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Peer-reviewed research and preprints exploring cognitive systems, artificial intelligence architecture, and
+            Preprints and open-access research by Myung Ho Kim exploring cognitive systems, artificial intelligence architecture, and
             the intersection of philosophy and computational theory.
           </p>
         </div>
@@ -200,7 +185,10 @@ export default function ResearchSection() {
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
                     <div className="mb-3 sm:mb-4 flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm">
-                      <span className="font-bold text-accent">{pub.year}</span>
+                      <span className="font-bold text-accent">
+                        {pub.year}
+                        {"revised" in pub && pub.revised ? ` · rev. ${pub.revised}` : ""}
+                      </span>
                       <span className="text-muted-foreground/40">•</span>
                       {/* <span className="text-muted-foreground font-medium">{pub.authors}</span> */}
                     </div>

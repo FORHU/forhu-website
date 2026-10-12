@@ -6,7 +6,7 @@ import SocialGlow from "@/components/social-glow"
 export const metadata: Metadata = {
   title: "Contact Forhu",
   description:
-    "Get in touch with Forhu. Have questions about the Structured Cognitive Loop, want to collaborate, or explore research partnerships? Reach out to us directly.",
+    "Get in touch with Forhu. Have questions about the Structured Cognitive Loop, want to collaborate on a project, or explore a partnership? Reach out to us directly.",
   alternates: { canonical: "https://forhu.ai/contact" },
   openGraph: {
     title: "Contact Forhu | Human-Centered AI Research",
@@ -47,15 +47,15 @@ const contactJsonLd = {
 const reasons = [
   {
     icon: MessageSquare,
-    title: "Research Collaboration",
+    title: "Using SCL",
     description:
-      "Interested in co-authoring papers, sharing datasets, or building on the SCL framework in your own research?",
+      "Interested in applying the Structured Cognitive Loop in your own product or project?",
   },
   {
     icon: Mail,
     title: "General Inquiries",
     description:
-      "Questions about Forhu, our cognitive architecture approach, or our published work? We read every message.",
+      "Questions about Forhu, how we apply the Structured Cognitive Loop, or our projects? We read every message.",
   },
   {
     icon: Clock,
@@ -152,7 +152,7 @@ export default function ContactPage() {
             <span className="text-accent text-xs font-bold uppercase tracking-[0.3em]">Follow Us</span>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mt-4 mb-4">Find Us on Social</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-16">
-              Stay up to date with our research, projects, and ideas across every platform we're on.
+              Stay up to date with our projects and ideas across every platform we're on.
             </p>
             <SocialGlow />
           </div>
@@ -163,7 +163,7 @@ export default function ContactPage() {
           <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
             <div>
               <h2 className="text-3xl font-bold tracking-tight">Want to read the research first?</h2>
-              <p className="text-muted-foreground mt-2">Explore what we've published on the Structured Cognitive Loop.</p>
+              <p className="text-muted-foreground mt-2">Explore the published papers behind the Structured Cognitive Loop.</p>
             </div>
             <div className="flex gap-4 shrink-0">
               <Link href="/research" className="px-6 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors">

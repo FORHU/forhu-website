@@ -80,7 +80,7 @@ const pillars = [
     title: "FOR HUMAN",
     tagline: "AI is not a tool, but a partner",
     short: "Technology must expand what humans can do — not replace them or act beyond their oversight.",
-    expanded: `The name FORHU is not a brand exercise. It is a commitment: every system we build, every architecture we publish, and every product we deploy must demonstrably serve human wellbeing.
+    expanded: `The name FORHU is not a brand exercise. It is a commitment: every system we build, every architecture we adopt, and every product we deploy must demonstrably serve human wellbeing.
 
 We reject the framing that AI is simply a productivity multiplier. AI that increases output at the cost of human agency, dignity, or accountability is not progress — it is a design failure. The Structured Cognitive Loop was conceived specifically to ensure that AI systems remain within human-defined boundaries at every step of their reasoning.
 
@@ -100,7 +100,7 @@ Transparency is not a feature you add to an AI system. It is a structural proper
     title: "Hallucination Governance",
     tagline: "The right to err, the duty not to repeat",
     short: "Hallucinations cannot be eliminated — but they can be prevented from happening twice.",
-    expanded: `Forhu's research has established that hallucinations are not bugs in LLMs — they are inevitable consequences of lossy information compression at scale. A model that never hallucinated would be a model that never generalized. Demanding zero hallucination is demanding zero intelligence.
+    expanded: `Published research by Myung Ho Kim argues that hallucinations are not bugs in LLMs — they are inevitable consequences of lossy information compression. A model that never hallucinated would be a model that never generalized. Demanding zero hallucination is demanding zero intelligence.
 
 What we can demand is that hallucinations do not compound. SCL's Memory layer records every error the system makes. SCL's Control layer cross-references every new output against that error record before it is delivered. If a hallucination pattern is detected, it is flagged, corrected, and logged — permanently.
 
@@ -136,7 +136,7 @@ export default function PhilosophyPage() {
             <p className="text-2xl sm:text-3xl font-light text-foreground leading-relaxed italic">
               "We are in an age of distrust. Not because AI is powerful — but because AI is opaque. The antidote is not less AI. It is AI that shows its work."
             </p>
-            <cite className="block mt-4 text-sm text-muted-foreground not-italic">— Forhu Research Team</cite>
+            <cite className="block mt-4 text-sm text-muted-foreground not-italic">— Forhu</cite>
           </blockquote>
         </section>
 

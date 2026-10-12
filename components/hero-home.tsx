@@ -55,7 +55,7 @@ export default function HeroHome() {
               href="#research"
               className="w-full sm:w-auto px-6 py-3 rounded-md border border-border bg-transparent text-foreground font-light hover:bg-black/20 transition-colors text-center"
             >
-              Read our research
+              Read the research
             </a>
           </div>
 

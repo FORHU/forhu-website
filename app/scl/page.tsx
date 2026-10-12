@@ -156,7 +156,7 @@ const faqs = [
   },
   {
     q: "Where is SCL used in practice?",
-    a: "SCL currently powers two live applications: Chumme (a human-centered social platform for artists) and ilovelawyer (an AI case workspace built for lawyers, with separate sites for the Philippines and the United Kingdom). The underlying architecture is documented in peer-reviewed papers on arXiv, PsyArXiv, and PhilSci.",
+    a: "SCL currently powers two live applications: Chumme (a human-centered social platform for artists) and ilovelawyer (an AI case workspace built for lawyers, with separate sites for the Philippines and the United Kingdom). The underlying architecture is documented in open-access preprints on arXiv, PsyArXiv, PhilSci Archive, and Preprints.org.",
   },
 ]
 
@@ -436,7 +436,7 @@ export default function SclPage() {
             <div>
               <h2 className="text-3xl font-bold tracking-tight">Explore the research behind SCL</h2>
               <p className="text-muted-foreground mt-2">
-                Peer-reviewed papers on arXiv, PsyArXiv, and PhilSci — covering the R-CC[H]AM loop, hallucination theory, and epistemic architecture.
+                Open-access preprints by Myung Ho Kim on arXiv, PsyArXiv, and PhilSci — covering the R-CC[H]AM loop, hallucination theory, and epistemic architecture.
               </p>
             </div>
             <div className="flex gap-4 shrink-0">

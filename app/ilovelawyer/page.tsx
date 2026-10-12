@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "ilovelawyer: AI Legal Intelligence by Forhu AI",
   description:
-    "ilovelawyer (I Love Lawyer) is an AI case workspace for lawyers, with a multi-pane Legal Terminal. Developed by Forhu AI for the Philippines and the UK.",
+    "ilovelawyer (I Love Lawyer) is an AI case workspace for lawyers, with citation-checked legal research and a multi-pane Legal Terminal. Developed by Forhu AI for the Philippines and the UK.",
   alternates: { canonical: "https://forhu.ai/ilovelawyer" },
   openGraph: {
     title: "ilovelawyer | Developed by Forhu AI",
@@ -148,6 +148,22 @@ const faqs = [
     q: "Which countries does ilovelawyer support?",
     a: "ilovelawyer currently serves the Philippines (ph.ilovelawyer.com) and the United Kingdom (uk.ilovelawyer.com) as separate jurisdiction-specific sites.",
   },
+  {
+    q: "Is ilovelawyer a UK legal AI platform?",
+    a: "ilovelawyer has a dedicated United Kingdom site (uk.ilovelawyer.com). It provides cited UK precedent across England and Wales, Scotland and Northern Ireland, live case law and legislation search through TNA Find Case Law and legislation.gov.uk, and provisional CPR deadline tracking.",
+  },
+  {
+    q: "How does ilovelawyer check legal research?",
+    a: "The research library searches case law and statutory and legislative sources with citation checking, so every quoted authority is verified against a real source document. ilovelawyer supports the lawyer's own judgment and does not replace it.",
+  },
+  {
+    q: "What is the Red Team pane in ilovelawyer?",
+    a: "Red Team is a pane in the Legal Terminal that surfaces the argument the opposing side will likely make against a given position. The Contradictions pane separately surfaces contradictions found in the case documents.",
+  },
+  {
+    q: "What does ilovelawyer do for a case?",
+    a: "Each case has a workspace with Sources, Chat and Studio. Studio generates a Mind Map of the case strategy (Legal Basis, Key Facts, Remedies, Risks, Next Steps), a Timeline of key dates and a Data Table. The Legal Terminal adds a multi-pane view of issues, strengths, weaknesses, attack and defense strategies, witnesses, damages and remedies, and case reconstruction.",
+  },
 ]
 
 const faqJsonLd = {
@@ -180,7 +196,7 @@ const ilovelawyerJsonLd = {
       item: {
         "@type": "SoftwareApplication",
         name: site.name,
-        alternateName: "I Love Lawyer",
+        alternateName: ["I Love Lawyer", "iloveLawyer", "iloveLawyer by Forhu"],
         description: `${description} ${site.detail}`,
         applicationCategory: "Legal Technology",
         url: site.href,
@@ -265,6 +281,47 @@ export default function IlovelawyerPage() {
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* United Kingdom */}
+        <section id="united-kingdom" className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/30">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter mb-4">ilovelawyer in the United Kingdom</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mb-12">
+              A separate, jurisdiction-specific site at {sites[1].host}.
+            </p>
+            <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {[
+                {
+                  title: "Cited UK precedent",
+                  description: "Precedent across England and Wales, Scotland and Northern Ireland.",
+                },
+                {
+                  title: "Live case law and legislation search",
+                  description: "Search through TNA Find Case Law and legislation.gov.uk.",
+                },
+                {
+                  title: "Provisional CPR deadline tracking",
+                  description: "Deadline tracking tied to each case, based on the Civil Procedure Rules.",
+                },
+              ].map((item) => (
+                <li
+                  key={item.title}
+                  className="p-6 sm:p-8 rounded-2xl border border-white/8 bg-white/[0.09] backdrop-blur-sm shadow-lg shadow-black/30"
+                >
+                  <h3 className="text-xl font-bold text-foreground mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{item.description}</p>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={sites[1].href}
+              className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-md border border-border text-foreground hover:bg-card/50 transition-colors"
+            >
+              Visit {sites[1].name}
+              <ArrowUpRight className="w-4 h-4 text-accent" aria-hidden="true" />
+            </a>
           </div>
         </section>
 
@@ -370,7 +427,7 @@ export default function IlovelawyerPage() {
             <div>
               <h2 className="text-3xl font-bold tracking-tight">Developed by Forhu AI</h2>
               <p className="text-muted-foreground mt-2">
-                ilovelawyer is developed by Forhu AI. Learn more about the company and its research.
+                ilovelawyer is developed by Forhu AI. Learn more about the company and the research behind its technology.
               </p>
             </div>
             <div className="flex flex-wrap gap-4 shrink-0">
