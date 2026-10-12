@@ -194,14 +194,14 @@ const webPageLd = {
       name: "Structured Cognitive Loop (SCL)",
       url: "https://forhu.ai/#scl",
       description:
-        "The Structured Cognitive Loop (SCL) — a recursive, hierarchical cognitive architecture for AI agents that integrates perception, cognition, and action through feedback mechanisms.",
+        "The Structured Cognitive Loop (SCL) — a modular cognitive architecture for AI agents that separates cognition, control, action, and memory in an auditable loop.",
     },
     {
       "@type": "WebPageElement",
       name: "Research & Publications",
       url: "https://forhu.ai/#research",
       description:
-        "Peer-reviewed research and preprints on cognitive architecture, AI hallucination, and the Structured Cognitive Loop published by Forhu.",
+        "Open-access preprints by Myung Ho Kim on cognitive architecture, AI hallucination, and the Structured Cognitive Loop, the technology Forhu uses.",
     },
     // {
     //   "@type": "WebPageElement",
@@ -215,7 +215,7 @@ const webPageLd = {
       name: "About Forhu",
       url: "https://forhu.ai/#about",
       description:
-        "About Forhu — the team advancing AI research and education through the Structured Cognitive Loop.",
+        "About Forhu — the team applying the Structured Cognitive Loop in human-centered AI products.",
     },
     {
       "@type": "WebPageElement",

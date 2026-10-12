@@ -128,7 +128,7 @@ export default function HeroSection() {
             size="lg"
             className="w-full sm:w-auto bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 hover:scale-105 font-semibold text-base h-12"
           >
-            Explore Our Research
+            Explore the Research
             <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
