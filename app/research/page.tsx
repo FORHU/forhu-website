@@ -5,7 +5,7 @@ import ResearchSection from "@/components/research-section"
 export const metadata: Metadata = {
   title: "Research & Publications — Explainable AI Preprints",
   description:
-    "Open-access preprints on the Structured Cognitive Loop and explainable AI by Myung Ho Kim — research on auditable AI architecture and hallucination governance.",
+    "Open-access preprints on the Structured Cognitive Loop and explainable AI by Myung Ho Kim — research on auditable AI architecture, hallucination governance, and entropy-feedback decoding (Thermo Pulse).",
   alternates: { canonical: "https://forhu.ai/research" },
   openGraph: {
     title: "Research & Publications — Explainable AI Preprints | Forhu",
@@ -16,6 +16,21 @@ export const metadata: Metadata = {
 }
 
 const publications = [
+  {
+    title: "Thermo Pulse",
+    subtitle: "Entropy-Feedback Temperature Control for Autoregressive Language Model Decoding",
+    year: 2026,
+    domains: ["LLM Decoding", "Entropy Feedback"],
+    abstract:
+      "Sampling temperature is usually fixed for an entire generation, even though next-token uncertainty changes from step to step. Thermo Pulse is an inference-time controller that sets the temperature at every step from the entropy of the top-five next-token distribution and its first difference, using a clipped proportional–derivative law. Nine decoding configurations are compared on Qwen 2.5-3B-Instruct across 400 generated logic and mathematics items (18,000 generations). None of the four prespecified primary contrasts is statistically established, so the paper is presented as an instrumented, reproducible case study of entropy-feedback decoding rather than evidence of a general improvement.",
+    contributions: [
+      "A fully specified entropy-feedback controller: top-five entropy signal, clipped PD law, and a hybrid with a relative-probability cutoff",
+      "Controlled comparison of nine decoding configurations, including P-only/D-only ablations and a Mirostat-v2-style baseline",
+      "Step-level instrumentation of temperature, candidate count, and removed probability mass",
+      "Transparent reporting of null and unfavourable results, with code, data, and raw results released openly",
+    ],
+    link: "https://www.preprints.org/manuscript/202611.0277",
+  },
   {
     title: "Pool-Gated Retrieval",
     subtitle: "Beyond Retrieval-Augmented Generation Toward Accountable Evidential Admission",

@@ -176,6 +176,14 @@ A travel booking app that finds and books the cheapest flights and hotels in one
 
 Full list: https://forhu.ai/research
 
+### Thermo Pulse
+**Subtitle:** Entropy-Feedback Temperature Control for Autoregressive Language Model Decoding
+**Year:** 2026
+**Domains:** LLM Decoding, Entropy Feedback
+**Abstract:** Introduces Thermo Pulse, an inference-time controller that sets the sampling temperature at every decoding step from the entropy of the top-five next-token distribution and its first difference, using a clipped proportional–derivative law. Compares nine decoding configurations on Qwen 2.5-3B-Instruct (18,000 generations). None of the four prespecified primary contrasts is statistically established; presented as an instrumented, reproducible case study rather than evidence of a general improvement.
+**Key contributions:** Fully specified entropy-feedback controller with a hybrid relative-probability cutoff; Controlled comparison of nine decoding configurations; Step-level instrumentation; Transparent reporting of null results with open code and data.
+**Link:** https://www.preprints.org/manuscript/202611.0277
+
 ### Pool-Gated Retrieval
 **Subtitle:** Beyond Retrieval-Augmented Generation Toward Accountable Evidential Admission
 **Year:** 2026
