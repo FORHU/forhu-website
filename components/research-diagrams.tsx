@@ -415,6 +415,75 @@ export const GatedPipelineDiagram = () => (
   </svg>
 )
 
+// ── 6c. "Thermo Pulse: Entropy-Feedback Temperature Control for Autoregressive Decoding" ──
+// Illustrative trace over decoding steps: next-token entropy H (blue) drives a clipped PD
+// temperature T (orange) that pulses when entropy changes, versus a fixed-temperature baseline.
+const TP_H = [0.30,0.28,0.34,0.30,0.62,0.90,0.74,0.46,0.34,0.30,0.32,0.58,0.84,0.95,0.70,0.44,0.32,0.28,0.30,0.52,0.78,0.60,0.40,0.30]
+const TP_T = TP_H.map((h, i) => {
+  const dh = i === 0 ? 0 : h - TP_H[i - 1]
+  return Math.min(1.0, Math.max(0.25, 0.3 + 0.55 * h + 0.9 * dh))
+})
+const TP_X0 = 22, TP_X1 = 206, TP_Y0 = 120, TP_Y1 = 32
+const tpX = (i: number) => TP_X0 + (i / (TP_H.length - 1)) * (TP_X1 - TP_X0)
+const tpY = (v: number) => TP_Y0 - v * (TP_Y0 - TP_Y1)
+const tpPath = (arr: number[]) => arr.map((v, i) => `${i === 0 ? "M" : "L"} ${tpX(i).toFixed(1)},${tpY(v).toFixed(1)}`).join(" ")
+
+export const ThermoPulseDiagram = () => (
+  <svg viewBox="0 0 220 170" className="w-full h-full">
+    <defs>
+      <style>{`@keyframes tpd{from{stroke-dashoffset:1}to{stroke-dashoffset:0}} .tpl{stroke-dasharray:1;animation:tpd 3.2s ease-out infinite}`}</style>
+    </defs>
+
+    <text x="110" y="11" textAnchor="middle" style={{ fontSize:"4.5px", fill:"rgba(255,255,255,0.3)", letterSpacing:"0.1em" }}>
+      THERMO PULSE
+    </text>
+
+    {/* Legend */}
+    <line x1="22" y1="22" x2="30" y2="22" stroke={BLUE} strokeWidth="1.4" />
+    <text x="33" y="23.5" style={{ fontSize:"4.2px", fill:BLUE, fontWeight:700 }}>Entropy H</text>
+    <line x1="72" y1="22" x2="80" y2="22" stroke={ACCENT} strokeWidth="1.4" />
+    <text x="83" y="23.5" style={{ fontSize:"4.2px", fill:ACCENT, fontWeight:700 }}>PD temperature</text>
+    <line x1="136" y1="22" x2="144" y2="22" stroke={W} strokeWidth="1" strokeDasharray="2,2" />
+    <text x="147" y="23.5" style={{ fontSize:"4.2px", fill:"rgba(255,255,255,0.45)" }}>Fixed T = 0.7</text>
+
+    {/* Grid + clip bounds */}
+    {[0, 0.5, 1].map((v) => (
+      <line key={v} x1={TP_X0} y1={tpY(v)} x2={TP_X1} y2={tpY(v)} stroke={DIM} strokeWidth="0.5" />
+    ))}
+    <line x1={TP_X0} y1={tpY(1.0)} x2={TP_X1} y2={tpY(1.0)} stroke={GOLD} strokeWidth="0.5" strokeDasharray="1.5,2" opacity="0.5" />
+    <line x1={TP_X0} y1={tpY(0.25)} x2={TP_X1} y2={tpY(0.25)} stroke={GOLD} strokeWidth="0.5" strokeDasharray="1.5,2" opacity="0.5" />
+    <text x={TP_X1} y={tpY(1.0) - 1.5} textAnchor="end" style={{ fontSize:"3.6px", fill:GOLD, opacity:0.7 }}>T max</text>
+    <text x={TP_X1} y={tpY(0.25) + 5} textAnchor="end" style={{ fontSize:"3.6px", fill:GOLD, opacity:0.7 }}>T min</text>
+
+    {/* Fixed-temperature baseline */}
+    <line x1={TP_X0} y1={tpY(0.7)} x2={TP_X1} y2={tpY(0.7)} stroke={W} strokeWidth="0.8" strokeDasharray="3,3" />
+
+    {/* Axes */}
+    <line x1={TP_X0} y1={TP_Y0} x2={TP_X1} y2={TP_Y0} stroke={W} strokeWidth="0.6" />
+    <line x1={TP_X0} y1={TP_Y1 - 4} x2={TP_X0} y2={TP_Y0} stroke={W} strokeWidth="0.6" />
+
+    {/* Entropy and temperature traces */}
+    <path d={tpPath(TP_H)} pathLength={1} className="tpl" fill="none" stroke={BLUE} strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round" opacity="0.9" />
+    <path d={tpPath(TP_T)} pathLength={1} className="tpl" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" style={{ animationDelay:"0.25s" }} />
+
+    {/* Pulse markers at entropy spikes */}
+    {[5, 13, 20].map((i) => (
+      <circle key={i} cx={tpX(i)} cy={tpY(TP_T[i])} r="2" fill={ACCENT} fillOpacity="0.25" stroke={ACCENT} strokeWidth="0.6" />
+    ))}
+
+    <text x={TP_X0} y={TP_Y0 + 8} style={{ fontSize:"3.8px", fill:"rgba(255,255,255,0.35)" }}>Step 1</text>
+    <text x={TP_X1} y={TP_Y0 + 8} textAnchor="end" style={{ fontSize:"3.8px", fill:"rgba(255,255,255,0.35)" }}>Decoding step →</text>
+
+    <text x="110" y="143" textAnchor="middle" style={{ fontSize:"4.2px", fill:"rgba(255,255,255,0.45)", letterSpacing:"0.03em" }}>
+      Temperature pulses as next-token uncertainty changes
+    </text>
+    <text x="110" y="163" textAnchor="middle"
+      style={{ fontSize:"4px", fill:"rgba(255,255,255,0.2)", letterSpacing:"0.08em" }}>
+      ILLUSTRATIVE ENTROPY-FEEDBACK TRACE
+    </text>
+  </svg>
+)
+
 // ── 6. "Understanding Architecture: Fundamental Principles of Cognitive & AI Design" ─
 // Shows unified principles bridging biological cognition and AI systems
 export const CrossDomainDiagram = () => {
