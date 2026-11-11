@@ -201,8 +201,8 @@ Full list: https://forhu.ai/research
 
 ### Structured Cognitive Loop: Behavioral Intelligence in Large Language Model Agents
 **Domains:** AI Architecture, LLMs
-**Abstract:** Introduces the Structured Cognitive Loop (SCL), a hierarchical control architecture for LLM agents integrating perception, cognition, and action through recursive feedback mechanisms.
-**Key contributions:** SCL hierarchical architecture design; Behavioral intelligence framework; Empirical validation on complex tasks.
+**Abstract:** Argues the central challenge for AI agents is accountability, not performance. SCL separates cognition, control, action, and memory: the model proposes, a lightweight controller mediates every proposal before action, and memory is an external store of verified facts. Achieves 86.3% task success vs 70.5-76.8% for ReAct/LangChain baselines across 360 episodes. Latest revision (arXiv v6, 10 Nov 2026) adds sections on consensus vs. imitation and on the compiled direction of SCL.
+**Key contributions:** Controller-mediated execution with an auditable trace; Controlled evaluation with memory/control ablations; Accountability architecture (human-in-the-loop, Pool-Gated Retrieval, Horizon-Warrant-Commitment).
 **Link:** https://arxiv.org/abs/2510.05107
 
 ### Emergent Cognitive Convergence: Implementation and Four Theories of Mind

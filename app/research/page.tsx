@@ -17,6 +17,24 @@ export const metadata: Metadata = {
 
 const publications = [
   {
+    title: "Structured Cognitive Loop",
+    subtitle: "Behavioral Intelligence in Large Language Model Agents — Extended Revision: From Behavioral Architecture to Epistemic Accountability",
+    year: 2025,
+    revised: 2026,
+    version: "v6",
+    domains: ["AI Architecture", "LLMs"],
+    abstract:
+      "The central challenge for AI agents is not performance but accountability. The Structured Cognitive Loop (SCL) separates cognition, control, action, and memory: the language model proposes, a lightweight controller mediates every proposal before action, and memory is kept externally as a structured store of verified facts. Against ReAct and common LangChain agents under matched models, tools, and decoding, SCL achieves 86.3% task success versus 70.5–76.8% across 360 episodes, and ablations show control and external memory contribute independently. The paper situates SCL within a broader accountability architecture and outlines a compiled direction in which execution authority derives from a verified program rather than per-cycle model interpretation.",
+    contributions: [
+      "Modular loop: Cognition → Control → Action → Memory, with Retrieval at turn onset",
+      "Controller-mediated execution with an auditable trace of proposals and approvals",
+      "Controlled evaluation against ReAct and LangChain agents, with ablations of memory and control",
+      "Accountability architecture: context-aware human-in-the-loop, Pool-Gated Retrieval, and the Horizon-Warrant-Commitment framework",
+      "Latest revision (v6): new sections on consensus and imitation, and on the compiled direction of SCL",
+    ],
+    link: "https://arxiv.org/abs/2510.05107",
+  },
+  {
     title: "Thermo Pulse",
     subtitle: "Entropy-Feedback Temperature Control for Autoregressive Language Model Decoding",
     year: 2026,
@@ -59,22 +77,6 @@ const publications = [
       "Intelligence redefined as the capacity to reconstruct one's own epistemic state",
     ],
     link: "https://philsci-archive.pitt.edu/26865/",
-  },
-  {
-    title: "Structured Cognitive Loop",
-    subtitle: "Behavioral Intelligence in Large Language Model Agents — Extended Revision: From Behavioral Architecture to Epistemic Accountability",
-    year: 2025,
-    revised: 2026,
-    domains: ["AI Architecture", "LLMs"],
-    abstract:
-      "We introduce the Structured Cognitive Loop (SCL), an agent architecture that separates cognition, control, action, and memory. The language model only proposes actions, a lightweight controller validates every proposal before execution, and memory is kept externally as a structured store of verified facts. Across 360 episodes in three controlled scenarios, SCL reached 86.3% task success versus 70.5–76.8% for prompt-based baselines using the same model and tools.",
-    contributions: [
-      "Modular loop: Cognition → Control → Action → Memory, with Retrieval at turn onset",
-      "Controller-mediated execution with an auditable trace of proposals and approvals",
-      "Controlled evaluation against ReAct and LangChain agents, with ablations of memory and control",
-      "Extended revision: human-in-the-loop, Pool-Gated Retrieval, and the Horizon-Warrant-Commitment framework",
-    ],
-    link: "https://arxiv.org/abs/2510.05107",
   },
   {
     title: "Emergent Cognitive Convergence via Implementation",
@@ -204,7 +206,7 @@ export default function ResearchPage() {
                       <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">{p.year}</span>
                     </div>
                     <p className="font-semibold text-foreground">{p.title}: {p.subtitle}</p>
-                    <p className="text-sm text-muted-foreground mt-1">{AUTHOR}, {p.year}{p.revised ? ` (revised ${p.revised})` : ""}. Open-access preprint.</p>
+                    <p className="text-sm text-muted-foreground mt-1">{AUTHOR}, {p.year}{p.revised ? ` (revised ${p.revised}${"version" in p && p.version ? `, ${p.version}` : ""})` : ""}. Open-access preprint.</p>
                   </div>
                   <a
                     href={p.link}
