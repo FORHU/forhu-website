@@ -1,11 +1,34 @@
 // Shared publication list. The first entry is treated as the latest paper (used by the hero callout).
 export const publications = [
   {
+    id: "structured-cognitive",
+    title: "Structured Cognitive Loop",
+    subtitle: "Behavioral Intelligence in Large Language Model Agents — Extended Revision: From Behavioral Architecture to Epistemic Accountability",
+    year: 2025,
+    revised: "2026 (v6)",
+    isNew: true,
+    pill: "Extended Revision (v6): Epistemic Accountability",
+    // authors: "Forhu, Smith, Johnson",
+    domains: ["AI Architecture", "LLMs"],
+    // archiveId: "2510.05107",
+    // doi: "arXiv:2510.05107",
+    abstract:
+      "The central challenge for AI agents is not performance but accountability. The Structured Cognitive Loop (SCL) separates cognition, control, action, and memory: the language model proposes, a lightweight controller mediates every proposal before action, and memory is kept externally as a structured store of verified facts. Against ReAct and common LangChain agents under matched models, tools, and decoding, SCL achieves 86.3% task success versus 70.5–76.8% across 360 episodes, and ablations show control and external memory contribute independently. The paper situates SCL within a broader accountability architecture and outlines a compiled direction in which execution authority derives from a verified program rather than per-cycle model interpretation.",
+    keyContributions: [
+      "Modular loop: Cognition → Control → Action → Memory, with Retrieval at turn onset",
+      "Controller-mediated execution with an auditable trace of proposals and approvals",
+      "Controlled evaluation against ReAct and LangChain agents, with ablations of memory and control",
+      "Accountability architecture: context-aware human-in-the-loop, Pool-Gated Retrieval, and the Horizon-Warrant-Commitment framework",
+      "Latest revision (v6): new sections on consensus and imitation, and on the compiled direction of SCL",
+    ],
+    diagram: "layered",
+    link: "https://arxiv.org/abs/2510.05107",
+  },
+  {
     id: "thermo-pulse",
     title: "Thermo Pulse",
     subtitle: "Entropy-Feedback Temperature Control for Autoregressive Language Model Decoding",
     year: 2026,
-    isNew: true,
     domains: ["LLM Decoding", "Entropy Feedback"],
     abstract:
       "Sampling temperature is usually fixed for an entire generation, even though next-token uncertainty changes from step to step. Thermo Pulse is an inference-time controller that sets the temperature at every step from the entropy of the top-five next-token distribution and its first difference, using a clipped proportional–derivative law. Nine decoding configurations are compared on Qwen 2.5-3B-Instruct across 400 generated logic and mathematics items (18,000 generations). None of the four prespecified primary contrasts is statistically established, so the paper is presented as an instrumented, reproducible case study of entropy-feedback decoding rather than evidence of a general improvement.",
@@ -55,27 +78,6 @@ export const publications = [
     ],
     diagram: "schema",
     link: "https://philsci-archive.pitt.edu/26865/",
-  },
-  {
-    id: "structured-cognitive",
-    title: "Structured Cognitive Loop",
-    subtitle: "Behavioral Intelligence in Large Language Model Agents — Extended Revision: From Behavioral Architecture to Epistemic Accountability",
-    year: 2025,
-    revised: 2026,
-    // authors: "Forhu, Smith, Johnson",
-    domains: ["AI Architecture", "LLMs"],
-    // archiveId: "2510.05107",
-    // doi: "arXiv:2510.05107",
-    abstract:
-      "We introduce the Structured Cognitive Loop (SCL), an agent architecture that separates cognition, control, action, and memory. The language model only proposes actions, a lightweight controller validates every proposal before execution, and memory is kept externally as a structured store of verified facts. Across 360 episodes in three controlled scenarios, SCL reached 86.3% task success versus 70.5–76.8% for prompt-based baselines using the same model and tools.",
-    keyContributions: [
-      "Modular loop: Cognition → Control → Action → Memory, with Retrieval at turn onset",
-      "Controller-mediated execution with an auditable trace of proposals and approvals",
-      "Controlled evaluation against ReAct and LangChain agents, with ablations of memory and control",
-      "Extended revision: human-in-the-loop, Pool-Gated Retrieval, and the Horizon-Warrant-Commitment framework",
-    ],
-    diagram: "layered",
-    link: "https://arxiv.org/abs/2510.05107",
   },
   {
     id: "emergent-convergence",

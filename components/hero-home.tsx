@@ -63,7 +63,7 @@ export default function HeroHome() {
               >
                 <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">New</span>
                 <span className="truncate text-xs md:text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                  {latestPaper.title}: {latestPaper.subtitle.split(" for ")[0]}
+                  {latestPaper.title}: {"pill" in latestPaper ? latestPaper.pill : latestPaper.subtitle.split(" for ")[0]}
                 </span>
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 text-accent transition-transform group-hover:translate-x-0.5" />
               </Link>

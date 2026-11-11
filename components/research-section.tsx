@@ -69,7 +69,7 @@ export default function ResearchSection() {
                     <div className="mb-3 sm:mb-4 flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm">
                       <span className="font-bold text-accent">
                         {pub.year}
-                        {"revised" in pub && pub.revised ? ` · rev. ${pub.revised}` : ""}
+                        {"revised" in pub && pub.revised ? ` · Revised ${pub.revised}` : ""}
                       </span>
                       {"isNew" in pub && pub.isNew && (
                         <span className="px-2 py-0.5 rounded-full bg-accent/15 border border-accent/30 text-accent text-[10px] font-bold uppercase tracking-widest">
